@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#4C7EF3">
+<title>ConectaTEA — Plataforma Educativa Inclusiva</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   ConectaTEA v3 — Design System
+   Paleta: Azul índigo · Verde esmeralda · Coral
+   Fuentes: Baloo 2 (títulos) / Nunito (cuerpo)
+══════════════════════════════════════════ */
+:root{
+  --sky:#4C7EF3; --sky2:#3565D6; --sky-lt:#EBF1FF; --sky-xlt:#F5F8FF;
+  --eme:#2ECC8E; --eme2:#24A875; --eme-lt:#E3F9F1;
+  --cor:#FF6B6B; --cor2:#E85555; --cor-lt:#FFF0F0;
+  --sun:#FFB347; --sun2:#F09020; --sun-lt:#FFF6E8;
+  --vio:#8B5CF6; --vio2:#6D3FD8; --vio-lt:#F0EBFF;
+  --pin:#FF8FAB; --pin-lt:#FFF0F5;
+  --teal:#14B8A6; --teal-lt:#E0F7F5;
+  --bg:#F0F4FF; --card:#FFFFFF; --ink:#1E2B4A;
+  --ink2:#4A5568; --ink3:#94A3B8; --line:#E2E8F0;
+  --r4:4px;--r8:8px;--r12:12px;--r16:16px;--r20:20px;--r24:24px;--rpill:50px;
+  --sh1:0 2px 8px rgba(76,126,243,.1);
+  --sh2:0 6px 24px rgba(76,126,243,.15);
+  --sh3:0 12px 40px rgba(76,126,243,.2);
+  --shg:0 0 0 3px rgba(76,126,243,.25);
+  --fh:'Baloo 2',cursive; --fb:'Nunito',sans-serif;
+  --fast:.15s ease; --med:.3s ease; --slow:.45s cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{cursor:pointer;border:none;background:none;font-family:inherit;-webkit-tap-highlight-color:transparent}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+input,select,textarea{font-family:inherit;font-size:inherit;outline:none}
+
+/* ══ SCREENS ══ */
+.scr{display:none!important;flex-direction:column;min-height:100vh}
+.scr.on{display:flex!important;animation:scrIn .3s ease}
+@keyframes scrIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ══ SPLASH ══ */
+#s-splash{
+  align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#1a2a6c 0%,#4C7EF3 45%,#2ECC8E 100%);
+  position:relative;overflow:hidden;padding:2rem 1.5rem;
+}
+.sp-bg{position:absolute;inset:0;overflow:hidden}
+.sp-circle{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
+.c1{width:350px;height:350px;background:#FFB347;top:-100px;right:-100px}
+.c2{width:300px;height:300px;background:#FF6B6B;bottom:-80px;left:-80px;animation:fl 7s ease-in-out infinite alternate}
+.c3{width:200px;height:200px;background:#8B5CF6;top:40%;left:40%;animation:fl 5s ease-in-out infinite alternate-reverse}
+@keyframes fl{0%{transform:translate(0,0)}100%{transform:translate(30px,-30px)}}
+.sp-logo{font-family:var(--fh);font-size:3rem;font-weight:800;color:#fff;z-index:1;display:flex;align-items:center;gap:10px;margin-bottom:.5rem;text-shadow:0 4px 20px rgba(0,0,0,.2)}
+.sp-tag{color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600;z-index:1;margin-bottom:.5rem;text-align:center}
+.sp-sub{color:rgba(255,255,255,.7);font-size:.8rem;z-index:1;margin-bottom:2.5rem;text-align:center}
+.sp-icon{font-size:5rem;z-index:1;animation:bou 2.5s ease-in-out infinite;margin-bottom:.5rem}
+@keyframes bou{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.08)}}
+/* Símbolo de infinito arcoíris */
+.inf-svg{width:110px;height:60px;z-index:1;margin-bottom:.5rem;animation:bou 2.5s ease-in-out infinite;filter:drop-shadow(0 4px 16px rgba(0,0,0,.25))}
+.inf-svg path{stroke-width:9;stroke-linecap:round;fill:none}
+.sp-roles{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:360px;z-index:1}
+.sp-role{
+  background:rgba(255,255,255,.95);border-radius:var(--r20);
+  padding:18px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  cursor:pointer;font-weight:800;font-size:.88rem;color:var(--ink);
+  box-shadow:0 8px 32px rgba(0,0,0,.18);
+  transition:transform var(--slow),box-shadow var(--med);
+}
+.sp-role:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 16px 44px rgba(0,0,0,.22)}
+.sp-role:active{transform:scale(.97)}
+.sp-role .ri{font-size:2.2rem}
+.sp-role .rs{font-size:.72rem;color:var(--ink3);font-weight:600}
+/* Botón niño especial */
+.sp-role.nino-btn{
+  background:linear-gradient(135deg,#FFB347,#FF6B6B);
+  color:#fff;grid-column:span 2;
+  flex-direction:row;justify-content:center;padding:20px;
+  font-size:1rem;
+}
+.sp-role.nino-btn .rs{color:rgba(255,255,255,.85)}
+
+/* ══ MODAL AUTH ══ */
+.auth-overlay{
+  position:fixed;inset:0;background:rgba(30,43,74,.6);
+  z-index:300;display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);padding:1rem;
+}
+.auth-overlay.on{display:flex;animation:faIn .2s ease}
+@keyframes faIn{from{opacity:0}to{opacity:1}}
+.auth-box{
+  background:var(--card);border-radius:var(--r24);
+  padding:28px 24px;width:100%;max-width:420px;
+  animation:scIn .35s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+@keyframes scIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.auth-close{position:absolute;top:14px;right:16px;background:var(--bg);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;transition:var(--fast)}
+.auth-close:hover{background:var(--cor-lt);color:var(--cor)}
+.auth-title{font-family:var(--fh);font-size:1.5rem;font-weight:700;margin-bottom:.25rem}
+.auth-sub{font-size:.85rem;color:var(--ink3);margin-bottom:1.5rem}
+.fgrp{margin-bottom:1rem}
+.flbl{font-size:.78rem;font-weight:800;color:var(--ink2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px}
+.finp{
+  width:100%;padding:13px 15px;border:2px solid var(--line);
+  border-radius:var(--r12);font-size:.95rem;color:var(--ink);
+  background:var(--bg);transition:border-color var(--fast),box-shadow var(--fast);
+}
+.finp:focus{border-color:var(--sky);box-shadow:var(--shg)}
+.btn-auth{
+  width:100%;background:linear-gradient(135deg,var(--sky),var(--sky2));
+  color:#fff;border-radius:var(--rpill);padding:15px;font-size:.95rem;font-weight:800;
+  box-shadow:0 6px 20px rgba(76,126,243,.4);transition:all var(--slow);
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:.5rem;
+}
+.btn-auth:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(76,126,243,.5)}
+.auth-alt{text-align:center;font-size:.82rem;color:var(--ink3);margin-top:1rem}
+.auth-alt a{color:var(--sky);font-weight:700;cursor:pointer}
+
+/* ══ MAIN LAYOUT ══ */
+#s-main{flex-direction:column}
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:var(--card);
+  box-shadow:0 2px 16px rgba(76,126,243,.09);
+  padding:11px 16px;display:flex;align-items:center;gap:10px;
+}
+.tb-logo{font-family:var(--fh);font-size:1.35rem;font-weight:800;color:var(--sky);display:flex;align-items:center;gap:6px;flex-shrink:0}
+.tb-spacer{flex:1}
+.tb-notif{position:relative;background:var(--bg);border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;flex-shrink:0}
+.tb-dot{position:absolute;top:7px;right:7px;width:8px;height:8px;background:var(--cor);border-radius:50%;border:2px solid var(--card)}
+.tb-user{display:flex;align-items:center;gap:9px;cursor:pointer}
+.tb-ava{width:37px;height:37px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:2px solid var(--sky);flex-shrink:0}
+.tb-info .tb-name{font-weight:800;font-size:.88rem}
+.tb-info .tb-badge{font-size:.67rem;font-weight:700;color:var(--sky);background:var(--sky-lt);padding:2px 7px;border-radius:50px;display:inline-block}
+.btn-out{background:var(--bg);border-radius:var(--r8);padding:5px 10px;font-size:.75rem;font-weight:700;color:var(--ink3);flex-shrink:0;transition:var(--fast)}
+.btn-out:hover{background:var(--cor-lt);color:var(--cor)}
+
+/* ══ CONTENIDO Y NAV ══ */
+.main-wrap{display:flex;flex:1;min-height:0}
+.sidebar{
+  width:220px;flex-shrink:0;background:var(--card);
+  padding:16px 10px;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:3px;
+  position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;
+}
+@media(max-width:767px){.sidebar{display:none}}
+.s-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:var(--r12);cursor:pointer;
+  font-size:.84rem;font-weight:700;color:var(--ink3);
+  transition:all var(--fast);
+}
+.s-item:hover{background:var(--sky-lt);color:var(--sky)}
+.s-item.on{background:var(--sky);color:#fff}
+.s-item .si{font-size:1.1rem;width:22px;text-align:center}
+.s-section{font-size:.68rem;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.8px;padding:10px 12px 4px}
+.s-divider{height:1px;background:var(--line);margin:6px 8px}
+.page-area{flex:1;overflow-y:auto;padding:20px 16px 100px}
+@media(min-width:768px){.page-area{padding:24px 24px 60px}}
+
+/* ══ BOTTOMNAV (mobile) ══ */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--card);box-shadow:0 -3px 20px rgba(76,126,243,.1);
+  display:flex;padding:7px 4px calc(7px + env(safe-area-inset-bottom,0px));
+}
+@media(min-width:768px){.bnav{display:none}}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 2px;cursor:pointer;border-radius:var(--r12);color:var(--ink3);transition:all var(--med);-webkit-tap-highlight-color:transparent}
+.bn.on{color:var(--sky)}
+.bn-ico{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;transition:all var(--slow)}
+.bn.on .bn-ico{background:var(--sky-lt);transform:translateY(-2px)}
+.bn-lbl{font-size:.61rem;font-weight:800}
+
+/* ══ PÁGINAS ══ */
+.pg{display:none}
+.pg.on{display:block;animation:pgIn .3s ease}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ══ COMPONENTES GENERALES ══ */
+.stitle{font-family:var(--fh);font-size:1.2rem;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stitle span.c{color:var(--sky)}
+.stitle .more{font-family:var(--fb);font-size:.75rem;font-weight:700;color:var(--sky);background:var(--sky-lt);border-radius:50px;padding:3px 10px;margin-left:auto;cursor:pointer}
+.card{background:var(--card);border-radius:var(--r20);padding:18px;box-shadow:var(--sh1);transition:all var(--slow)}
+.card:hover{box-shadow:var(--sh2)}
+.pill{border-radius:50px;padding:3px 9px;font-size:.68rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.p-sky{background:var(--sky-lt);color:var(--sky)}
+.p-eme{background:var(--eme-lt);color:var(--eme2)}
+.p-sun{background:var(--sun-lt);color:var(--sun2)}
+.p-cor{background:var(--cor-lt);color:var(--cor2)}
+.p-vio{background:var(--vio-lt);color:var(--vio2)}
+.p-teal{background:var(--teal-lt);color:var(--teal)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:480px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(2,1fr)}}
+.btn-prim{background:linear-gradient(135deg,var(--sky),var(--sky2));color:#fff;border-radius:var(--rpill);padding:13px 24px;font-size:.9rem;font-weight:800;box-shadow:0 5px 18px rgba(76,126,243,.35);transition:all var(--slow);display:inline-flex;align-items:center;gap:7px}
+.btn-prim:hover{transform:translateY(-2px);box-shadow:0 9px 26px rgba(76,126,243,.45)}
+.btn-sec{background:var(--sky-lt);color:var(--sky);border-radius:var(--rpill);padding:11px 20px;font-size:.85rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;transition:var(--fast)}
+.btn-sec:hover{background:var(--sky);color:#fff}
+.btn-eme{background:linear-gradient(135deg,var(--eme),var(--eme2));color:#fff;border-radius:var(--rpill);padding:12px 22px;font-size:.88rem;font-weight:800;display:inline-flex;align-items:center;gap:6px;transition:all var(--slow);box-shadow:0 5px 18px rgba(46,204,142,.35)}
+.btn-eme:hover{transform:translateY(-2px)}
+.progbar{height:9px;background:var(--line);border-radius:50px;overflow:hidden}
+.progfill{height:100%;border-radius:50px;transition:width .6s ease}
+
+/* filtros */
+.filtrow{display:flex;gap:7px;overflow-x:auto;padding-bottom:5px;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:16px}
+.filtrow::-webkit-scrollbar{display:none}
+.fbtn{white-space:nowrap;border-radius:50px;padding:7px 15px;font-size:.78rem;font-weight:700;border:2px solid var(--line);background:var(--card);color:var(--ink3);cursor:pointer;transition:all var(--fast);display:flex;align-items:center;gap:5px}
+.fbtn:hover{border-color:var(--sky);color:var(--sky)}
+.fbtn.on{background:var(--sky);border-color:var(--sky);color:#fff}
+
+/* hero card */
+.hero{background:linear-gradient(135deg,var(--sky) 0%,var(--vio) 100%);border-radius:var(--r24);padding:22px 20px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero::before{width:160px;height:160px;top:-50px;right:-50px}
+.hero::after{width:100px;height:100px;bottom:-30px;right:60px}
+.hero-g{font-family:var(--fh);font-size:1.65rem;font-weight:800;position:relative;z-index:1}
+.hero-s{font-size:.88rem;opacity:.9;position:relative;z-index:1;margin-top:2px}
+.hero-em{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:3.5rem;z-index:1}
+
+/* stat mini */
+.stat-mini{cursor:default}
+.stat-mini .sm-ico{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:10px}
+.stat-mini .sm-num{font-family:var(--fh);font-size:1.8rem;font-weight:800;line-height:1}
+.stat-mini .sm-lbl{font-size:.72rem;color:var(--ink3);font-weight:700;margin-top:2px}
+
+/* ══ NIÑO — ÁREAS DE TRABAJO ══ */
+.area-hero{border-radius:var(--r20);padding:20px;cursor:pointer;transition:all var(--slow);display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.area-hero:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.area-hero::after{content:'';position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1)}
+.area-ico{font-size:2.4rem}
+.area-name{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff}
+.area-desc{font-size:.75rem;color:rgba(255,255,255,.85);line-height:1.4}
+.area-prog{display:flex;align-items:center;gap:8px;margin-top:4px}
+.area-prog-bar{flex:1;height:6px;background:rgba(255,255,255,.3);border-radius:50px;overflow:hidden}
+.area-prog-fill{height:100%;background:#fff;border-radius:50px}
+.area-prog-txt{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.9)}
+
+/* niveles */
+.nivel-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--r12);padding:4px;margin-bottom:16px}
+.ntab{flex:1;border-radius:var(--r8);padding:8px 6px;font-size:.78rem;font-weight:800;text-align:center;cursor:pointer;color:var(--ink3);transition:all var(--fast)}
+.ntab.on{background:var(--card);color:var(--sky);box-shadow:var(--sh1)}
+
+/* tarjeta actividad */
+.act-card{background:var(--card);border-radius:var(--r16);padding:14px;cursor:pointer;box-shadow:var(--sh1);transition:all var(--slow);position:relative}
+.act-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.act-card:active{transform:scale(.98)}
+.ac-done{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--eme);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem}
+.ac-img{width:100%;height:76px;border-radius:var(--r12);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin-bottom:10px}
+.ac-name{font-size:.82rem;font-weight:800;margin-bottom:5px;line-height:1.3}
+.ac-meta{display:flex;gap:4px;flex-wrap:wrap}
+
+/* ══ VISIÓN Y JUEGOS ══ */
+.vj-card{border-radius:var(--r20);padding:20px;cursor:pointer;transition:all var(--slow);text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.vj-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--sh2)}
+
+/* ══ ¡A DIVERTIRNOS! — VIDEOS YOUTUBE ══ */
+/* Tabs de sección: Juegos | Videos */
+.vj-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--r12);padding:4px;margin-bottom:18px}
+.vj-tab{flex:1;border-radius:10px;padding:11px 8px;font-size:.83rem;font-weight:800;text-align:center;cursor:pointer;color:var(--ink3);transition:all var(--fast);display:flex;align-items:center;justify-content:center;gap:6px}
+.vj-tab.on{background:var(--card);color:var(--sky);box-shadow:var(--sh1)}
+.vj-tab:hover:not(.on){background:rgba(76,126,243,.07);color:var(--sky)}
+/* Tarjeta de video */
+.vid-card{
+  background:var(--card);border-radius:var(--r20);overflow:hidden;
+  box-shadow:var(--sh1);cursor:pointer;transition:all var(--slow);
+  position:relative;
+}
+.vid-card:hover{transform:translateY(-4px);box-shadow:var(--sh3)}
+.vid-card:active{transform:scale(.98)}
+.vid-thumb{
+  width:100%;aspect-ratio:16/9;
+  background:linear-gradient(135deg,#1a1a2e,#16213e);
+  position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.vid-card:hover .vid-thumb img{transform:scale(1.05)}
+.vid-play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:52px;height:52px;background:rgba(255,0,0,.88);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);transition:all var(--slow);
+}
+.vid-card:hover .vid-play-btn{width:60px;height:60px;background:#FF0000}
+.vid-play-btn::after{
+  content:'';width:0;height:0;
+  border-top:10px solid transparent;border-bottom:10px solid transparent;
+  border-left:18px solid #fff;margin-left:4px;
+}
+.vid-duracion{
+  position:absolute;bottom:7px;right:9px;
+  background:rgba(0,0,0,.75);color:#fff;
+  border-radius:4px;padding:2px 6px;font-size:.7rem;font-weight:700;
+}
+.vid-nuevo{
+  position:absolute;top:8px;left:8px;
+  background:var(--cor);color:#fff;border-radius:50px;
+  padding:3px 9px;font-size:.62rem;font-weight:800;
+  animation:pulso .9s ease-in-out infinite;
+}
+.vid-body{padding:12px}
+.vid-tit{font-weight:800;font-size:.88rem;line-height:1.35;margin-bottom:4px}
+.vid-meta{font-size:.72rem;color:var(--ink3);display:flex;align-items:center;gap:8px}
+.vid-cat{background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:2px 8px;font-size:.66rem;font-weight:700}
+/* Overlay reproductor */
+#vid-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:1rem;
+}
+#vid-overlay.on{display:flex;animation:faIn .2s ease}
+.vid-player-wrap{
+  width:100%;max-width:700px;border-radius:var(--r16);overflow:hidden;
+  background:#000;box-shadow:0 24px 80px rgba(0,0,0,.7);
+  aspect-ratio:16/9;position:relative;
+}
+.vid-player-wrap iframe{width:100%;height:100%;border:none;display:block}
+.vid-player-info{
+  width:100%;max-width:700px;margin-top:14px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+}
+.vid-player-tit{font-family:var(--fh);font-size:1.05rem;font-weight:800;color:#fff;line-height:1.35;flex:1}
+.vid-player-sub{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:3px}
+.btn-cerrar-vid{
+  background:rgba(255,255,255,.12);border-radius:50%;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#fff;cursor:pointer;flex-shrink:0;
+  transition:var(--fast);
+}
+.btn-cerrar-vid:hover{background:var(--cor);transform:rotate(90deg)}
+/* Categorías filtro de videos */
+.vid-filtros{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;margin-bottom:16px}
+.vid-filtros::-webkit-scrollbar{display:none}
+
+/* ══ JUEGO / ACTIVIDAD ══ */
+#s-juego{background:var(--bg)}
+.j-top{background:var(--card);padding:13px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:var(--sh1)}
+.j-bar{flex:1;height:10px;background:var(--line);border-radius:50px;overflow:hidden}
+.j-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--eme));border-radius:50px;transition:width .5s ease}
+.j-cnt{font-weight:800;font-size:.9rem;white-space:nowrap}
+.j-body{padding:22px 16px;display:flex;flex-direction:column;align-items:center;max-width:500px;margin:0 auto}
+.j-preg{font-family:var(--fh);font-size:1.45rem;font-weight:700;text-align:center;margin-bottom:22px;line-height:1.4}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.op{background:var(--card);border-radius:var(--r16);padding:18px;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;box-shadow:var(--sh1);transition:all var(--slow);border:3px solid transparent}
+.op:hover{transform:scale(1.03);border-color:var(--sky)}
+.op:active{transform:scale(.97)}
+.op.ok{background:var(--eme-lt);border-color:var(--eme)}
+.op.fail{background:var(--cor-lt);border-color:var(--cor)}
+.op-ico{font-size:2.4rem}
+.op-txt{font-size:.83rem;font-weight:800;text-align:center}
+.result-scr{display:flex;flex-direction:column;align-items:center;padding:32px 20px;text-align:center}
+.r-ico{font-size:5rem;animation:bIn .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bIn{from{opacity:0;transform:scale(0)}to{opacity:1}}
+.r-tit{font-family:var(--fh);font-size:2rem;font-weight:800;margin:12px 0 4px}
+.r-sub{font-size:1rem;color:var(--ink3);margin-bottom:16px}
+.r-stars{font-size:2rem;letter-spacing:4px;margin-bottom:22px}
+
+/* ══ SISTEMA DE AUDIO ══ */
+/* Botón flotante leer pregunta */
+.btn-audio-preg{
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--sky),var(--vio));
+  color:#fff;border-radius:50px;padding:11px 20px;
+  font-size:.9rem;font-weight:800;margin:0 auto 18px;
+  box-shadow:0 4px 16px rgba(76,126,243,.35);
+  transition:all var(--slow);cursor:pointer;
+  animation:pulseAudio 2s ease-in-out infinite;
+}
+.btn-audio-preg:hover{transform:scale(1.06);box-shadow:0 8px 24px rgba(76,126,243,.45)}
+.btn-audio-preg:active{transform:scale(.97);animation:none}
+@keyframes pulseAudio{
+  0%,100%{box-shadow:0 4px 16px rgba(76,126,243,.35)}
+  50%{box-shadow:0 4px 24px rgba(76,126,243,.6),0 0 0 8px rgba(76,126,243,.12)}
+}
+/* Estado: leyendo */
+.btn-audio-preg.leyendo{
+  background:linear-gradient(135deg,#FF6B6B,#FF8FAB);
+  animation:ondas 1s ease-in-out infinite;
+}
+@keyframes ondas{
+  0%,100%{box-shadow:0 4px 16px rgba(255,107,107,.4)}
+  50%{box-shadow:0 4px 28px rgba(255,107,107,.7),0 0 0 10px rgba(255,107,107,.15)}
+}
+/* Ondas de sonido animadas */
+.audio-waves{display:flex;align-items:center;gap:3px;height:18px}
+.audio-waves span{display:block;width:3px;border-radius:2px;background:currentColor;animation:wave 1.2s ease-in-out infinite}
+.audio-waves span:nth-child(1){height:6px;animation-delay:0s}
+.audio-waves span:nth-child(2){height:14px;animation-delay:.15s}
+.audio-waves span:nth-child(3){height:10px;animation-delay:.3s}
+.audio-waves span:nth-child(4){height:16px;animation-delay:.45s}
+.audio-waves span:nth-child(5){height:8px;animation-delay:.6s}
+@keyframes wave{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+/* Banner audio en modal de actividad */
+.audio-badge{
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#EBF1FF,#F0EBFF);
+  border:2px solid var(--sky);border-radius:var(--r12);
+  padding:10px 14px;margin-bottom:14px;font-size:.82rem;font-weight:700;color:var(--sky);
+}
+/* Opciones de respuesta — efecto al leer */
+.op.leyendo-op{border-color:var(--sky);background:var(--sky-lt);transform:scale(1.02)}
+/* Barra de velocidad de audio */
+.audio-speed{display:flex;gap:6px;align-items:center;justify-content:center;margin-bottom:14px}
+.speed-btn{
+  border-radius:50px;padding:5px 12px;font-size:.73rem;font-weight:800;
+  border:2px solid var(--line);background:var(--card);color:var(--ink3);
+  cursor:pointer;transition:var(--fast);
+}
+.speed-btn.on{background:var(--sky);color:#fff;border-color:var(--sky)}
+/* Indicador de auto-lectura activo */
+.auto-audio-indicator{
+  position:fixed;bottom:80px;right:14px;z-index:500;
+  background:var(--sky);color:#fff;border-radius:50px;
+  padding:8px 14px;font-size:.75rem;font-weight:800;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:var(--sh2);transition:all var(--med);
+  cursor:pointer;
+}
+.auto-audio-indicator.off{background:var(--ink3);opacity:.7}
+
+/* ══ PADRES ══ */
+/* Gestión niños */
+.nino-card{background:var(--card);border-radius:var(--r16);padding:16px;margin-bottom:12px;box-shadow:var(--sh1);cursor:pointer;transition:all var(--fast);display:flex;align-items:center;gap:14px;border-left:4px solid var(--sky)}
+.nino-card:hover{transform:translateX(4px);box-shadow:var(--sh2)}
+.nc-ava{width:52px;height:52px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:2px solid var(--sky);flex-shrink:0}
+.nc-info{flex:1}
+.nc-name{font-weight:800;font-size:.95rem}
+.nc-meta{font-size:.75rem;color:var(--ink3);margin-top:2px}
+.nc-prog{margin-top:6px}
+.nc-bar{height:5px;background:var(--line);border-radius:50px;overflow:hidden;margin-top:3px}
+.nc-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--eme));border-radius:50px}
+
+/* Progreso por área */
+.area-prog-card{background:var(--card);border-radius:var(--r16);padding:16px;margin-bottom:12px;box-shadow:var(--sh1)}
+.apc-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.apc-ico{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.apc-name{font-weight:800;font-size:.92rem}
+.apc-sub{font-size:.75rem;color:var(--ink3)}
+.apc-bars .bl{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.apc-bars .bl:last-child{margin-bottom:0}
+.bl-lbl{font-size:.75rem;font-weight:700;width:80px;flex-shrink:0}
+.bl-bar{flex:1;height:8px;background:var(--line);border-radius:50px;overflow:hidden}
+.bl-fill{height:100%;border-radius:50px}
+.bl-pct{font-size:.72rem;font-weight:800;min-width:32px;text-align:right}
+
+/* Blog */
+.blog-card{background:var(--card);border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh1);cursor:pointer;transition:all var(--slow)}
+.blog-card:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.blog-cover{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.blog-body{padding:14px}
+.blog-cat{font-size:.68rem;font-weight:800;border-radius:50px;padding:3px 9px;margin-bottom:6px;display:inline-block}
+.blog-tit{font-weight:800;font-size:.88rem;line-height:1.4;margin-bottom:4px}
+.blog-meta{font-size:.72rem;color:var(--ink3)}
+
+/* Chat padres */
+.chat-msg{display:flex;gap:10px;margin-bottom:14px}
+.chat-msg.mine{flex-direction:row-reverse}
+.chat-ava{width:36px;height:36px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.chat-bubble{max-width:75%;background:var(--card);border-radius:16px;padding:10px 13px;box-shadow:var(--sh1)}
+.chat-msg.mine .chat-bubble{background:var(--sky);color:#fff;border-radius:16px 4px 16px 16px}
+.chat-msg:not(.mine) .chat-bubble{border-radius:4px 16px 16px 16px}
+.chat-name{font-size:.72rem;font-weight:800;margin-bottom:3px;opacity:.7}
+.chat-text{font-size:.85rem;line-height:1.5}
+.chat-time{font-size:.65rem;opacity:.6;margin-top:3px;text-align:right}
+.chat-exp-badge{background:linear-gradient(135deg,var(--sun),var(--sun2));color:#fff;border-radius:50px;padding:3px 9px;font-size:.65rem;font-weight:800;margin-left:6px}
+.chat-inp-wrap{position:sticky;bottom:80px;left:0;right:0;background:var(--bg);padding:10px 16px;display:flex;gap:8px;border-top:1px solid var(--line)}
+@media(min-width:768px){.chat-inp-wrap{bottom:0}}
+.chat-inp{flex:1;background:var(--card);border:2px solid var(--line);border-radius:50px;padding:10px 16px;font-size:.9rem;transition:var(--fast)}
+.chat-inp:focus{border-color:var(--sky)}
+.btn-send{background:var(--sky);color:#fff;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+/* ══ DOCENTES / TERAPEUTAS ══ */
+/* Material educativo */
+.mat-card{background:var(--card);border-radius:var(--r16);padding:16px;margin-bottom:10px;box-shadow:var(--sh1);display:flex;align-items:center;gap:14px}
+.mat-ico{width:48px;height:48px;border-radius:var(--r12);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.mat-info{flex:1}
+.mat-name{font-weight:800;font-size:.9rem;margin-bottom:3px}
+.mat-meta{font-size:.75rem;color:var(--ink3)}
+.mat-acts{display:flex;gap:6px}
+.btn-dl{background:var(--eme-lt);color:var(--eme2);border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;transition:var(--fast);display:flex;align-items:center;gap:4px}
+.btn-dl:hover{background:var(--eme);color:#fff}
+.btn-share{background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;transition:var(--fast)}
+.btn-share:hover{background:var(--sky);color:#fff}
+
+/* Pacientes/estudiantes */
+.pac-card{background:var(--card);border-radius:var(--r16);padding:16px;margin-bottom:10px;box-shadow:var(--sh1);cursor:pointer;transition:all var(--fast);display:flex;align-items:center;gap:14px}
+.pac-card:hover{transform:translateX(4px);box-shadow:var(--sh2)}
+.pac-ava{width:46px;height:46px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid var(--sky)}
+.pac-info{flex:1}
+.pac-name{font-weight:800}
+.pac-meta{font-size:.75rem;color:var(--ink3);margin-top:2px}
+.pac-badge{border-radius:50px;padding:3px 10px;font-size:.68rem;font-weight:800}
+
+/* Informes */
+.inf-card{background:var(--card);border-radius:var(--r16);padding:18px;margin-bottom:12px;box-shadow:var(--sh1)}
+.inf-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.inf-tipo{border-radius:50px;padding:4px 12px;font-size:.7rem;font-weight:800;text-transform:uppercase}
+.inf-fecha{font-size:.72rem;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.inf-tit{font-weight:800;margin-bottom:6px}
+.inf-txt{font-size:.83rem;color:var(--ink2);line-height:1.6}
+.inf-acts{display:flex;gap:6px;margin-top:10px}
+.btn-edit{background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;transition:var(--fast)}
+.btn-edit:hover{background:var(--sky);color:#fff}
+.btn-pdf{background:var(--cor-lt);color:var(--cor2);border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;transition:var(--fast)}
+.btn-pdf:hover{background:var(--cor);color:#fff}
+
+/* Editor informe */
+.inf-editor{background:var(--card);border-radius:var(--r20);padding:20px;margin-bottom:16px;box-shadow:var(--sh1)}
+.ie-section{margin-bottom:16px}
+.ie-label{font-size:.8rem;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px}
+.ie-input{width:100%;padding:11px 14px;border:2px solid var(--line);border-radius:var(--r12);font-size:.9rem;resize:vertical;transition:var(--fast);background:var(--bg)}
+.ie-input:focus{border-color:var(--sky);background:var(--card)}
+.ie-area{min-height:80px}
+.ie-select{appearance:none;cursor:pointer;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%2394A3B8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.niveles-check{display:flex;gap:8px;flex-wrap:wrap}
+.nc{border-radius:50px;padding:7px 14px;font-size:.8rem;font-weight:700;border:2px solid var(--line);cursor:pointer;transition:var(--fast)}
+.nc:hover{border-color:var(--sky);color:var(--sky)}
+.nc.sel{background:var(--sky);border-color:var(--sky);color:#fff}
+
+/* Red de apoyo */
+.red-card{background:var(--card);border-radius:var(--r16);padding:16px;margin-bottom:10px;box-shadow:var(--sh1);display:flex;gap:14px;align-items:flex-start}
+.red-ico{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;border:2px solid var(--line)}
+.red-info{flex:1}
+.red-name{font-weight:800;font-size:.92rem;margin-bottom:2px}
+.red-tipo{font-size:.72rem;font-weight:700;border-radius:50px;padding:2px 9px;display:inline-block;margin-bottom:4px}
+.red-desc{font-size:.78rem;color:var(--ink3);line-height:1.5}
+.red-acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.btn-con{background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:5px 12px;font-size:.73rem;font-weight:700;cursor:pointer;transition:var(--fast)}
+.btn-con:hover{background:var(--sky);color:#fff}
+.btn-web{background:var(--eme-lt);color:var(--eme2);border-radius:50px;padding:5px 12px;font-size:.73rem;font-weight:700;cursor:pointer;transition:var(--fast)}
+.btn-web:hover{background:var(--eme);color:#fff}
+
+/* ══ MODAL GENÉRICO ══ */
+.overlay{position:fixed;inset:0;background:rgba(30,43,74,.55);z-index:200;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(5px)}
+.overlay.on{display:flex;animation:faIn .2s ease}
+.modal{background:var(--card);border-radius:28px 28px 0 0;padding:20px 18px 32px;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;animation:slUp .3s ease}
+@keyframes slUp{from{transform:translateY(100%)}to{transform:none}}
+.m-handle{width:36px;height:4px;background:var(--line);border-radius:50px;margin:0 auto 18px}
+.m-ico{width:100%;height:120px;border-radius:var(--r16);display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:14px}
+.m-tit{font-family:var(--fh);font-size:1.4rem;font-weight:700;margin-bottom:5px}
+.m-desc{font-size:.85rem;color:var(--ink2);line-height:1.7;margin-bottom:14px}
+.btn-start{width:100%;background:linear-gradient(135deg,var(--sky),var(--sky2));color:#fff;border-radius:var(--rpill);padding:15px;font-size:.95rem;font-weight:800;box-shadow:0 6px 20px rgba(76,126,243,.4);transition:all var(--slow);display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-start:hover{transform:translateY(-2px)}
+
+/* ══ TOAST ══ */
+#tw{position:fixed;top:16px;right:14px;z-index:500;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast{background:var(--ink);color:#fff;border-radius:var(--r12);padding:10px 15px;font-size:.83rem;font-weight:700;box-shadow:var(--sh3);max-width:270px;display:flex;align-items:center;gap:7px;animation:tIn .3s ease,tOut .3s 2.7s ease forwards}
+.toast.ok{background:var(--eme)}
+.toast.warn{background:var(--sun)}
+.toast.err{background:var(--cor)}
+.toast.info{background:var(--sky)}
+@keyframes tIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:none}}
+@keyframes tOut{to{opacity:0;transform:translateY(-8px)}}
+
+/* ══ ACCESIBILIDAD ══ */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(prefers-contrast:high){:root{--sky:#004BBD;--eme:#0A7A52}.card,.act-card{border:2px solid var(--ink)}}
+.modo-nino .topbar{background:linear-gradient(135deg,var(--sky),var(--vio))}
+.modo-nino .topbar *:not(.btn-out){color:#fff!important}
+.modo-nino .bnav{background:linear-gradient(90deg,var(--sky),var(--vio))}
+.modo-nino .bn{color:rgba(255,255,255,.5)}
+.modo-nino .bn.on{color:#fff}
+.modo-nino .bn.on .bn-ico{background:rgba(255,255,255,.2)}
+.modo-nino .ac-name{font-size:.92rem}
+</style>
+</head>
+<body>
+
+<!-- ════════════ SPLASH ════════════ -->
+<div id="s-splash" class="scr on">
+  <div class="sp-bg"><div class="sp-circle c1"></div><div class="sp-circle c2"></div><div class="sp-circle c3"></div></div>
+  <!-- Símbolo ∞ arcoíris animado -->
+  <svg class="inf-svg" viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#FF0080"/>
+        <stop offset="17%" stop-color="#FF4500"/>
+        <stop offset="34%" stop-color="#FFB300"/>
+        <stop offset="51%" stop-color="#00C853"/>
+        <stop offset="68%" stop-color="#0091EA"/>
+        <stop offset="85%" stop-color="#6200EA"/>
+        <stop offset="100%" stop-color="#FF0080"/>
+      </linearGradient>
+      <linearGradient id="ig2" x1="100%" y1="0%" x2="0%" y2="0%">
+        <stop offset="0%" stop-color="#FF0080"/>
+        <stop offset="17%" stop-color="#FF4500"/>
+        <stop offset="34%" stop-color="#FFB300"/>
+        <stop offset="51%" stop-color="#00C853"/>
+        <stop offset="68%" stop-color="#0091EA"/>
+        <stop offset="85%" stop-color="#6200EA"/>
+        <stop offset="100%" stop-color="#FF0080"/>
+      </linearGradient>
+    </defs>
+    <path d="M55,30 C55,30 45,10 28,10 C11,10 4,20 4,30 C4,40 11,50 28,50 C45,50 55,30 55,30 Z" stroke="url(#ig1)" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M55,30 C55,30 65,10 82,10 C99,10 106,20 106,30 C106,40 99,50 82,50 C65,50 55,30 55,30 Z" stroke="url(#ig2)" stroke-width="9" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="sp-logo">ConectaTEA</div>
+  <div class="sp-tag">Plataforma educativa inclusiva para TEA</div>
+  <div class="sp-sub">Aprendemos juntos, a nuestro ritmo</div>
+  <div class="sp-roles">
+    <button class="sp-role nino-btn" onclick="entrarNino()">
+      <span class="ri">🧒</span>
+      <div><div>¡Soy un niño/a!</div><div class="rs">Entrar sin contraseña 🚀</div></div>
+    </button>
+    <button class="sp-role" onclick="abrirAuth('padre')"><span class="ri">👨‍👩‍👦</span><span>Familia</span><span class="rs">Padres/cuidadores</span></button>
+    <button class="sp-role" onclick="abrirAuth('terapeuta')"><span class="ri">🧑‍⚕️</span><span>Terapeuta</span><span class="rs">Profesional clínico</span></button>
+    <button class="sp-role" onclick="abrirAuth('docente')"><span class="ri">🧑‍🏫</span><span>Docente</span><span class="rs">Educador/a</span></button>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="auth-overlay">
+  <div class="auth-box">
+    <button class="auth-close" onclick="cerrarAuth()">✕</button>
+    <div style="font-size:2.5rem;margin-bottom:.5rem" id="auth-ico">👨‍👩‍👦</div>
+    <div class="auth-title" id="auth-title">Ingresar como Familia</div>
+    <div class="auth-sub">Accede para ver el progreso de tu hijo/a y conectar con el equipo</div>
+    <div class="fgrp"><label class="flbl">Correo electrónico</label><input class="finp" type="email" placeholder="correo@ejemplo.com" id="a-email"></div>
+    <div class="fgrp"><label class="flbl">Contraseña</label><input class="finp" type="password" placeholder="••••••••" id="a-pass"></div>
+    <button class="btn-auth" onclick="hacerLogin()">🚀 Ingresar</button>
+    <div class="auth-alt">¿No tienes cuenta? <a onclick="toast('📝 Registro próximamente','info')">Regístrate gratis</a></div>
+    <div style="text-align:center;margin-top:12px">
+      <div style="font-size:.78rem;color:var(--ink3);margin-bottom:8px">Demo rápido:</div>
+      <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+        <button onclick="loginDemo('padre')" style="background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700">👨‍👩‍👦 Familia</button>
+        <button onclick="loginDemo('terapeuta')" style="background:var(--vio-lt);color:var(--vio2);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700">🧑‍⚕️ Terapeuta</button>
+        <button onclick="loginDemo('docente')" style="background:var(--eme-lt);color:var(--eme2);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700">🧑‍🏫 Docente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ APP PRINCIPAL ════════════ -->
+<div id="s-main" class="scr">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="tb-logo">
+      <svg viewBox="0 0 110 60" style="width:34px;height:18px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF0080"/><stop offset="34%" stop-color="#FFB300"/><stop offset="68%" stop-color="#0091EA"/><stop offset="100%" stop-color="#FF0080"/>
+          </linearGradient>
+          <linearGradient id="tg2" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#FF0080"/><stop offset="34%" stop-color="#FFB300"/><stop offset="68%" stop-color="#0091EA"/><stop offset="100%" stop-color="#FF0080"/>
+          </linearGradient>
+        </defs>
+        <path d="M55,30 C55,30 45,10 28,10 C11,10 4,20 4,30 C4,40 11,50 28,50 C45,50 55,30 55,30 Z" stroke="url(#tg1)" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M55,30 C55,30 65,10 82,10 C99,10 106,20 106,30 C106,40 99,50 82,50 C65,50 55,30 55,30 Z" stroke="url(#tg2)" stroke-width="9" stroke-linecap="round" fill="none"/>
+      </svg>
+      ConectaTEA
+    </div>
+    <div class="tb-spacer"></div>
+    <button class="tb-notif" onclick="ir('pg-notif')"><span>🔔</span><div class="tb-dot" id="notif-dot"></div></button>
+    <div class="tb-user" onclick="ir('pg-perfil')">
+      <div class="tb-ava" id="tb-ava">🧒</div>
+      <div class="tb-info"><div class="tb-name" id="tb-name">Usuario</div><span class="tb-badge" id="tb-badge">Niño</span></div>
+    </div>
+    <button class="btn-out" onclick="salir()">Salir</button>
+  </header>
+
+  <div class="main-wrap">
+    <!-- SIDEBAR DESKTOP -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- PÁGINAS -->
+    <div class="page-area" id="page-area">
+
+      <!-- ░░ INICIO ░░ -->
+      <div class="pg on" id="pg-inicio">
+        <div class="hero"><div class="hero-g" id="h-greeting">¡Hola!</div><div class="hero-s" id="h-sub">¿Qué vamos a hacer hoy?</div><div class="hero-em" id="h-em">🌟</div></div>
+        <div class="grid4" style="margin-bottom:22px" id="stats-home"></div>
+        <div id="home-dynamic"></div>
+      </div>
+
+      <!-- ░░░░░░░░ NIÑO — ÁREAS ░░░░░░░░ -->
+      <div class="pg" id="pg-areas">
+        <div class="stitle"><span class="c">🎯</span> Mis áreas de aprendizaje</div>
+        <div class="grid2" id="areas-grid"></div>
+      </div>
+
+      <!-- ░░ ÁREA DETALLE ░░ -->
+      <div class="pg" id="pg-area-detalle">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <button onclick="ir('pg-areas')" style="display:flex;align-items:center;gap:6px;color:var(--sky);font-weight:700;font-size:.88rem;background:var(--sky-lt);border-radius:50px;padding:7px 14px;transition:.2s" onmouseover="this.style.background='var(--sky)';this.style.color='#fff'" onmouseout="this.style.background='var(--sky-lt)';this.style.color='var(--sky)'">← Mis áreas</button>
+          <button onclick="ir('pg-inicio')" style="display:flex;align-items:center;gap:6px;color:var(--ink3);font-weight:700;font-size:.88rem;background:var(--line);border-radius:50px;padding:7px 14px;transition:.2s" onmouseover="this.style.background='var(--ink3)';this.style.color='#fff'" onmouseout="this.style.background='var(--line)';this.style.color='var(--ink3)'">🏠 Inicio</button>
+        </div>
+        <div id="area-detalle-header"></div>
+        <div class="nivel-tabs" id="nivel-tabs">
+          <div class="ntab on" onclick="nivelTab('basico',this)">🟢 Básico</div>
+          <div class="ntab" onclick="nivelTab('intermedio',this)">🟡 Intermedio</div>
+          <div class="ntab" onclick="nivelTab('avanzado',this)">🔴 Avanzado</div>
+        </div>
+        <div id="actividades-nivel"></div>
+      </div>
+
+      <!-- ░░ ¡A DIVERTIRNOS! ░░ -->
+      <div class="pg" id="pg-vision">
+        <div class="stitle"><span class="c">🎉</span> ¡A Divertirnos!</div>
+
+        <!-- Tabs: Juegos | Videos -->
+        <div class="vj-tabs" id="vj-tabs-main">
+          <div class="vj-tab on" onclick="switchDivTab('juegos',this)">🎮 Juegos</div>
+          <div class="vj-tab" onclick="switchDivTab('videos',this)">📺 Videos</div>
+        </div>
+
+        <!-- SECCIÓN JUEGOS -->
+        <div id="vj-sec-juegos">
+          <p style="font-size:.85rem;color:var(--ink3);margin-bottom:14px;line-height:1.6">Juegos, rompecabezas y actividades divertidas adaptadas para ti. ¡Hora de jugar! 🎮</p>
+          <div class="filtrow" id="filtros-vj">
+            <button class="fbtn on" onclick="filtVJ('todos',this)">🎮 Todos</button>
+            <button class="fbtn" onclick="filtVJ('visual',this)">👁️ Visual</button>
+            <button class="fbtn" onclick="filtVJ('memoria',this)">🧠 Memoria</button>
+            <button class="fbtn" onclick="filtVJ('atencion',this)">🎯 Atención</button>
+            <button class="fbtn" onclick="filtVJ('motriz',this)">✋ Motricidad</button>
+            <button class="fbtn" onclick="filtVJ('auditivo',this)">👂 Auditivo</button>
+          </div>
+          <div class="grid2" id="vj-grid"></div>
+        </div>
+
+        <!-- SECCIÓN VIDEOS -->
+        <div id="vj-sec-videos" style="display:none">
+          <p style="font-size:.85rem;color:var(--ink3);margin-bottom:14px;line-height:1.6">Videos educativos y canciones especialmente seleccionados para niños con TEA. ¡A disfrutar! 📺</p>
+          <div class="vid-filtros" id="vid-filtros">
+            <button class="fbtn on" onclick="filtVideos('todos',this)">📺 Todos</button>
+            <button class="fbtn" onclick="filtVideos('canciones',this)">🎵 Canciones</button>
+            <button class="fbtn" onclick="filtVideos('cuentos',this)">📖 Cuentos</button>
+            <button class="fbtn" onclick="filtVideos('emociones',this)">😊 Emociones</button>
+            <button class="fbtn" onclick="filtVideos('naturaleza',this)">🌿 Naturaleza</button>
+            <button class="fbtn" onclick="filtVideos('aprendizaje',this)">🎓 Aprender</button>
+            <button class="fbtn" onclick="filtVideos('relajacion',this)">🌊 Calma</button>
+          </div>
+          <div id="vid-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px"></div>
+        </div>
+      </div>
+
+      <!-- ░░ RUTINAS ░░ -->
+      <div class="pg" id="pg-rutinas">
+        <div class="stitle"><span class="c">📅</span> Mis rutinas</div>
+        <div id="rutinas-lista"></div>
+      </div>
+
+      <!-- ░░ EMOCIONES ░░ -->
+      <div class="pg" id="pg-emociones">
+        <div class="stitle"><span class="c">😊</span> ¿Cómo me siento?</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:18px" id="emo-grid"></div>
+        <div id="emo-intens" style="display:none"></div>
+        <div id="emo-estrategias" style="display:none"></div>
+        <div class="stitle" style="margin-top:8px"><span class="c">📊</span> Mi historial emocional</div>
+        <div id="emo-hist"></div>
+      </div>
+
+      <!-- ░░ COMUNICACIÓN ░░ -->
+      <div class="pg" id="pg-comunicacion">
+        <div class="stitle"><span class="c">💬</span> Mi tablero de comunicación</div>
+        <div class="card" style="margin-bottom:14px;min-height:80px">
+          <div style="font-size:.75rem;font-weight:800;color:var(--ink3);text-transform:uppercase;margin-bottom:8px">Lo que quiero decir:</div>
+          <div id="tablero" style="display:flex;flex-wrap:wrap;gap:7px;min-height:44px;align-items:center"><span style="color:var(--ink3);font-size:.85rem;font-style:italic">Toca un pictograma para empezar</span></div>
+        </div>
+        <div style="display:flex;gap:9px;justify-content:center;margin-bottom:18px;flex-wrap:wrap">
+          <button class="btn-eme" onclick="hablar()">🔊 Escuchar</button>
+          <button onclick="limpiarTablero()" style="background:var(--bg);border:2px solid var(--line);border-radius:50px;padding:11px 18px;font-size:.85rem;font-weight:700;color:var(--ink3)">🗑️ Limpiar</button>
+        </div>
+        <div class="filtrow" id="picto-cats"></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:7px" id="picto-grid"></div>
+      </div>
+
+      <!-- ░░ LOGROS ░░ -->
+      <div class="pg" id="pg-logros">
+        <div class="stitle"><span class="c">🏆</span> Mis logros</div>
+        <div class="card" style="background:linear-gradient(135deg,var(--sun),var(--sun2));color:#fff;text-align:center;padding:22px;margin-bottom:20px">
+          <div style="font-size:2.5rem">⭐</div>
+          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:800;margin:6px 0">950 puntos</div>
+          <div style="opacity:.9;font-size:.85rem">¡Sigue así, campeón/a!</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px" id="logros-grid"></div>
+      </div>
+
+      <!-- ░░ PADRES — GESTIÓN NIÑOS ░░ -->
+      <div class="pg" id="pg-mis-ninos">
+        <div class="stitle"><span class="c">👦</span> Mis hijos/as</div>
+        <div id="mis-ninos-lista"></div>
+        <button onclick="abrirFormNino()" class="btn-prim" style="margin-top:8px">+ Agregar niño/a</button>
+      </div>
+
+      <!-- ░░ PADRES — PROGRESO POR ÁREA ░░ -->
+      <div class="pg" id="pg-progreso-nino">
+        <button onclick="ir('pg-mis-ninos')" style="display:flex;align-items:center;gap:6px;color:var(--sky);font-weight:700;margin-bottom:14px;font-size:.88rem">← Mis hijos</button>
+        <div id="prog-nino-header"></div>
+        <div class="stitle"><span class="c">📊</span> Progreso por área de trabajo</div>
+        <div id="progreso-areas-lista"></div>
+        <div class="stitle" style="margin-top:8px"><span class="c">📈</span> Actividad reciente</div>
+        <div id="actividad-reciente-nino"></div>
+      </div>
+
+      <!-- ░░ BLOG EDUCATIVO ░░ -->
+      <div class="pg" id="pg-blog">
+        <div class="stitle"><span class="c">📰</span> Blog TEA — Aprende y conecta</div>
+        <div class="filtrow" id="blog-filtros">
+          <button class="fbtn on" onclick="filtBlog('todos',this)">📰 Todos</button>
+          <button class="fbtn" onclick="filtBlog('guias',this)">📚 Guías</button>
+          <button class="fbtn" onclick="filtBlog('tips',this)">💡 Tips</button>
+          <button class="fbtn" onclick="filtBlog('investigacion',this)">🔬 Investigación</button>
+          <button class="fbtn" onclick="filtBlog('recursos',this)">🛠️ Recursos</button>
+          <button class="fbtn" onclick="filtBlog('historias',this)">❤️ Historias</button>
+        </div>
+        <div class="grid2" id="blog-grid"></div>
+      </div>
+
+      <!-- ░░ BLOG DETALLE ░░ -->
+      <div class="pg" id="pg-blog-detalle">
+        <button onclick="ir('pg-blog')" style="display:flex;align-items:center;gap:6px;color:var(--sky);font-weight:700;margin-bottom:14px;font-size:.88rem">← Blog</button>
+        <div id="blog-detalle-content"></div>
+      </div>
+
+      <!-- ░░ CHAT PADRES ░░ -->
+      <div class="pg" id="pg-chat">
+        <div class="stitle"><span class="c">💬</span> Comunidad de padres</div>
+        <div class="card" style="padding:12px 14px;margin-bottom:14px;background:linear-gradient(135deg,var(--sky-lt),var(--vio-lt))">
+          <div style="font-size:.8rem;font-weight:700;color:var(--sky)">🤝 Espacio seguro para compartir experiencias con familias que viven el TEA</div>
+        </div>
+        <div style="display:flex;gap:4px;background:var(--bg);border-radius:var(--r12);padding:4px;margin-bottom:14px">
+          <button class="ntab on" onclick="chatTab('general',this)" style="flex:1;border-radius:var(--r8);padding:8px 4px;font-size:.78rem;font-weight:800;cursor:pointer;color:var(--ink3)">💬 General</button>
+          <button class="ntab" onclick="chatTab('experiencias',this)" style="flex:1;border-radius:var(--r8);padding:8px 4px;font-size:.78rem;font-weight:800;cursor:pointer;color:var(--ink3)">❤️ Experiencias</button>
+          <button class="ntab" onclick="chatTab('preguntas',this)" style="flex:1;border-radius:var(--r8);padding:8px 4px;font-size:.78rem;font-weight:800;cursor:pointer;color:var(--ink3)">❓ Preguntas</button>
+        </div>
+        <div id="chat-mensajes" style="margin-bottom:10px"></div>
+        <div class="chat-inp-wrap">
+          <input class="chat-inp" id="chat-input" placeholder="Escribe tu mensaje o experiencia..." />
+          <button class="btn-send" onclick="enviarChat()">➤</button>
+        </div>
+      </div>
+
+      <!-- ░░ MATERIAL EDUCATIVO ░░ -->
+      <div class="pg" id="pg-material">
+        <div class="stitle"><span class="c">📂</span> Material educativo compartido</div>
+        <div class="card" style="padding:12px 14px;margin-bottom:14px;background:var(--eme-lt)">
+          <div style="font-size:.8rem;font-weight:700;color:var(--eme2)">📤 Profesores y terapeutas pueden subir material para compartir con toda la comunidad</div>
+        </div>
+        <div class="filtrow" id="mat-filtros">
+          <button class="fbtn on" onclick="filtMat('todos',this)">📂 Todos</button>
+          <button class="fbtn" onclick="filtMat('fichas',this)">📄 Fichas</button>
+          <button class="fbtn" onclick="filtMat('guias',this)">📚 Guías</button>
+          <button class="fbtn" onclick="filtMat('videos',this)">🎥 Videos</button>
+          <button class="fbtn" onclick="filtMat('pictogramas',this)">🖼️ Pictogramas</button>
+          <button class="fbtn" onclick="filtMat('evaluaciones',this)">📝 Evaluaciones</button>
+        </div>
+        <div id="es-prof" style="display:none;margin-bottom:14px">
+          <button onclick="abrirSubirMaterial()" class="btn-prim">📤 Subir material</button>
+        </div>
+        <div id="material-lista"></div>
+      </div>
+
+      <!-- ░░ PACIENTES / ESTUDIANTES ░░ -->
+      <div class="pg" id="pg-pacientes">
+        <div class="stitle" id="pac-title"><span class="c">👦</span> Mis pacientes</div>
+        <div id="pacientes-lista"></div>
+        <button onclick="abrirFormPaciente()" class="btn-prim" style="margin-top:12px">+ Ingresar paciente/estudiante</button>
+      </div>
+
+      <!-- ░░ INFORMES ░░ -->
+      <div class="pg" id="pg-informes">
+        <div class="stitle"><span class="c">📋</span> Informes de progreso y seguimiento</div>
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+          <button onclick="ir('pg-nuevo-informe')" class="btn-prim">✏️ Nuevo informe</button>
+          <button onclick="toast('📊 Exportando todos los informes...','info')" class="btn-sec">📥 Exportar todos</button>
+        </div>
+        <div id="informes-lista"></div>
+      </div>
+
+      <!-- ░░ NUEVO INFORME ░░ -->
+      <div class="pg" id="pg-nuevo-informe">
+        <button onclick="ir('pg-informes')" style="display:flex;align-items:center;gap:6px;color:var(--sky);font-weight:700;margin-bottom:14px;font-size:.88rem">← Informes</button>
+        <div class="stitle"><span class="c">✏️</span> Redactar informe</div>
+        <div class="inf-editor">
+          <div class="ie-section">
+            <div class="ie-label">Paciente / Estudiante</div>
+            <select class="ie-input ie-select" id="inf-paciente">
+              <option>Carlos García — 8 años</option>
+              <option>Sofía López — 6 años</option>
+              <option>Tomás Ruiz — 10 años</option>
+            </select>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Tipo de informe</div>
+            <select class="ie-input ie-select" id="inf-tipo">
+              <option>Informe de progreso</option>
+              <option>Informe de seguimiento</option>
+              <option>Evaluación inicial</option>
+              <option>Plan de trabajo</option>
+              <option>Incidente / Observación</option>
+            </select>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Periodo evaluado</div>
+            <input class="ie-input" type="text" placeholder="Ej: Semana del 10-14 de marzo 2025" id="inf-periodo">
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Áreas evaluadas</div>
+            <div class="niveles-check" id="areas-check">
+              <div class="nc sel" onclick="this.classList.toggle('sel')">👁️ Percepción</div>
+              <div class="nc sel" onclick="this.classList.toggle('sel')">🧠 Cognitiva</div>
+              <div class="nc" onclick="this.classList.toggle('sel')">🗣️ Lenguaje</div>
+              <div class="nc" onclick="this.classList.toggle('sel')">📚 Lectoscritura</div>
+              <div class="nc" onclick="this.classList.toggle('sel')">🔢 Matemáticas</div>
+              <div class="nc" onclick="this.classList.toggle('sel')">🤝 Social</div>
+              <div class="nc" onclick="this.classList.toggle('sel')">🏠 Vida diaria</div>
+            </div>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Descripción de logros</div>
+            <textarea class="ie-input ie-area" placeholder="Describa los avances observados durante el período..." id="inf-logros" rows="3"></textarea>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Dificultades observadas</div>
+            <textarea class="ie-input ie-area" placeholder="Describa las áreas que requieren mayor trabajo..." id="inf-dificultades" rows="3"></textarea>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Recomendaciones para la familia</div>
+            <textarea class="ie-input ie-area" placeholder="Actividades y estrategias para trabajar en casa..." id="inf-recom" rows="3"></textarea>
+          </div>
+          <div class="ie-section">
+            <div class="ie-label">Objetivos próximo período</div>
+            <textarea class="ie-input ie-area" placeholder="Metas a alcanzar en el próximo período..." id="inf-objetivos" rows="3"></textarea>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onclick="guardarInforme()" class="btn-prim">💾 Guardar informe</button>
+            <button onclick="descargarInforme()" class="btn-eme">📄 Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ░░ RED DE APOYO ░░ -->
+      <div class="pg" id="pg-red">
+        <div class="stitle"><span class="c">🌐</span> Red de apoyo TEA</div>
+        <div class="card" style="padding:14px;margin-bottom:18px;background:linear-gradient(135deg,var(--sky-lt),var(--eme-lt))">
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:4px">Encuentra profesionales, instituciones y recursos especializados en TEA</div>
+          <div style="font-size:.78rem;color:var(--ink2)">Conecta con la red de apoyo de tu comunidad</div>
+        </div>
+        <div class="filtrow" id="red-filtros">
+          <button class="fbtn on" onclick="filtRed('todos',this)">🌐 Todos</button>
+          <button class="fbtn" onclick="filtRed('terapeuta',this)">🧑‍⚕️ Terapeutas</button>
+          <button class="fbtn" onclick="filtRed('psicologo',this)">🧠 Psicólogos</button>
+          <button class="fbtn" onclick="filtRed('colegio',this)">🏫 Colegios</button>
+          <button class="fbtn" onclick="filtRed('institucion',this)">🏛️ Instituciones</button>
+          <button class="fbtn" onclick="filtRed('fundacion',this)">❤️ Fundaciones</button>
+          <button class="fbtn" onclick="filtRed('medico',this)">👨‍⚕️ Médicos</button>
+        </div>
+        <div id="red-lista"></div>
+      </div>
+
+      <!-- ░░ NOTIFICACIONES ░░ -->
+      <div class="pg" id="pg-notif">
+        <div class="stitle"><span class="c">🔔</span> Notificaciones</div>
+        <div id="notif-lista"></div>
+      </div>
+
+      <!-- ░░ PERFIL ░░ -->
+      <div class="pg" id="pg-perfil">
+        <div class="card" style="background:linear-gradient(135deg,var(--sky),var(--vio));color:#fff;text-align:center;padding:26px;margin-bottom:16px">
+          <div style="font-size:3rem;margin-bottom:10px" id="perf-ava">🧒</div>
+          <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800" id="perf-name">Usuario</div>
+          <span style="background:rgba(255,255,255,.25);border-radius:50px;padding:4px 14px;font-size:.82rem;font-weight:700;display:inline-block;margin-top:6px" id="perf-badge">Niño</span>
+        </div>
+        <div id="perfil-opciones"></div>
+      </div>
+
+    </div><!-- /page-area -->
+  </div><!-- /main-wrap -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bnav" id="bnav"></nav>
+</div>
+
+<!-- JUEGO -->
+<div id="s-juego" class="scr">
+  <div class="j-top">
+    <button onclick="salirJuego()" style="font-size:1.3rem;color:var(--sky)">✕</button>
+    <div class="j-bar"><div class="j-fill" id="j-fill" style="width:0%"></div></div>
+    <div class="j-cnt" id="j-cnt">1/5</div>
+    <!-- Control de audio en barra superior -->
+    <button id="btn-audio-top" onclick="toggleAutoAudio()"
+      style="width:38px;height:38px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:var(--fast)"
+      title="Activar/desactivar lectura en voz alta">🔊</button>
+  </div>
+  <div class="j-body" id="j-body"></div>
+</div>
+
+<!-- Indicador flotante de audio activo -->
+<div class="auto-audio-indicator" id="audio-indicator" onclick="toggleAutoAudio()" style="display:none">
+  <div class="audio-waves"><span></span><span></span><span></span><span></span><span></span></div>
+  Audio activo
+</div>
+
+<!-- OVERLAY MODAL ACTIVIDAD -->
+<div class="overlay" id="ov-act" onclick="cerrarModal('ov-act')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-handle"></div>
+    <div class="audio-badge" id="m-audio-badge">
+      <span style="font-size:1.2rem">🔊</span>
+      <span>Esta actividad se lee en voz alta — ¡sin necesidad de saber leer!</span>
+    </div>
+    <div class="m-ico" id="m-ico"></div>
+    <div class="m-tit" id="m-tit"></div>
+    <div class="m-desc" id="m-desc"></div>
+    <div id="m-meta" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px"></div>
+    <button class="btn-start" id="btn-start">🚀 ¡Empezar!</button>
+  </div>
+</div>
+
+<!-- OVERLAY FORM NIÑO -->
+<div class="overlay" id="ov-nino" onclick="cerrarModal('ov-nino')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-handle"></div>
+    <div style="font-family:var(--fh);font-size:1.4rem;font-weight:700;margin-bottom:4px">➕ Agregar perfil de niño/a</div>
+    <div style="font-size:.85rem;color:var(--ink3);margin-bottom:16px">Completa el perfil para personalizar las actividades</div>
+    <div class="fgrp"><label class="flbl">Nombre completo</label><input class="finp" placeholder="Ej: Carlos García" id="n-nombre"></div>
+    <div class="fgrp"><label class="flbl">Edad</label><input class="finp" type="number" placeholder="Ej: 8" id="n-edad" min="2" max="18"></div>
+    <div class="fgrp"><label class="flbl">Nivel TEA</label>
+      <select class="finp" id="n-nivel">
+        <option>Nivel 1 — Leve (necesita apoyo)</option>
+        <option>Nivel 2 — Moderado (necesita apoyo sustancial)</option>
+        <option>Nivel 3 — Severo (necesita apoyo muy sustancial)</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Tipo de comunicación</label>
+      <select class="finp" id="n-com">
+        <option>Verbal</option><option>No verbal</option><option>Mixto (CAA)</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Intereses (separados por coma)</label><input class="finp" placeholder="Ej: dinosaurios, trenes, colores" id="n-intereses"></div>
+    <button class="btn-auth" onclick="guardarNino()">💾 Guardar perfil</button>
+  </div>
+</div>
+
+<!-- OVERLAY SUBIR MATERIAL -->
+<div class="overlay" id="ov-material" onclick="cerrarModal('ov-material')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-handle"></div>
+    <div style="font-family:var(--fh);font-size:1.4rem;font-weight:700;margin-bottom:4px">📤 Subir material educativo</div>
+    <div style="font-size:.85rem;color:var(--ink3);margin-bottom:16px">Comparte recursos con la comunidad ConectaTEA</div>
+    <div class="fgrp"><label class="flbl">Título del material</label><input class="finp" placeholder="Ej: Fichas de emociones para TEA nivel 1" id="mat-titulo"></div>
+    <div class="fgrp"><label class="flbl">Tipo</label>
+      <select class="finp" id="mat-tipo">
+        <option>📄 Ficha de trabajo</option><option>📚 Guía para familias</option><option>🖼️ Pictogramas</option><option>🎥 Video</option><option>📝 Evaluación</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Área de trabajo</label>
+      <select class="finp" id="mat-area">
+        <option>Todas las áreas</option><option>Percepción funcional</option><option>Cognitiva</option><option>Lenguaje</option><option>Lectoscritura y Matemáticas</option><option>Interacción social</option><option>Actividades de la vida diaria</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Descripción</label><textarea class="finp" rows="3" placeholder="Describe el contenido y cómo usarlo..." id="mat-desc"></textarea></div>
+    <div class="fgrp">
+      <label class="flbl">Archivo</label>
+      <div style="border:2px dashed var(--line);border-radius:var(--r12);padding:24px;text-align:center;cursor:pointer;background:var(--bg)" onclick="toast('📎 Selector de archivos próximamente','info')">
+        <div style="font-size:2.5rem;margin-bottom:6px">📎</div>
+        <div style="font-size:.82rem;color:var(--ink3)">Toca para seleccionar archivo (PDF, DOCX, PNG)</div>
+      </div>
+    </div>
+    <button class="btn-auth" onclick="subirMaterial()">📤 Publicar material</button>
+  </div>
+</div>
+
+<!-- OVERLAY REPRODUCTOR YOUTUBE -->
+<div id="vid-overlay" onclick="cerrarVideo(event)">
+  <div class="vid-player-wrap" id="vid-player-wrap">
+    <div id="vid-iframe-container"></div>
+  </div>
+  <div class="vid-player-info">
+    <div>
+      <div class="vid-player-tit" id="vid-player-tit">Video</div>
+      <div class="vid-player-sub" id="vid-player-sub"></div>
+    </div>
+    <button class="btn-cerrar-vid" onclick="cerrarVideo()">✕</button>
+  </div>
+</div>
+
+<div id="tw"></div>
+
+<script>
+// ══════════════════════════════════
+//  DATOS
+// ══════════════════════════════════
+const AREAS = [
+  {id:'percepcion',n:'Percepción Funcional',ico:'👁️',c:'#4C7EF3',bg:'linear-gradient(135deg,#4C7EF3,#8B5CF6)',desc:'Procesamiento sensorial, discriminación visual y auditiva',prog:{basico:75,intermedio:40,avanzado:10}},
+  {id:'cognitiva',n:'Área Cognitiva',ico:'🧠',c:'#8B5CF6',bg:'linear-gradient(135deg,#8B5CF6,#6D28D9)',desc:'Atención, memoria, razonamiento y funciones ejecutivas',prog:{basico:85,intermedio:60,avanzado:25}},
+  {id:'lenguaje',n:'Lenguaje y Comunicación',ico:'🗣️',c:'#2ECC8E',bg:'linear-gradient(135deg,#2ECC8E,#14B8A6)',desc:'Expresión oral, comprensión y comunicación aumentativa',prog:{basico:65,intermedio:35,avanzado:5}},
+  {id:'lectomatem',n:'Lectoscritura y Matemáticas',ico:'📚',c:'#FF7B5A',bg:'linear-gradient(135deg,#FF7B5A,#FF6B6B)',desc:'Lectura, escritura, números y resolución de problemas',prog:{basico:80,intermedio:50,avanzado:20}},
+  {id:'social',n:'Interacción Social',ico:'🤝',c:'#FFB347',bg:'linear-gradient(135deg,#FFB347,#FF6B6B)',desc:'Habilidades sociales, empatía y juego cooperativo',prog:{basico:55,intermedio:20,avanzado:0}},
+  {id:'vida',n:'Actividades de la Vida Diaria',ico:'🏠',c:'#14B8A6',bg:'linear-gradient(135deg,#14B8A6,#2ECC8E)',desc:'Autonomía, higiene, alimentación y rutinas cotidianas',prog:{basico:90,intermedio:65,avanzado:30}},
+];
+
+const ACTIVIDADES_AREAS = {
+  /* ══════════════════════════════════════════
+     PERCEPCIÓN FUNCIONAL
+     Misma habilidad en los 3 niveles → complejidad creciente
+  ══════════════════════════════════════════ */
+  percepcion:{
+    basico:[
+      {id:101,n:'Memoria visual — Básico',e:'🎨',d:'Identifica y memoriza colores y formas simples',min:10,
+       ops:[
+         {p:'¿Qué color es este? 🔴',os:[{e:'🔵',n:'Azul',ok:false},{e:'🔴',n:'Rojo',ok:true},{e:'💛',n:'Amarillo',ok:false},{e:'💚',n:'Verde',ok:false}]},
+         {p:'¿Cuál es el color AMARILLO?',os:[{e:'💛',n:'Amarillo',ok:true},{e:'🔵',n:'Azul',ok:false},{e:'🔴',n:'Rojo',ok:false},{e:'🟣',n:'Morado',ok:false}]},
+         {p:'Recuerda: 🔴🔵🟡. ¿Cuál era el del medio?',os:[{e:'🔴',n:'Rojo',ok:false},{e:'🔵',n:'Azul',ok:true},{e:'🟡',n:'Amarillo',ok:false},{e:'💚',n:'Verde',ok:false}]},
+       ]},
+      {id:102,n:'Seguimiento visual — Básico',e:'👁️',d:'Sigue objetos con la mirada de izquierda a derecha',min:8,
+       ops:[
+         {p:'¿Hacia dónde va la flecha? →',os:[{e:'←',n:'Izquierda',ok:false},{e:'→',n:'Derecha',ok:true},{e:'↑',n:'Arriba',ok:false},{e:'↓',n:'Abajo',ok:false}]},
+         {p:'El pájaro voló hacia ___. 🐦➡️',os:[{e:'⬅️',n:'La izquierda',ok:false},{e:'➡️',n:'La derecha',ok:true},{e:'⬆️',n:'Arriba',ok:false},{e:'⬇️',n:'Abajo',ok:false}]},
+       ]},
+      {id:103,n:'Figuras geométricas — Básico',e:'🔷',d:'Reconoce círculo, cuadrado y triángulo',min:12,
+       ops:[
+         {p:'¿Cuál es el CÍRCULO?',os:[{e:'⬜',n:'Cuadrado',ok:false},{e:'⭕',n:'Círculo',ok:true},{e:'🔺',n:'Triángulo',ok:false},{e:'⬡',n:'Hexágono',ok:false}]},
+         {p:'¿Cuál es el TRIÁNGULO?',os:[{e:'⭕',n:'Círculo',ok:false},{e:'⬜',n:'Cuadrado',ok:false},{e:'🔺',n:'Triángulo',ok:true},{e:'💠',n:'Rombo',ok:false}]},
+         {p:'¿Cuántos lados tiene un cuadrado?',os:[{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:true},{e:'5️⃣',n:'Cinco',ok:false},{e:'6️⃣',n:'Seis',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      {id:104,n:'Memoria visual — Intermedio',e:'🖼️',d:'Encuentra objetos ocultos y recuerda secuencias más largas',min:15,
+       ops:[
+         {p:'¿Cuántos objetos puedes encontrar? (imagen con 3 escondidos)',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:false}]},
+         {p:'Recuerda: 🐱🍎🚗🏠. ¿Cuál NO estaba?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🌸',n:'Flor',ok:true},{e:'🚗',n:'Carro',ok:false},{e:'🏠',n:'Casa',ok:false}]},
+         {p:'🔴🔵🔴🔵... ¿Qué sigue?',os:[{e:'💛',n:'Amarillo',ok:false},{e:'🔴',n:'Rojo',ok:true},{e:'💚',n:'Verde',ok:false},{e:'🟣',n:'Morado',ok:false}]},
+       ]},
+      {id:105,n:'Seguimiento visual — Intermedio',e:'🔁',d:'Sigue trayectorias curvas y cambiantes con la mirada',min:15,
+       ops:[
+         {p:'La pelota fue: arriba → derecha → abajo. ¿Dónde quedó?',os:[{e:'⬆️',n:'Arriba',ok:false},{e:'➡️',n:'Derecha',ok:false},{e:'⬇️',n:'Abajo-derecha',ok:true},{e:'⬅️',n:'Izquierda',ok:false}]},
+         {p:'¿Cuántos cambios de dirección hubo? (↑→↓)',os:[{e:'1️⃣',n:'Uno',ok:false},{e:'2️⃣',n:'Dos',ok:true},{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      {id:106,n:'Memoria visual — Avanzado',e:'📐',d:'Percepción espacial compleja y secuencias largas',min:20,
+       ops:[
+         {p:'El círculo está _____ del cuadrado (imagen: ⭕ arriba ⬜)',os:[{e:'⬆️',n:'Arriba',ok:true},{e:'⬇️',n:'Abajo',ok:false},{e:'◀️',n:'A la izquierda',ok:false},{e:'▶️',n:'A la derecha',ok:false}]},
+         {p:'Recuerda la secuencia: 🐱🐶🐦🐟🐹. ¿Cuál era el 3ro?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🐶',n:'Perro',ok:false},{e:'🐦',n:'Pájaro',ok:true},{e:'🐟',n:'Pez',ok:false}]},
+         {p:'¿Cuántas figuras hay si ves: ⭕⬜🔺⭕⬜?',os:[{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false}]},
+       ]},
+    ]
+  },
+  /* ══════════════════════════════════════════
+     ÁREA COGNITIVA
+  ══════════════════════════════════════════ */
+  cognitiva:{
+    basico:[
+      {id:201,n:'Atención sostenida — Básico',e:'🎯',d:'Mantén la atención en una tarea sencilla',min:10,
+       ops:[
+         {p:'¿Cuántas ⭐ hay? ⭐⭐⭐',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'4️⃣',n:'Cuatro',ok:false},{e:'1️⃣',n:'Uno',ok:false}]},
+         {p:'¿Cuántas 🍎? 🍎🍎🍎🍎',os:[{e:'3️⃣',n:'Tres',ok:false},{e:'5️⃣',n:'Cinco',ok:false},{e:'4️⃣',n:'Cuatro',ok:true},{e:'2️⃣',n:'Dos',ok:false}]},
+         {p:'¿Cuántos 🐶 hay? 🐶🐶🐶🐶🐶',os:[{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false},{e:'3️⃣',n:'Tres',ok:false}]},
+       ]},
+      {id:202,n:'Memoria a corto plazo — Básico',e:'🧠',d:'Recuerda 3 objetos que viste hace un momento',min:12,
+       ops:[
+         {p:'Recuerda: 🐱 🍎 🚗. ¿Cuál NO viste?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🍎',n:'Manzana',ok:false},{e:'🚗',n:'Carro',ok:false},{e:'🏠',n:'Casa',ok:true}]},
+         {p:'¿Cuál SÍ viste? (Viste 🌸🐶⭐)',os:[{e:'🍕',n:'Pizza',ok:false},{e:'🐶',n:'Perro',ok:true},{e:'🚀',n:'Cohete',ok:false},{e:'🎸',n:'Guitarra',ok:false}]},
+       ]},
+      {id:203,n:'Clasificación básica — Básico',e:'🗂️',d:'Agrupa objetos por categorías: animales, frutas, objetos',min:10,
+       ops:[
+         {p:'¿Cuál es un ANIMAL?',os:[{e:'🍎',n:'Manzana',ok:false},{e:'🐶',n:'Perro',ok:true},{e:'🚗',n:'Carro',ok:false},{e:'🏠',n:'Casa',ok:false}]},
+         {p:'¿Cuál es una FRUTA?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🚂',n:'Tren',ok:false},{e:'🍌',n:'Plátano',ok:true},{e:'📚',n:'Libro',ok:false}]},
+         {p:'¿Cuál NO es un animal?',os:[{e:'🐦',n:'Pájaro',ok:false},{e:'🐟',n:'Pez',ok:false},{e:'🌻',n:'Girasol',ok:true},{e:'🐰',n:'Conejo',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      {id:204,n:'Atención sostenida — Intermedio',e:'💡',d:'Resuelve problemas con 2-3 pasos manteniendo el foco',min:15,
+       ops:[
+         {p:'María tiene 3 manzanas y le dan 2 más. ¿Cuántas tiene ahora?',os:[{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false}]},
+         {p:'En una fila hay: 🐱🐶🐦🐟. ¿Quién está segundo?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🐶',n:'Perro',ok:true},{e:'🐦',n:'Pájaro',ok:false},{e:'🐟',n:'Pez',ok:false}]},
+         {p:'¿Cuántos números del 1 al 5 son pares?',os:[{e:'1️⃣',n:'Uno',ok:false},{e:'2️⃣',n:'Dos (2 y 4)',ok:true},{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:false}]},
+       ]},
+      {id:205,n:'Memoria de trabajo — Intermedio',e:'🔄',d:'Recuerda secuencias y úsalas mientras haces otra tarea',min:18,
+       ops:[
+         {p:'5 + 3 = ? (sin usar los dedos)',os:[{e:'7️⃣',n:'Siete',ok:false},{e:'9️⃣',n:'Nueve',ok:false},{e:'8️⃣',n:'Ocho',ok:true},{e:'6️⃣',n:'Seis',ok:false}]},
+         {p:'Recuerda: rojo, azul, verde. ¿Cuál era el último?',os:[{e:'🔴',n:'Rojo',ok:false},{e:'🔵',n:'Azul',ok:false},{e:'💚',n:'Verde',ok:true},{e:'🟡',n:'Amarillo',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      {id:206,n:'Atención sostenida — Avanzado',e:'🌀',d:'Flexibilidad cognitiva: cambia entre reglas y perspectivas',min:20,
+       ops:[
+         {p:'Si todos los perros son animales y Rex es un perro, Rex es...',os:[{e:'🐱',n:'Un gato',ok:false},{e:'🌿',n:'Una planta',ok:false},{e:'🐾',n:'Un animal',ok:true},{e:'🚗',n:'Un vehículo',ok:false}]},
+         {p:'Primero cuenta los 🔴 luego los 🔵: 🔴🔵🔴🔵🔴. ¿Cuántos rojos?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:false}]},
+         {p:'Si el patrón es +2: 2, 4, 6, ___ ¿qué sigue?',os:[{e:'7️⃣',n:'Siete',ok:false},{e:'8️⃣',n:'Ocho',ok:true},{e:'9️⃣',n:'Nueve',ok:false},{e:'🔟',n:'Diez',ok:false}]},
+       ]},
+    ]
+  },
+  /* ══════════════════════════════════════════
+     LENGUAJE Y COMUNICACIÓN
+  ══════════════════════════════════════════ */
+  lenguaje:{
+    basico:[
+      {id:301,n:'Vocabulario básico — Básico',e:'🔤',d:'Nombra objetos del entorno cotidiano',min:10,
+       ops:[
+         {p:'¿Cómo se llama esto? 🍎',os:[{e:'🍌',n:'Plátano',ok:false},{e:'🍊',n:'Naranja',ok:false},{e:'🍎',n:'Manzana',ok:true},{e:'🍇',n:'Uva',ok:false}]},
+         {p:'¿Cómo se llama esto? 🐶',os:[{e:'🐱',n:'Gato',ok:false},{e:'🐶',n:'Perro',ok:true},{e:'🐦',n:'Pájaro',ok:false},{e:'🐟',n:'Pez',ok:false}]},
+         {p:'¿Cómo se llama esto? 🚗',os:[{e:'🚌',n:'Bus',ok:false},{e:'✈️',n:'Avión',ok:false},{e:'🚗',n:'Carro',ok:true},{e:'🚀',n:'Cohete',ok:false}]},
+       ]},
+      {id:302,n:'Instrucciones simples — Básico',e:'👂',d:'Sigue instrucciones de 1-2 pasos con pictogramas',min:12,
+       ops:[
+         {p:'"Dame la manzana" — ¿qué hago?',os:[{e:'🏃',n:'Correr',ok:false},{e:'🤲',n:'Dar la manzana',ok:true},{e:'😴',n:'Dormir',ok:false},{e:'🎵',n:'Cantar',ok:false}]},
+         {p:'"Siéntate y escucha" — ¿cuántas acciones son?',os:[{e:'1️⃣',n:'Una',ok:false},{e:'2️⃣',n:'Dos',ok:true},{e:'3️⃣',n:'Tres',ok:false},{e:'4️⃣',n:'Cuatro',ok:false}]},
+         {p:'¿Qué significa el pictograma 🛑?',os:[{e:'🏃',n:'Correr',ok:false},{e:'🛑',n:'Parar / Alto',ok:true},{e:'🎉',n:'Celebrar',ok:false},{e:'😴',n:'Dormir',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      {id:303,n:'Construcción de frases — Intermedio',e:'📝',d:'Forma frases completas y ordena palabras',min:15,
+       ops:[
+         {p:'Ordena: "come/el/niño/manzana"',os:[{e:'🔀',n:'come manzana niño el',ok:false},{e:'📝',n:'El niño come manzana',ok:true},{e:'🔀',n:'manzana come el niño',ok:false},{e:'🔀',n:'niño el come manzana',ok:false}]},
+         {p:'¿Cuál es una frase COMPLETA?',os:[{e:'🐶 corre',n:'"El perro corre rápido"',ok:true},{e:'🏃 rápido',n:'"rápido corre"',ok:false},{e:'El perro',n:'"El perro"',ok:false},{e:'🔀',n:'"corre perro el"',ok:false}]},
+         {p:'"El gato ____ leche" — ¿qué verbo falta?',os:[{e:'🏃',n:'corre',ok:false},{e:'🍼',n:'bebe',ok:true},{e:'🛌',n:'duerme leche',ok:false},{e:'🎵',n:'canta',ok:false}]},
+       ]},
+      {id:304,n:'Narración de historias — Intermedio',e:'📖',d:'Cuenta una historia con inicio, nudo y desenlace',min:20,
+       ops:[
+         {p:'¿Cuál es la primera parte de una historia?',os:[{e:'🎭',n:'El final',ok:false},{e:'📖',n:'El inicio',ok:true},{e:'🎬',n:'El desenlace',ok:false},{e:'⚡',n:'El nudo',ok:false}]},
+         {p:'En una historia: "Juan perdió su perro. Lo buscó. Lo encontró." ¿Cuál es el nudo?',os:[{e:'🏠',n:'Juan vivía feliz',ok:false},{e:'😢',n:'Juan perdió su perro',ok:true},{e:'🎉',n:'Lo encontró',ok:false},{e:'🐶',n:'Tenía un perro',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      {id:305,n:'Comunicación aumentativa — Avanzado',e:'💬',d:'Usa CAA para expresar necesidades e ideas complejas',min:20,
+       ops:[
+         {p:'¿Qué pictograma usas para "quiero ir al parque mañana"?',os:[{e:'🏠',n:'Casa',ok:false},{e:'🌳+📅',n:'Parque + mañana',ok:true},{e:'🍎',n:'Comida',ok:false},{e:'😴',n:'Dormir',ok:false}]},
+         {p:'Para decir "estoy enojado porque tengo hambre" necesito...',os:[{e:'1 pictograma',n:'Solo uno',ok:false},{e:'2 pictogramas',n:'Emoción + causa',ok:true},{e:'5 pictogramas',n:'Muchos',ok:false},{e:'0 pictogramas',n:'No necesito',ok:false}]},
+         {p:'¿Cuál es la mejor forma de pedir ayuda?',os:[{e:'😭',n:'Llorar sin decir nada',ok:false},{e:'🙋+💬',n:'Levantar la mano y señalar',ok:true},{e:'🏃',n:'Irme del lugar',ok:false},{e:'😡',n:'Gritar',ok:false}]},
+       ]},
+    ]
+  },
+  /* ══════════════════════════════════════════
+     LECTOSCRITURA Y MATEMÁTICAS
+     Nueva estructura: 3 subcarpetas por nivel
+     → Lectura / Escritura / Matemáticas
+  ══════════════════════════════════════════ */
+  lectomatem:{
+    basico:[
+      /* ─── LECTURA Básica ─── */
+      {id:401,n:'📗 Lectura — Básico',e:'📗',d:'Conciencia fonológica y lectura de pictogramas',min:12,
+       subcarpeta:'Lectura',
+       ops:[
+         {p:'¿Con qué letra empieza 🍎 MANZANA?',os:[{e:'P',n:'P',ok:false},{e:'M',n:'M',ok:true},{e:'S',n:'S',ok:false},{e:'T',n:'T',ok:false}]},
+         {p:'¿Con qué letra empieza 🐶 PERRO?',os:[{e:'M',n:'M',ok:false},{e:'T',n:'T',ok:false},{e:'P',n:'P',ok:true},{e:'S',n:'S',ok:false}]},
+         {p:'¿Qué dice este pictograma? 💧',os:[{e:'🔥',n:'Fuego',ok:false},{e:'💧',n:'Agua',ok:true},{e:'🌬️',n:'Viento',ok:false},{e:'⛰️',n:'Montaña',ok:false}]},
+         {p:'¿Qué letra es esta? → A',os:[{e:'E',n:'E',ok:false},{e:'A',n:'A',ok:true},{e:'O',n:'O',ok:false},{e:'I',n:'I',ok:false}]},
+       ]},
+      /* ─── ESCRITURA Básica ─── */
+      {id:402,n:'✏️ Escritura — Básico',e:'✏️',d:'Traza letras y reconoce su forma correcta',min:10,
+       subcarpeta:'Escritura',
+       ops:[
+         {p:'¿Cuál es la letra A bien escrita?',os:[{e:'Ä',n:'Á con diéresis',ok:false},{e:'A',n:'A mayúscula',ok:true},{e:'4',n:'Número cuatro',ok:false},{e:'∧',n:'Símbolo',ok:false}]},
+         {p:'¿Cuál es la letra O bien escrita?',os:[{e:'0',n:'Cero',ok:false},{e:'Q',n:'Q',ok:false},{e:'O',n:'O',ok:true},{e:'D',n:'D',ok:false}]},
+         {p:'Para escribir mi nombre, ¿qué necesito?',os:[{e:'🎨',n:'Colores',ok:false},{e:'✏️',n:'Lápiz y papel',ok:true},{e:'🎵',n:'Música',ok:false},{e:'🏃',n:'Correr',ok:false}]},
+       ]},
+      /* ─── MATEMÁTICAS Básica ─── */
+      {id:403,n:'🔢 Matemáticas — Básico',e:'🔢',d:'Reconoce y cuenta números del 1 al 10',min:10,
+       subcarpeta:'Matemáticas',
+       ops:[
+         {p:'¿Cuántas ⭐? ⭐⭐⭐⭐',os:[{e:'3️⃣',n:'Tres',ok:false},{e:'5️⃣',n:'Cinco',ok:false},{e:'4️⃣',n:'Cuatro',ok:true},{e:'2️⃣',n:'Dos',ok:false}]},
+         {p:'¿Qué número va después del 5?',os:[{e:'4️⃣',n:'Cuatro',ok:false},{e:'7️⃣',n:'Siete',ok:false},{e:'6️⃣',n:'Seis',ok:true},{e:'8️⃣',n:'Ocho',ok:false}]},
+         {p:'¿Cuántos dedos tienes en una mano?',os:[{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false},{e:'10',n:'Diez',ok:false}]},
+         {p:'3 + 2 = ?',os:[{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false},{e:'3️⃣',n:'Tres',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      /* ─── LECTURA Intermedia ─── */
+      {id:404,n:'📘 Lectura — Intermedio',e:'📘',d:'Sílabas directas, palabras cortas y comprensión simple',min:15,
+       subcarpeta:'Lectura',
+       ops:[
+         {p:'¿Qué sílaba forman M + A?',os:[{e:'ME',n:'ME',ok:false},{e:'MA',n:'MA',ok:true},{e:'MI',n:'MI',ok:false},{e:'MO',n:'MO',ok:false}]},
+         {p:'¿Qué sílaba forman P + E?',os:[{e:'PA',n:'PA',ok:false},{e:'PI',n:'PI',ok:false},{e:'PE',n:'PE',ok:true},{e:'PO',n:'PO',ok:false}]},
+         {p:'Lee y elige: MA-MÁ 🤱 significa...',os:[{e:'🐶',n:'Perro',ok:false},{e:'🤱',n:'Mamá',ok:true},{e:'🍎',n:'Manzana',ok:false},{e:'🚗',n:'Carro',ok:false}]},
+         {p:'"El gato duerme." — ¿Cuántas palabras hay?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'4️⃣',n:'Cuatro',ok:false},{e:'1️⃣',n:'Una',ok:false}]},
+       ]},
+      /* ─── ESCRITURA Intermedia ─── */
+      {id:405,n:'📝 Escritura — Intermedio',e:'📝',d:'Escribe sílabas, palabras cortas y copia oraciones simples',min:15,
+       subcarpeta:'Escritura',
+       ops:[
+         {p:'¿Cómo se escribe el sonido "ma"?',os:[{e:'ME',n:'ME',ok:false},{e:'MA',n:'MA',ok:true},{e:'AM',n:'AM',ok:false},{e:'MO',n:'MO',ok:false}]},
+         {p:'¿Cómo se escribe el animal 🐱?',os:[{e:'PERRO',n:'PERRO',ok:false},{e:'PATO',n:'PATO',ok:false},{e:'GATO',n:'GATO',ok:true},{e:'PÁJARO',n:'PÁJARO',ok:false}]},
+         {p:'¿Cuál está bien escrito?',os:[{e:'MANZNA',n:'MANZNA',ok:false},{e:'MANZANA',n:'MANZANA',ok:true},{e:'MNAZANA',n:'MNAZANA',ok:false},{e:'AMZANA',n:'AMZANA',ok:false}]},
+       ]},
+      /* ─── MATEMÁTICAS Intermedia ─── */
+      {id:406,n:'➕ Matemáticas — Intermedio',e:'➕',d:'Sumas, restas y resolución de problemas simples',min:15,
+       subcarpeta:'Matemáticas',
+       ops:[
+         {p:'7 + 5 = ?',os:[{e:'11',n:'Once',ok:false},{e:'13',n:'Trece',ok:false},{e:'12',n:'Doce',ok:true},{e:'10',n:'Diez',ok:false}]},
+         {p:'10 - 4 = ?',os:[{e:'5️⃣',n:'Cinco',ok:false},{e:'6️⃣',n:'Seis',ok:true},{e:'7️⃣',n:'Siete',ok:false},{e:'4️⃣',n:'Cuatro',ok:false}]},
+         {p:'María tiene 8 lápices y presta 3. ¿Cuántos le quedan?',os:[{e:'4️⃣',n:'Cuatro',ok:false},{e:'5️⃣',n:'Cinco',ok:true},{e:'6️⃣',n:'Seis',ok:false},{e:'11',n:'Once',ok:false}]},
+         {p:'¿Cuál número es MAYOR? 15 o 9',os:[{e:'9',n:'Nueve',ok:false},{e:'15',n:'Quince',ok:true},{e:'Son iguales',n:'Iguales',ok:false},{e:'No sé',n:'No sé',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      /* ─── LECTURA Avanzada ─── */
+      {id:407,n:'📕 Lectura — Avanzado',e:'📕',d:'Comprensión lectora de textos cortos con preguntas',min:25,
+       subcarpeta:'Lectura',
+       ops:[
+         {p:'Texto: "Carlos tiene 3 manzanas. Le da 2 a su amiga." ¿Cuántas le quedan?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'5️⃣',n:'Cinco',ok:false},{e:'1️⃣',n:'Una',ok:true},{e:'3️⃣',n:'Tres',ok:false}]},
+         {p:'Texto: "El perro de Sofía es café y se llama Canela." ¿De qué color es el perro?',os:[{e:'⬛',n:'Negro',ok:false},{e:'🟤',n:'Café',ok:true},{e:'⬜',n:'Blanco',ok:false},{e:'🔴',n:'Rojo',ok:false}]},
+         {p:'¿Qué significa la palabra RÁPIDO en "El tren va muy rápido"?',os:[{e:'🐢',n:'Lento',ok:false},{e:'💤',n:'Dormido',ok:false},{e:'🚀',n:'Veloz',ok:true},{e:'🎵',n:'Cantando',ok:false}]},
+         {p:'"Llueve mucho hoy." ¿Qué tiempo hace?',os:[{e:'☀️',n:'Soleado',ok:false},{e:'🌧️',n:'Lluvioso',ok:true},{e:'❄️',n:'Nevado',ok:false},{e:'🌪️',n:'Ventoso',ok:false}]},
+       ]},
+      /* ─── ESCRITURA Avanzada ─── */
+      {id:408,n:'🖊️ Escritura — Avanzado',e:'🖊️',d:'Redacta oraciones propias y textos cortos con sentido',min:25,
+       subcarpeta:'Escritura',
+       ops:[
+         {p:'¿Cuál oración está BIEN escrita?',os:[{e:'el perro corre',n:'el perro corre',ok:false},{e:'El perro corre.',n:'El perro corre.',ok:true},{e:'El perro corre',n:'Sin punto final',ok:false},{e:'el Perro Corre.',n:'Mayúscula en Perro',ok:false}]},
+         {p:'¿Qué le falta a esta oración? "la niña juega en ___ parque"',os:[{e:'un',n:'un / el',ok:true},{e:'muy',n:'muy',ok:false},{e:'pero',n:'pero',ok:false},{e:'siempre',n:'siempre',ok:false}]},
+         {p:'Escribe sobre tu día. ¿Cuál es una buena oración para empezar?',os:[{e:'Perro casa',n:'"Perro casa"',ok:false},{e:'Hoy me levanté temprano.',n:'"Hoy me levanté temprano."',ok:true},{e:'y luego después',n:'"y luego después"',ok:false},{e:'porque mañana',n:'"porque mañana"',ok:false}]},
+       ]},
+      /* ─── MATEMÁTICAS Avanzada ─── */
+      {id:409,n:'🧮 Matemáticas — Avanzado',e:'🧮',d:'Problemas con varias operaciones y razonamiento lógico',min:25,
+       subcarpeta:'Matemáticas',
+       ops:[
+         {p:'Un libro cuesta $15 y pago $20. ¿Cuánto es el cambio?',os:[{e:'$3',n:'Tres',ok:false},{e:'$5',n:'Cinco',ok:true},{e:'$7',n:'Siete',ok:false},{e:'$10',n:'Diez',ok:false}]},
+         {p:'Si tengo 3 cajas con 4 lápices cada una, ¿cuántos lápices tengo en total?',os:[{e:'7',n:'Siete',ok:false},{e:'12',n:'Doce',ok:true},{e:'10',n:'Diez',ok:false},{e:'8',n:'Ocho',ok:false}]},
+         {p:'¿Cuál es el número mayor? 47, 74, 44, 77',os:[{e:'47',n:'47',ok:false},{e:'74',n:'74',ok:false},{e:'44',n:'44',ok:false},{e:'77',n:'77',ok:true}]},
+         {p:'Hay 20 niños en clase. 8 son niñas. ¿Cuántos son niños?',os:[{e:'10',n:'Diez',ok:false},{e:'12',n:'Doce',ok:true},{e:'14',n:'Catorce',ok:false},{e:'8',n:'Ocho',ok:false}]},
+       ]},
+    ]
+  },
+  /* ══════════════════════════════════════════
+     INTERACCIÓN SOCIAL
+  ══════════════════════════════════════════ */
+  social:{
+    basico:[
+      {id:501,n:'Emociones en otros — Básico',e:'😊',d:'Identifica la emoción en la expresión facial',min:10,
+       ops:[
+         {p:'¿Cómo se siente este niño? 😢',os:[{e:'😊',n:'Feliz',ok:false},{e:'😢',n:'Triste',ok:true},{e:'😠',n:'Enojado',ok:false},{e:'😨',n:'Asustado',ok:false}]},
+         {p:'¿Cómo se siente? 😄',os:[{e:'😢',n:'Triste',ok:false},{e:'😄',n:'Feliz',ok:true},{e:'😠',n:'Enojado',ok:false},{e:'😴',n:'Con sueño',ok:false}]},
+         {p:'Si alguien llora, probablemente está...',os:[{e:'😄',n:'Muy feliz',ok:false},{e:'😢',n:'Triste o adolorido',ok:true},{e:'😴',n:'Con sueño',ok:false},{e:'🤩',n:'Emocionado',ok:false}]},
+       ]},
+      {id:502,n:'Saludos y presentaciones — Básico',e:'👋',d:'Practica cómo saludar y presentarse correctamente',min:10,
+       ops:[
+         {p:'¿Qué digo cuando conozco a alguien nuevo?',os:[{e:'🤐',n:'Nada',ok:false},{e:'👋',n:'Hola, me llamo...',ok:true},{e:'😤',n:'Déjame en paz',ok:false},{e:'😴',n:'Tengo sueño',ok:false}]},
+         {p:'¿Cómo me despido de un amigo?',os:[{e:'😡',n:'Me voy sin decir nada',ok:false},{e:'👋',n:'Adiós, ¡hasta luego!',ok:true},{e:'🏃',n:'Corro sin mirar',ok:false},{e:'😴',n:'Me duermo',ok:false}]},
+         {p:'Al llegar a clase, debo...',os:[{e:'🏃',n:'Correr y gritar',ok:false},{e:'👋',n:'Saludar al profesor',ok:true},{e:'😴',n:'Acostarme',ok:false},{e:'🎵',n:'Cantar muy fuerte',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      {id:503,n:'Turnos en conversación — Intermedio',e:'🎤',d:'Aprende a escuchar y tomar tu turno para hablar',min:15,
+       ops:[
+         {p:'Mi amigo está hablando. Yo debo...',os:[{e:'📢',n:'Interrumpirlo',ok:false},{e:'👂',n:'Escuchar y esperar mi turno',ok:true},{e:'🏃',n:'Irme',ok:false},{e:'😴',n:'Aburrirme',ok:false}]},
+         {p:'¿Cómo sé que es mi turno para hablar?',os:[{e:'😡',n:'Cuando quiero sin esperar',ok:false},{e:'👋',n:'Cuando el otro termina y hace pausa',ok:true},{e:'📢',n:'Gritando más fuerte',ok:false},{e:'🤐',n:'Nunca hablo',ok:false}]},
+         {p:'Mi amigo me hace una pregunta. ¿Qué hago?',os:[{e:'😴',n:'Lo ignoro',ok:false},{e:'💬',n:'Escucho y respondo',ok:true},{e:'🏃',n:'Me voy corriendo',ok:false},{e:'📱',n:'Miro el celular',ok:false}]},
+       ]},
+      {id:504,n:'Juego cooperativo — Intermedio',e:'🤝',d:'Aprende a jugar y trabajar en equipo',min:15,
+       ops:[
+         {p:'Jugamos juntos. ¿Qué es importante?',os:[{e:'🏆',n:'Solo yo gane',ok:false},{e:'🤝',n:'Compartir y respetar turnos',ok:true},{e:'😡',n:'Hacer trampa',ok:false},{e:'🏃',n:'No jugar',ok:false}]},
+         {p:'Mi compañero hizo algo bien. ¿Qué hago?',os:[{e:'😒',n:'No digo nada',ok:false},{e:'👏',n:'Lo felicito y aplaudo',ok:true},{e:'😡',n:'Me enojo',ok:false},{e:'🏃',n:'Me voy',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      {id:505,n:'Resolución de conflictos — Avanzado',e:'🕊️',d:'Resuelve desacuerdos de forma pacífica y asertiva',min:20,
+       ops:[
+         {p:'Mi amigo y yo queremos el mismo juguete. ¿Qué hacemos?',os:[{e:'😠',n:'Pelear por él',ok:false},{e:'🤝',n:'Compartir y turnarnos',ok:true},{e:'😭',n:'Llorar y rendirme',ok:false},{e:'🏃',n:'Huir',ok:false}]},
+         {p:'Alguien me molesta. ¿Cuál es la mejor respuesta?',os:[{e:'😡',n:'Pegarle',ok:false},{e:'💬',n:'Decirle cómo me siento y pedir que pare',ok:true},{e:'😴',n:'Ignorarlo siempre',ok:false},{e:'🏃',n:'Contarle a todos menos al adulto',ok:false}]},
+         {p:'¿Qué hago si no estoy de acuerdo con algo?',os:[{e:'😡',n:'Gritar y golpear',ok:false},{e:'💬',n:'Explicar calmadamente mi punto de vista',ok:true},{e:'😴',n:'Callarme para siempre',ok:false},{e:'🏃',n:'Irme sin decir nada',ok:false}]},
+       ]},
+    ]
+  },
+  /* ══════════════════════════════════════════
+     ACTIVIDADES DE LA VIDA DIARIA
+  ══════════════════════════════════════════ */
+  vida:{
+    basico:[
+      {id:601,n:'Higiene personal — Básico',e:'🦷',d:'Aprende los pasos de lavado de manos y dientes',min:10,
+       ops:[
+         {p:'¿Cuándo me lavo las manos?',os:[{e:'🎮',n:'Cuando juego',ok:false},{e:'🍽️',n:'Antes y después de comer',ok:true},{e:'📺',n:'Cuando veo TV',ok:false},{e:'😴',n:'Cuando tengo sueño',ok:false}]},
+         {p:'¿Cuántas veces al día me cepillo los dientes?',os:[{e:'1️⃣',n:'Una vez',ok:false},{e:'2️⃣',n:'Dos veces (mínimo)',ok:true},{e:'🔟',n:'Diez veces',ok:false},{e:'0️⃣',n:'Ninguna',ok:false}]},
+         {p:'Para lavarme las manos necesito...',os:[{e:'🎨',n:'Pintura',ok:false},{e:'🧼+💧',n:'Jabón y agua',ok:true},{e:'🍎',n:'Una manzana',ok:false},{e:'📏',n:'Una regla',ok:false}]},
+       ]},
+      {id:602,n:'Vestirse solo/a — Básico',e:'👕',d:'Aprende el orden correcto para ponerse la ropa',min:12,
+       ops:[
+         {p:'¿Qué te pones PRIMERO al vestirte?',os:[{e:'🧥',n:'El abrigo',ok:false},{e:'🩲',n:'Ropa interior',ok:true},{e:'🧢',n:'El gorro',ok:false},{e:'👟',n:'Los zapatos',ok:false}]},
+         {p:'Los zapatos se ponen...',os:[{e:'🩲',n:'Antes de la ropa interior',ok:false},{e:'🧥',n:'Antes del abrigo',ok:false},{e:'🧦',n:'Después de las medias',ok:true},{e:'👕',n:'Antes de la camiseta',ok:false}]},
+         {p:'¿Qué hago si mi ropa está al revés?',os:[{e:'🏃',n:'Salgo así de todas formas',ok:false},{e:'🔄',n:'La doy vuelta y la pongo bien',ok:true},{e:'😭',n:'Lloro sin intentar',ok:false},{e:'✂️',n:'La corto',ok:false}]},
+       ]},
+    ],
+    intermedio:[
+      {id:603,n:'Preparar merienda — Intermedio',e:'🍞',d:'Aprende a preparar alimentos simples de forma segura',min:20,
+       ops:[
+         {p:'Para hacer un sándwich, ¿qué necesito?',os:[{e:'🍳',n:'La sartén',ok:false},{e:'🍞+🧀',n:'Pan y relleno',ok:true},{e:'🥘',n:'Una olla',ok:false},{e:'🔥',n:'Solo fuego',ok:false}]},
+         {p:'¿Cuál alimento NO necesita cocinarse antes de comer?',os:[{e:'🥩',n:'Carne cruda',ok:false},{e:'🥚',n:'Huevo crudo',ok:false},{e:'🍌',n:'Plátano',ok:true},{e:'🥔',n:'Papa cruda',ok:false}]},
+         {p:'Cuando termino de comer, ¿qué hago con los platos?',os:[{e:'🏃',n:'Los dejo y me voy',ok:false},{e:'🚿',n:'Los llevo al lavadero',ok:true},{e:'🗑️',n:'Los boto a la basura',ok:false},{e:'😴',n:'Me acuesto',ok:false}]},
+       ]},
+      {id:604,n:'Rutinas del hogar — Intermedio',e:'🏠',d:'Conoce y practica las tareas básicas del hogar',min:15,
+       ops:[
+         {p:'¿Qué hago con la ropa sucia?',os:[{e:'🏃',n:'La tiro al piso',ok:false},{e:'🧺',n:'La pongo en el cesto de ropa sucia',ok:true},{e:'🗑️',n:'La boto a la basura',ok:false},{e:'😴',n:'La dejo en la cama',ok:false}]},
+         {p:'Para ordenar mi cuarto necesito...',os:[{e:'🎮',n:'Solo jugar',ok:false},{e:'🤝',n:'Guardar cada cosa en su lugar',ok:true},{e:'📺',n:'Ver televisión',ok:false},{e:'😴',n:'Dormir',ok:false}]},
+       ]},
+    ],
+    avanzado:[
+      {id:605,n:'Dinero y compras — Avanzado',e:'💰',d:'Entiende el dinero, precios y el proceso de compra',min:20,
+       ops:[
+         {p:'Algo cuesta $3.000 y doy $5.000. ¿Cuánto es el cambio?',os:[{e:'$1.000',n:'1.000',ok:false},{e:'$3.000',n:'3.000',ok:false},{e:'$2.000',n:'2.000',ok:true},{e:'$8.000',n:'8.000',ok:false}]},
+         {p:'¿Cuál es el orden correcto para comprar algo?',os:[{e:'Pago→Busco→Salgo',n:'Pago primero',ok:false},{e:'Busco→Pago→Salgo',n:'Busco, pago y salgo',ok:true},{e:'Salgo→Busco→Pago',n:'Salgo primero',ok:false},{e:'Solo busco',n:'No pago',ok:false}]},
+         {p:'Tengo $10.000. Quiero comprar algo de $7.500. ¿Tengo suficiente?',os:[{e:'No',n:'No tengo',ok:false},{e:'Sí',n:'Sí tengo (sobra $2.500)',ok:true},{e:'No sé',n:'No sé calcular',ok:false},{e:'Necesito más',n:'Necesito más dinero',ok:false}]},
+       ]},
+    ]
+  }
+};
+
+const VJ_JUEGOS = [
+  {id:701,n:'Memoria visual',e:'🃏',bg:'#EBF1FF',c:'#4C7EF3',cat:'memoria',d:'Voltea las tarjetas y encuentra las parejas',min:15,ops:[{p:'¿Cuál es la pareja del 🐱?',os:[{e:'🐶',n:'Perro',ok:false},{e:'🐱',n:'Gato igual',ok:true},{e:'🐦',n:'Pájaro',ok:false},{e:'🐟',n:'Pez',ok:false}]},{p:'¿Cuántas parejas encontraste?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'4️⃣',n:'Cuatro',ok:true},{e:'6️⃣',n:'Seis',ok:false},{e:'3️⃣',n:'Tres',ok:false}]}]},
+  {id:702,n:'¿Qué cambió?',e:'🔍',bg:'#E3F9F1',c:'#2ECC8E',cat:'visual',d:'Observa qué objeto desapareció de la escena',min:10,ops:[{p:'Había 🐱🍎🚗. Ahora hay 🐱🍎. ¿Qué falta?',os:[{e:'🐱',n:'Gato',ok:false},{e:'🍎',n:'Manzana',ok:false},{e:'🚗',n:'Carro',ok:true},{e:'🏠',n:'Casa',ok:false}]}]},
+  {id:703,n:'Laberinto visual',e:'🌀',bg:'#F0EBFF',c:'#8B5CF6',cat:'visual',d:'Sigue el camino correcto con tu dedo',min:12,ops:[{p:'En un laberinto, ¿qué hago si llego a un callejón sin salida?',os:[{e:'😡',n:'Me enojo y paro',ok:false},{e:'↩️',n:'Regreso y pruebo otro camino',ok:true},{e:'😴',n:'Me duermo',ok:false},{e:'🏃',n:'Salto las paredes',ok:false}]}]},
+  {id:704,n:'Ritmo y música',e:'🎵',bg:'#FFF6E8',c:'#FFB347',cat:'auditivo',d:'Repite el patrón de ritmo que escuchaste',min:10,ops:[{p:'🎵🎵🎵 — ¿Cuántas notas hay?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'4️⃣',n:'Cuatro',ok:false},{e:'1️⃣',n:'Una',ok:false}]}]},
+  {id:705,n:'Sombras y siluetas',e:'🌑',bg:'#FFF0F0',c:'#FF6B6B',cat:'visual',d:'Identifica el objeto por su silueta',min:12,ops:[{p:'¿A qué animal pertenece esta silueta? 🐾',os:[{e:'🐱',n:'Gato',ok:false},{e:'🐶',n:'Perro',ok:true},{e:'🐦',n:'Pájaro',ok:false},{e:'🐟',n:'Pez',ok:false}]}]},
+  {id:706,n:'Rompecabezas digital',e:'🧩',bg:'#E0F7F5',c:'#14B8A6',cat:'motriz',d:'Ensambla las piezas para completar la imagen',min:15,ops:[{p:'Un rompecabezas de 4 piezas. ¿Cuántas ya colocaste? (2)',os:[{e:'1️⃣',n:'Una pieza',ok:false},{e:'3️⃣',n:'Tres piezas',ok:false},{e:'2️⃣',n:'Dos piezas',ok:true},{e:'4️⃣',n:'Todas',ok:false}]}]},
+  {id:707,n:'Encuentra las diferencias',e:'🔎',bg:'#EBF1FF',c:'#4C7EF3',cat:'atencion',d:'Encuentra las 3 diferencias entre dos imágenes',min:15,ops:[{p:'Hay 3 diferencias. ¿Cuántas encontraste?',os:[{e:'1️⃣',n:'Una',ok:false},{e:'2️⃣',n:'Dos',ok:false},{e:'3️⃣',n:'¡Las tres!',ok:true},{e:'4️⃣',n:'Cuatro',ok:false}]}]},
+  {id:708,n:'Atención selectiva',e:'🎯',bg:'#E3F9F1',c:'#2ECC8E',cat:'atencion',d:'Encuentra solo los círculos rojos entre muchas figuras',min:10,ops:[{p:'Entre 🔴🔵🟢🔴⬜🔴, ¿cuántos rojos hay?',os:[{e:'2️⃣',n:'Dos',ok:false},{e:'4️⃣',n:'Cuatro',ok:false},{e:'3️⃣',n:'Tres',ok:true},{e:'1️⃣',n:'Uno',ok:false}]}]},
+];
+
+// ══════════════════════════════════════════════════════════
+//  VIDEOS DE YOUTUBE — ¡A Divertirnos!
+//  Selección curada de videos educativos y terapéuticos
+//  para niños con TEA. Seguros, sin anuncios (parámetros YT).
+// ══════════════════════════════════════════════════════════
+const VIDEOS = [
+  // 🎵 CANCIONES
+  {id:'v01',yt:'CJZNGbjkvik',tit:'Las Vocales — Canción Infantil',sub:'A, E, I, O, U con letra y música',cat:'canciones',dur:'3:12',nuevo:true,color:'#EBF1FF'},
+  {id:'v02',yt:'U1cB3nDHVoI',tit:'El Abecedario — Canción para niños',sub:'Aprende las letras cantando',cat:'canciones',dur:'4:05',nuevo:false,color:'#E3F9F1'},
+  {id:'v03',yt:'Uq1fFQBJHAY',tit:'Los Colores — Canción y Baile',sub:'Aprende los colores con movimiento',cat:'canciones',dur:'3:48',nuevo:false,color:'#FFF6E8'},
+  {id:'v04',yt:'9i6rk6T8gPU',tit:'Los Números del 1 al 10',sub:'Canción para contar y aprender números',cat:'canciones',dur:'3:22',nuevo:true,color:'#FFF0F0'},
+  {id:'v05',yt:'IHZBJqQqpxc',tit:'Las Emociones — Canción TEA',sub:'Identificar cómo nos sentimos',cat:'canciones',dur:'2:58',nuevo:false,color:'#F0EBFF'},
+  {id:'v06',yt:'MFNsEi8RSmg',tit:'Buenos Días — Rutina de la Mañana',sub:'Canciones para empezar el día',cat:'canciones',dur:'4:15',nuevo:false,color:'#E3F9F1'},
+  // 📖 CUENTOS
+  {id:'v07',yt:'tHFhEEZqLWg',tit:'Los Tres Cerditos',sub:'Cuento clásico animado en español',cat:'cuentos',dur:'8:30',nuevo:false,color:'#FFF6E8'},
+  {id:'v08',yt:'WU2UcJICQJ8',tit:'Caperucita Roja Animada',sub:'El cuento clásico con imágenes claras',cat:'cuentos',dur:'9:15',nuevo:false,color:'#FFF0F0'},
+  {id:'v09',yt:'PFJKABwlDX4',tit:'El Patito Feo — Cuento Animado',sub:'Historia de aceptación y amor',cat:'cuentos',dur:'7:45',nuevo:true,color:'#EBF1FF'},
+  {id:'v10',yt:'s8FXGVaNsUA',tit:'Pinocho — Cuento Corto',sub:'Cuento sobre la honestidad',cat:'cuentos',dur:'11:20',nuevo:false,color:'#E3F9F1'},
+  // 😊 EMOCIONES
+  {id:'v11',yt:'uNw5Qe-XKGY',tit:'¿Cómo me siento hoy?',sub:'Reconocer y expresar emociones',cat:'emociones',dur:'5:40',nuevo:true,color:'#F0EBFF'},
+  {id:'v12',yt:'XGMgOgGf4HQ',tit:'Manejar la Rabia — Para niños',sub:'Estrategias para calmarse',cat:'emociones',dur:'6:10',nuevo:false,color:'#FFF0F0'},
+  {id:'v13',yt:'cGKvJzTpiFQ',tit:'La Empatía — Cuento Animado',sub:'Aprender a entender a los demás',cat:'emociones',dur:'4:55',nuevo:false,color:'#FFF6E8'},
+  {id:'v14',yt:'l0U00sEhc6I',tit:'Zona de Calma — Relajación',sub:'Técnicas para calmarse en momentos difíciles',cat:'relajacion',dur:'7:30',nuevo:true,color:'#E3F9F1'},
+  // 🌿 NATURALEZA
+  {id:'v15',yt:'TYrMBgCk40E',tit:'Los Animales de la Granja',sub:'Conoce vacas, gallinas y más animales',cat:'naturaleza',dur:'5:18',nuevo:false,color:'#E3F9F1'},
+  {id:'v16',yt:'0_Yp5fBjjlw',tit:'¿Por qué llueve? — Ciencia para niños',sub:'El ciclo del agua explicado fácil',cat:'naturaleza',dur:'4:42',nuevo:false,color:'#EBF1FF'},
+  {id:'v17',yt:'R7nxrUMhPrA',tit:'Las Estaciones del Año',sub:'Primavera, verano, otoño e invierno',cat:'naturaleza',dur:'5:02',nuevo:true,color:'#FFF6E8'},
+  {id:'v18',yt:'U7rHMXD0sO0',tit:'Los Insectos — Mariposas y Abejas',sub:'Conoce los insectos del jardín',cat:'naturaleza',dur:'6:15',nuevo:false,color:'#F0EBFF'},
+  // 🎓 APRENDIZAJE
+  {id:'v19',yt:'JH-mCHRvVQE',tit:'Las Formas Geométricas',sub:'Círculo, cuadrado, triángulo y más',cat:'aprendizaje',dur:'4:20',nuevo:false,color:'#EBF1FF'},
+  {id:'v20',yt:'fEvM-OUbaFs',tit:'Los Colores Primarios',sub:'Aprende a mezclar colores',cat:'aprendizaje',dur:'3:55',nuevo:false,color:'#FFF0F0'},
+  {id:'v21',yt:'p6BPJjRqMxw',tit:'Las Partes del Cuerpo',sub:'Cabeza, hombros, rodillas y pies',cat:'aprendizaje',dur:'3:10',nuevo:true,color:'#E3F9F1'},
+  {id:'v22',yt:'2-XVHpqj4TE',tit:'Los Días de la Semana',sub:'Lunes, martes... ¡a memorizar!',cat:'aprendizaje',dur:'3:35',nuevo:false,color:'#F0EBFF'},
+  // 🌊 RELAJACIÓN
+  {id:'v23',yt:'dXdV1DXqJL8',tit:'Respiración para Niños — Calma',sub:'Técnica de la mariposa para calmarse',cat:'relajacion',dur:'5:50',nuevo:false,color:'#E3F9F1'},
+  {id:'v24',yt:'fDdRMBxBFIo',tit:'Música Tranquila para TEA',sub:'Sonidos suaves para momentos difíciles',cat:'relajacion',dur:'30:00',nuevo:false,color:'#EBF1FF'},
+  {id:'v25',yt:'nKUf1PqxCPs',tit:'Yoga para Niños — 10 minutos',sub:'Estiramientos y respiración divertida',cat:'relajacion',dur:'10:15',nuevo:true,color:'#FFF6E8'},
+];
+
+// ── Switch entre Juegos y Videos ───────────────────────────
+function switchDivTab(tab, btn){
+  document.querySelectorAll('#vj-tabs-main .vj-tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('vj-sec-juegos').style.display = tab==='juegos' ? 'block' : 'none';
+  document.getElementById('vj-sec-videos').style.display = tab==='videos' ? 'block' : 'none';
+  if(tab==='videos') renderVideos('todos');
+}
+
+// ── Filtrar videos por categoría ───────────────────────────
+function filtVideos(cat, btn){
+  document.querySelectorAll('#vid-filtros .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderVideos(cat);
+}
+
+// ── Renderizar grilla de videos ────────────────────────────
+function renderVideos(cat){
+  const lista = cat==='todos' ? VIDEOS : VIDEOS.filter(v=>v.cat===cat);
+  document.getElementById('vid-grid').innerHTML = lista.map(v=>`
+    <div class="vid-card" onclick="reproducirVideo('${v.yt}','${v.tit.replace(/'/g,"\\'")}','${v.sub.replace(/'/g,"\\'")}')">
+      <div class="vid-thumb">
+        <img src="https://img.youtube.com/vi/${v.yt}/mqdefault.jpg"
+             alt="${v.tit}"
+             onerror="this.style.display='none'"
+             loading="lazy">
+        <div class="vid-play-btn"></div>
+        <div class="vid-duracion">${v.dur}</div>
+        ${v.nuevo ? '<div class="vid-nuevo">¡NUEVO!</div>' : ''}
+      </div>
+      <div class="vid-body">
+        <div class="vid-tit">${v.tit}</div>
+        <div class="vid-meta">
+          <span class="vid-cat">${
+            v.cat==='canciones'?'🎵':v.cat==='cuentos'?'📖':v.cat==='emociones'?'😊':
+            v.cat==='naturaleza'?'🌿':v.cat==='aprendizaje'?'🎓':'🌊'
+          } ${v.cat.charAt(0).toUpperCase()+v.cat.slice(1)}</span>
+          <span>▶ ${v.dur}</span>
+        </div>
+        <div style="font-size:.72rem;color:var(--ink3);margin-top:4px">${v.sub}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── Reproducir video en overlay ────────────────────────────
+function reproducirVideo(ytId, titulo, subtitulo){
+  // Parámetros YouTube: sin anuncios relacionados, controles simples, modo seguro
+  const params = [
+    'autoplay=1',
+    'rel=0',           // sin videos relacionados al terminar
+    'modestbranding=1',// logo mínimo de YouTube
+    'playsinline=1',   // reproducir dentro de la app en iOS
+    'cc_load_policy=1',// mostrar subtítulos si están disponibles
+    'hl=es',           // idioma español
+    'color=white',
+  ].join('&');
+
+  document.getElementById('vid-iframe-container').innerHTML =
+    `<iframe src="https://www.youtube.com/embed/${ytId}?${params}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="width:100%;height:100%;border:none;display:block"
+      title="${titulo}"></iframe>`;
+
+  document.getElementById('vid-player-tit').textContent = titulo;
+  document.getElementById('vid-player-sub').textContent = subtitulo;
+  document.getElementById('vid-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+// ── Cerrar overlay de video ────────────────────────────────
+function cerrarVideo(e){
+  // Solo cerrar si el click fue en el overlay (fondo oscuro) o en el botón ✕
+  if(e && e.target !== document.getElementById('vid-overlay') && 
+     !e.target.closest('.btn-cerrar-vid')) return;
+  // Detener el video removiendo el iframe
+  document.getElementById('vid-iframe-container').innerHTML = '';
+  document.getElementById('vid-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+// Cerrar con tecla ESC
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') cerrarVideo({target: document.getElementById('vid-overlay')});
+});
+
+const EMOCIONES = [
+  {id:1,n:'Feliz',e:'😄',c:'#FFB347',bg:'#FFF6E8',est:['Comparte tu alegría 🤗','Canta una canción 🎵','Baila un poco 💃','Dibuja cómo te sientes 🎨']},
+  {id:2,n:'Triste',e:'😢',c:'#4C7EF3',bg:'#EBF1FF',est:['Respira 3 veces despacio 🫁','Busca un abrazo 🤗','Escucha música tranquila 🎵','Habla con alguien de confianza 💬']},
+  {id:3,n:'Enojado',e:'😠',c:'#FF6B6B',bg:'#FFF0F0',est:['Cuenta hasta 10 🔢','Ve a tu espacio de calma 🌿','Aprieta una pelota blanda 🟡','Respira como globo 🫁']},
+  {id:4,n:'Asustado',e:'😨',c:'#8B5CF6',bg:'#F0EBFF',est:['Busca a un adulto 🤗','Toca algo suave 🧸','Recuerda: estás seguro/a ✅','Respira despacio 🫁']},
+  {id:5,n:'Tranquilo',e:'😌',c:'#2ECC8E',bg:'#E3F9F1',est:['¡Qué bien! 🌟','Disfruta el momento','Sonríe 😊']},
+  {id:6,n:'Sorprendido',e:'😲',c:'#FF7B5A',bg:'#FFF0EC',est:['Para y respira','Pregunta qué pasó 🤔','Todo está bien ✅']},
+  {id:7,n:'Frustrado',e:'😤',c:'#FF7B5A',bg:'#FFF0EC',est:['Pide ayuda 🙋','Toma un descanso ⏸️','Inténtalo de otra forma 🔄']},
+  {id:8,n:'Nervioso',e:'😰',c:'#14B8A6',bg:'#E0F7F5',est:['Camina un poco 🚶','Habla con alguien','Respiración de barriga 🫁']},
+  {id:9,n:'Cansado',e:'😴',c:'#94A3B8',bg:'#F0F4FF',est:['Descansa si puedes 💤','Toma agua 💧','Díselo a un adulto']},
+  {id:10,n:'Emocionado',e:'🥳',c:'#FFB347',bg:'#FFF6E8',est:['¡Celébralo! 🎉','Compártelo','Haz algo creativo 🎨']},
+  {id:11,n:'Abrumado',e:'😵',c:'#FF6B6B',bg:'#FFF0F0',est:['Reduce estímulos 🔇','Ve a tu espacio seguro 🏝️','Pide un descanso ⏸️']},
+  {id:12,n:'Orgulloso',e:'😎',c:'#8B5CF6',bg:'#F0EBFF',est:['¡Te lo mereces! 🌟','Cuéntaselo a alguien ❤️']},
+];
+
+const PICTOGRAMAS = [
+  {id:1,p:'Hola',cat:'saludos',e:'👋',c:'#4C7EF3'},{id:2,p:'Gracias',cat:'cortesia',e:'🙏',c:'#2ECC8E'},
+  {id:3,p:'Por favor',cat:'cortesia',e:'🤲',c:'#2ECC8E'},{id:4,p:'Agua',cat:'necesidades',e:'💧',c:'#4C7EF3'},
+  {id:5,p:'Comida',cat:'necesidades',e:'🍽️',c:'#FFB347'},{id:6,p:'Baño',cat:'necesidades',e:'🚿',c:'#8B5CF6'},
+  {id:7,p:'Dormir',cat:'necesidades',e:'😴',c:'#94A3B8'},{id:8,p:'Jugar',cat:'actividades',e:'🎮',c:'#FF7B5A'},
+  {id:9,p:'Estudiar',cat:'actividades',e:'📚',c:'#4C7EF3'},{id:10,p:'Casa',cat:'lugares',e:'🏠',c:'#FFB347'},
+  {id:11,p:'Colegio',cat:'lugares',e:'🏫',c:'#2ECC8E'},{id:12,p:'Mamá',cat:'familia',e:'👩',c:'#FF6B6B'},
+  {id:13,p:'Papá',cat:'familia',e:'👨',c:'#4C7EF3'},{id:14,p:'Sí',cat:'respuestas',e:'✅',c:'#2ECC8E'},
+  {id:15,p:'No',cat:'respuestas',e:'❌',c:'#FF6B6B'},{id:16,p:'Ayuda',cat:'necesidades',e:'🆘',c:'#FFB347'},
+  {id:17,p:'Espera',cat:'instrucciones',e:'⏳',c:'#FFB347'},{id:18,p:'Listo',cat:'instrucciones',e:'🎉',c:'#2ECC8E'},
+  {id:19,p:'Triste',cat:'emociones',e:'😢',c:'#4C7EF3'},{id:20,p:'Feliz',cat:'emociones',e:'😊',c:'#FFB347'},
+  {id:21,p:'Dolor',cat:'necesidades',e:'🤕',c:'#FF6B6B'},{id:22,p:'Frío',cat:'necesidades',e:'🥶',c:'#4C7EF3'},
+  {id:23,p:'Calor',cat:'necesidades',e:'🥵',c:'#FF7B5A'},{id:24,p:'Música',cat:'actividades',e:'🎵',c:'#8B5CF6'},
+  {id:25,p:'Parque',cat:'lugares',e:'🌳',c:'#2ECC8E'},{id:26,p:'Médico',cat:'lugares',e:'🏥',c:'#FF6B6B'},
+  {id:27,p:'Abuela',cat:'familia',e:'👵',c:'#FFB347'},{id:28,p:'Abuelo',cat:'familia',e:'👴',c:'#FFB347'},
+  {id:29,p:'Enojado',cat:'emociones',e:'😠',c:'#FF6B6B'},{id:30,p:'Asustado',cat:'emociones',e:'😨',c:'#8B5CF6'},
+  {id:31,p:'Más',cat:'instrucciones',e:'➕',c:'#4C7EF3'},{id:32,p:'Para',cat:'instrucciones',e:'🛑',c:'#FF6B6B'},
+  {id:33,p:'Ir',cat:'instrucciones',e:'🚶',c:'#2ECC8E'},{id:34,p:'Amigo',cat:'social',e:'👫',c:'#8B5CF6'},
+  {id:35,p:'Comparte',cat:'social',e:'🤝',c:'#2ECC8E'},{id:36,p:'Turno',cat:'social',e:'🔄',c:'#4C7EF3'},
+];
+
+const RUTINAS = [
+  {id:1,n:'Rutina de la Mañana',e:'🌅',c:'#4C7EF3',h:'7:00 AM',pasos:[
+    {ico:'🛏️',n:'Levantarse',ok:false},{ico:'🚿',n:'Ducharse',ok:false},{ico:'🥣',n:'Desayunar',ok:false},
+    {ico:'🦷',n:'Cepillar dientes',ok:false},{ico:'👕',n:'Vestirse',ok:false},{ico:'🎒',n:'Mochila lista',ok:false},{ico:'🚌',n:'Ir al colegio',ok:false}
+  ]},
+  {id:2,n:'Rutina de la Noche',e:'🌙',c:'#8B5CF6',h:'8:00 PM',pasos:[
+    {ico:'🍽️',n:'Cenar',ok:false},{ico:'🛁',n:'Baño',ok:false},{ico:'🪥',n:'Cepillar dientes',ok:false},
+    {ico:'📖',n:'Leer cuento',ok:false},{ico:'😴',n:'Dormir',ok:false}
+  ]},
+  {id:3,n:'En el Colegio',e:'🏫',c:'#2ECC8E',h:'8:00 AM',pasos:[
+    {ico:'👋',n:'Saludar',ok:false},{ico:'🎒',n:'Guardar mochila',ok:false},{ico:'🪑',n:'Sentarse',ok:false},
+    {ico:'📚',n:'Sacar útiles',ok:false},{ico:'✏️',n:'Atender clase',ok:false},{ico:'🍱',n:'Recreo',ok:false}
+  ]},
+];
+
+const BLOG_POSTS = [
+  {id:1,tit:'¿Qué es el TEA? Guía completa para familias',cat:'guias',e:'🧩',bg:'#EBF1FF',c:'#4C7EF3',fecha:'15 mar 2025',autor:'Dr. García Neurología',read:'8 min',desc:'El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo que afecta la comunicación, las interacciones sociales y puede incluir conductas o intereses repetitivos...',contenido:'El TEA es un espectro amplio que incluye una gran variedad de perfiles. Cada persona con TEA es única. Los signos pueden incluir: dificultades en comunicación social, patrones de conducta repetitivos, sensibilidades sensoriales, y fortalezas en áreas específicas como la memoria visual, las matemáticas o la música. El diagnóstico temprano y la intervención adecuada hacen una diferencia significativa en el desarrollo.'},
+  {id:2,tit:'10 estrategias visuales para ayudar en casa',cat:'tips',e:'👁️',bg:'#E3F9F1',c:'#2ECC8E',fecha:'12 mar 2025',autor:'Psic. López',read:'5 min',desc:'Los apoyos visuales son una de las herramientas más poderosas para niños con TEA. Aprende cómo implementarlos en tu hogar de forma sencilla y efectiva...',contenido:'1. Tablero de rutinas matutinas con pictogramas. 2. Calendario visual de la semana. 3. Reglas visuales en lugares estratégicos. 4. Temporizadores visuales para anticipar cambios. 5. Mapa visual del hogar con etiquetas. 6. Menú pictogramático de las comidas. 7. Sistema de elección con dos opciones visuales. 8. Zonas diferenciadas por color y forma. 9. Guiones sociales ilustrados. 10. Libro "Sobre mí" con fotos y preferencias.'},
+  {id:3,tit:'Investigación 2025: Nuevos avances en diagnóstico temprano de TEA',cat:'investigacion',e:'🔬',bg:'#F0EBFF',c:'#8B5CF6',fecha:'8 mar 2025',autor:'Instituto Nacional TEA',read:'10 min',desc:'Un nuevo estudio publicado en Nature revela que marcadores biológicos en bebés de 6-12 meses pueden predecir el diagnóstico de TEA con un 87% de precisión...',contenido:'La investigación realizada por el consorcio internacional IBIS encontró que patrones de desarrollo cerebral observables en resonancias magnéticas a los 6 meses pueden identificar infantes en riesgo de desarrollar TEA. Esto abre la puerta a intervenciones mucho más tempranas que las actuales, que típicamente ocurren entre los 2-4 años.'},
+  {id:4,tit:'Recursos gratuitos en Colombia para familias TEA',cat:'recursos',e:'🇨🇴',bg:'#E0F7F5',c:'#14B8A6',fecha:'5 mar 2025',autor:'ConectaTEA Team',read:'6 min',desc:'Directorio actualizado de entidades públicas y privadas en Colombia que ofrecen servicios de diagnóstico, terapia y apoyo para personas con TEA y sus familias...',contenido:'En Colombia existen varias rutas de atención para familias con TEA: ICBF ofrece atención integral, las IPS especializadas brindan terapias cubiertas por EPS, la Secretaría de Educación tiene programas de inclusión, y organizaciones como Fundación Saldarriaga Concha ofrecen recursos y formación gratuita.'},
+  {id:5,tit:'Historia: "Mi hijo con TEA me enseñó a ver el mundo diferente"',cat:'historias',e:'❤️',bg:'#FFF0F0',c:'#FF6B6B',fecha:'1 mar 2025',autor:'María González (mamá)',read:'7 min',desc:'Cuando mi hijo Sebastián fue diagnosticado con TEA a los 3 años, mi mundo se transformó. Hoy, 5 años después, quiero compartir lo que esta experiencia nos ha enseñado a toda la familia...',contenido:'Sebastián llegó al mundo con una forma única de procesar la realidad. Al principio fue difícil entender sus reacciones, su forma de comunicarse y sus necesidades. Pero con el tiempo, las terapias, las redes de apoyo y mucho amor, aprendimos a hablar su idioma. Hoy, Sebastián tiene 8 años, va al colegio regular con apoyo, ama los dinosaurios y nos llena de alegría cada día.'},
+  {id:6,tit:'Tecnología y TEA: Las mejores apps de apoyo en 2025',cat:'recursos',e:'📱',bg:'#EBF1FF',c:'#4C7EF3',fecha:'28 feb 2025',autor:'Tec. Educativa ConectaTEA',read:'4 min',desc:'Listado actualizado de aplicaciones móviles gratuitas y de pago que han demostrado beneficios para personas con TEA en comunicación, habilidades sociales y regulación emocional...',contenido:'Entre las apps más recomendadas para 2025 se encuentran: Proloquo2Go (CAA), Social Stories Creator, Choiceworks (rutinas), AutiPlan, Emotions and Feelings (emociones), TimTimer (manejo del tiempo), y por supuesto ConectaTEA para aprendizaje integral adaptado.'},
+];
+
+const CHAT_MSGS = [
+  {id:1,de:'María G.',ava:'👩',texto:'¡Hola a todos! ¿Alguien tiene tips para la crisis de la mañana?',tiempo:'9:15 AM',tipo:'general',exp:false},
+  {id:2,de:'Pedro L.',ava:'👨',texto:'Nosotros usamos un tablero visual con los pasos de la mañana y ha funcionado increíble 🌟',tiempo:'9:18 AM',tipo:'general',exp:false},
+  {id:3,de:'Carmen R.',ava:'👩',texto:'Mi experiencia: cuando Sofía aprendió a usar pictogramas, todo cambió en casa. ¡Ahora ella misma indica qué necesita!',tiempo:'10:02 AM',tipo:'experiencias',exp:true},
+  {id:4,de:'Tú',ava:'😊',texto:'',tiempo:'',tipo:'todos',exp:false,mine:true},
+];
+
+const MATERIAL_EDU = [
+  {id:1,n:'Fichas de emociones TEA Nivel 1',tipo:'fichas',area:'Percepción',ico:'😊',icoC:'#FFF6E8',autor:'Psic. Ana R.',fecha:'Mar 2025',dl:142,formato:'PDF'},
+  {id:2,n:'Guía de pictogramas para casa',tipo:'guias',area:'Comunicación',ico:'💬',icoC:'#EBF1FF',autor:'Terapeuta M. López',fecha:'Feb 2025',dl:98,formato:'PDF'},
+  {id:3,n:'Set de pictogramas básicos 200 imágenes',tipo:'pictogramas',area:'Todas las áreas',ico:'🖼️',icoC:'#E3F9F1',autor:'Docente K. Torres',fecha:'Feb 2025',dl:315,formato:'ZIP'},
+  {id:4,n:'Rutinas visuales imprimibles',tipo:'fichas',area:'Vida diaria',ico:'📅',icoC:'#E0F7F5',autor:'Terapeuta J. Mora',fecha:'Ene 2025',dl:267,formato:'PDF'},
+  {id:5,n:'Cuentos sociales adaptados TEA',tipo:'guias',area:'Interacción Social',ico:'📚',icoC:'#F0EBFF',autor:'Docente C. Ramos',fecha:'Ene 2025',dl:189,formato:'PDF'},
+  {id:6,n:'Evaluación de habilidades cognitivas',tipo:'evaluaciones',area:'Cognitiva',ico:'📝',icoC:'#FFF0EC',autor:'Dr. P. Hernández',fecha:'Mar 2025',dl:76,formato:'DOCX'},
+  {id:7,n:'Video: Estrategias sensoriales en aula',tipo:'videos',area:'Percepción',ico:'🎥',icoC:'#EBF1FF',autor:'Inst. TEA Bogotá',fecha:'Mar 2025',dl:203,formato:'MP4'},
+];
+
+const PACIENTES_DEMO = [
+  {id:1,n:'Carlos García',ava:'🧒',edad:8,nivel:'Nivel 2 (Moderado)',prog:72,areas:{percepcion:75,cognitiva:82,lenguaje:60,lectomatem:78,social:45,vida:88}},
+  {id:2,n:'Sofía López',ava:'👧',edad:6,nivel:'Nivel 1 (Leve)',prog:58,areas:{percepcion:65,cognitiva:70,lenguaje:55,lectomatem:60,social:40,vida:75}},
+  {id:3,n:'Tomás Ruiz',ava:'🧒',edad:10,nivel:'Nivel 3 (Severo)',prog:35,areas:{percepcion:40,cognitiva:45,lenguaje:25,lectomatem:38,social:20,vida:55}},
+  {id:4,n:'Valentina Cruz',ava:'👧',edad:7,nivel:'Nivel 1 (Leve)',prog:68,areas:{percepcion:72,cognitiva:80,lenguaje:65,lectomatem:70,social:50,vida:82}},
+];
+
+const INFORMES_DEMO = [
+  {id:1,pac:'Carlos García',tipo:'progreso',c:'#4C7EF3',tit:'Informe semana 4-8 marzo 2025',txt:'Carlos completó 14 actividades. Avance significativo en área cognitiva (+12%). Continúa trabajando en habilidades sociales.',fecha:'8 mar 2025'},
+  {id:2,pac:'Sofía López',tipo:'seguimiento',c:'#2ECC8E',tit:'Seguimiento mensual - Febrero 2025',txt:'Sofía muestra progreso consistente en comunicación. Se incorporó el tablero AAC con éxito. Pendiente reforzar rutinas.',fecha:'28 feb 2025'},
+  {id:3,pac:'Carlos García',tipo:'observacion',c:'#FFB347',tit:'Observación: Sensibilidad auditiva',txt:'Se observó respuesta de estrés ante ruidos del recreo. Se recomienda auriculares reductores de ruido y zona de calma.',fecha:'5 mar 2025'},
+];
+
+const RED_APOYO = [
+  {n:'Centro de Neurodesarrollo TEA Bogotá',tipo:'institucion',tipC:'#4C7EF3',tipBg:'#EBF1FF',e:'🏛️',desc:'Centro especializado con diagnóstico, terapia ABA, fonoaudiología y psicología. Atención desde los 18 meses.',loc:'Bogotá, Colombia',tel:'+57 1 234 5678',web:'www.teatbogota.org'},
+  {n:'Psic. Ana Rodríguez — Especialista TEA',tipo:'psicologo',tipC:'#8B5CF6',tipBg:'#F0EBFF',e:'🧠',desc:'Psicóloga clínica con 10 años en diagnóstico y acompañamiento TEA. Manejo de conducta y habilidades sociales.',loc:'Medellín / Virtual',tel:'+57 312 456 7890',web:''},
+  {n:'Fundación Saldarriaga Concha',tipo:'fundacion',tipC:'#FF6B6B',tipBg:'#FFF0F0',e:'❤️',desc:'Fundación colombiana líder en inclusión de personas con discapacidad. Recursos gratuitos, formación y asesoría.',loc:'Nacional',tel:'+57 1 745 5555',web:'www.saldarriagaconcha.org'},
+  {n:'Colegio Nuevo Horizonte — Inclusión TEA',tipo:'colegio',tipC:'#2ECC8E',tipBg:'#E3F9F1',e:'🏫',desc:'Institución educativa con programa de inclusión para niños TEA, docentes especializados y adaptaciones curriculares.',loc:'Bogotá Norte',tel:'+57 1 876 5432',web:''},
+  {n:'Terapeuta Ocupacional Luis Mora',tipo:'terapeuta',tipC:'#FFB347',tipBg:'#FFF6E8',e:'🧑‍⚕️',desc:'TO especializado en integración sensorial para TEA. Evaluación y tratamiento de disfunciones sensoriales.',loc:'Cali / Virtual',tel:'+57 320 987 6543',web:''},
+  {n:'Dr. Patricia Vásquez — Neurología Pediátrica',tipo:'medico',tipC:'#14B8A6',tipBg:'#E0F7F5',e:'👨‍⚕️',desc:'Neuropediatra con especialización en TEA y TDAH. Diagnóstico, manejo farmacológico cuando necesario.',loc:'Barranquilla',tel:'+57 5 678 9012',web:''},
+  {n:'Federación Colombiana de Autismo',tipo:'institucion',tipC:'#4C7EF3',tipBg:'#EBF1FF',e:'🌐',desc:'Organización nacional que agremia familias y profesionales. Eventos, formación y defensa de derechos.',loc:'Nacional',tel:'+57 1 234 0000',web:'www.autismocolombia.org'},
+  {n:'Terapeuta ABA Carolina Reyes',tipo:'terapeuta',tipC:'#FFB347',tipBg:'#FFF6E8',e:'🧑‍⚕️',desc:'Especialista en Análisis Aplicado del Comportamiento para TEA. Programas individualizados basados en evidencia.',loc:'Bogotá Sur / Virtual',tel:'+57 315 234 5678',web:''},
+];
+
+const LOGROS = [
+  {n:'Primera estrella',d:'1ª actividad completada',e:'⭐',obt:true,prog:100,c:'#FFB347'},
+  {n:'Explorador',d:'5 actividades diferentes',e:'🔍',obt:true,prog:100,c:'#4C7EF3'},
+  {n:'Aprendiz TEA',d:'20 actividades',e:'🏆',obt:false,prog:60,c:'#FFB347'},
+  {n:'Racha 3 días',d:'3 días seguidos',e:'🔥',obt:true,prog:100,c:'#FF6B6B'},
+  {n:'Semana increíble',d:'7 días consecutivos',e:'💫',obt:false,prog:71,c:'#8B5CF6'},
+  {n:'Campeón social',d:'10 actividades sociales',e:'🤝',obt:false,prog:30,c:'#2ECC8E'},
+  {n:'Matemático',d:'Perfecto en 3 juegos',e:'🔢',obt:true,prog:100,c:'#FF7B5A'},
+  {n:'Comunicador',d:'Tablero usado 20 veces',e:'💬',obt:false,prog:35,c:'#4C7EF3'},
+  {n:'Maestro emocional',d:'15 emociones registradas',e:'💚',obt:false,prog:47,c:'#2ECC8E'},
+  {n:'Lector',d:'5 cuentos completados',e:'📚',obt:false,prog:20,c:'#8B5CF6'},
+  {n:'Rutinas perfectas',d:'10 rutinas completadas',e:'📅',obt:false,prog:60,c:'#14B8A6'},
+  {n:'Héroe de la calma',d:'10 sesiones respiración',e:'🫁',obt:false,prog:20,c:'#4C7EF3'},
+];
+
+// ══════════════════════════════════
+//  USUARIOS
+// ══════════════════════════════════
+const USERS = {
+  nino:     {nom:'Carlitos',ava:'🧒',rol:'nino',badge:'Niño · 8 años',em:'🌟'},
+  padre:    {nom:'María García',ava:'👩',rol:'padre',badge:'Familia',em:'👨‍👩‍👦'},
+  terapeuta:{nom:'Ana Rodríguez',ava:'🧑‍⚕️',rol:'terapeuta',badge:'Terapeuta',em:'🧑‍⚕️'},
+  docente:  {nom:'Laura Martínez',ava:'🧑‍🏫',rol:'docente',badge:'Docente',em:'🧑‍🏫'},
+};
+
+// ══════════════════════════════════
+//  ESTADO
+// ══════════════════════════════════
+let S = {
+  rol:'nino', usr:null,
+  pg:'pg-inicio',
+  rolAuth:null,
+  areaActual:null,
+  nivelActual:'basico',
+  tablero:[],
+  emoSel:null,
+  intensidad:3,
+  histEmo:[
+    {emo:EMOCIONES[0],intens:4,ctx:'🏠 casa',f:'Hoy 8am'},
+    {emo:EMOCIONES[2],intens:3,ctx:'🏫 colegio',f:'Hoy 2pm'},
+    {emo:EMOCIONES[5],intens:4,ctx:'🏥 terapia',f:'Ayer 5pm'},
+  ],
+  rutinas:RUTINAS.map(r=>({...r,pasos:r.pasos.map(p=>({...p}))})),
+  vjFiltro:'todos',
+  juegoAct:null,juegoStep:0,juegoCorr:0,
+  chatTab:'general',
+  chatLocal:[],
+  blogFiltro:'todos',
+  matFiltro:'todos',
+  redFiltro:'todos',
+  misNinos:[
+    {id:1,n:'Carlos García',ava:'🧒',edad:8,nivel:'Nivel 2',prog:72,areas:{percepcion:75,cognitiva:82,lenguaje:60,lectomatem:78,social:45,vida:88}},
+  ],
+};
+
+// ══════════════════════════════════
+//  ROUTING
+// ══════════════════════════════════
+function scr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on')}
+
+function ir(pg){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  const el=document.getElementById(pg);
+  if(el){el.classList.add('on');S.pg=pg}
+  // actualizar nav
+  document.querySelectorAll('.s-item,.bn').forEach(n=>n.classList.remove('on'));
+  document.querySelectorAll(`[data-pg="${pg}"]`).forEach(n=>n.classList.add('on'));
+  window.scrollTo({top:0,behavior:'smooth'});
+  // renders específicos
+  const renders={
+    'pg-areas':renderAreas,
+    'pg-vision':()=>renderVJ(S.vjFiltro),
+    'pg-rutinas':renderRutinas,
+    'pg-emociones':renderEmociones,
+    'pg-comunicacion':()=>{renderPictosCats();renderPictos()},
+    'pg-logros':renderLogros,
+    'pg-mis-ninos':renderMisNinos,
+    'pg-blog':()=>renderBlog(S.blogFiltro),
+    'pg-chat':()=>renderChat(S.chatTab),
+    'pg-material':()=>{renderMaterial(S.matFiltro);document.getElementById('es-prof').style.display=(['terapeuta','docente'].includes(S.rol)?'block':'none')},
+    'pg-pacientes':()=>{renderPacientes();document.getElementById('pac-title').innerHTML=`<span class="c">${S.rol==='terapeuta'?'🧑‍⚕️ Mis pacientes':'👦 Mis estudiantes'}</span> ${S.rol==='terapeuta'?'Mis pacientes':'Mis estudiantes'}`},
+    'pg-informes':renderInformes,
+    'pg-red':()=>renderRed(S.redFiltro),
+    'pg-notif':renderNotif,
+    'pg-perfil':renderPerfil,
+  };
+  if(renders[pg])renders[pg]();
+}
+
+// ══════════════════════════════════
+//  AUTH
+// ══════════════════════════════════
+function entrarNino(){
+  S.rol='nino';S.usr=USERS.nino;
+  document.body.classList.add('modo-nino');
+  iniciarApp();
+}
+function abrirAuth(rol){
+  S.rolAuth=rol;
+  const info={
+    padre:{ico:'👨‍👩‍👦',t:'Ingresar como Familia'},
+    terapeuta:{ico:'🧑‍⚕️',t:'Ingresar como Terapeuta'},
+    docente:{ico:'🧑‍🏫',t:'Ingresar como Docente'},
+  };
+  document.getElementById('auth-ico').textContent=info[rol].ico;
+  document.getElementById('auth-title').textContent=info[rol].t;
+  document.getElementById('auth-overlay').classList.add('on');
+}
+function cerrarAuth(){document.getElementById('auth-overlay').classList.remove('on')}
+function hacerLogin(){loginDemo(S.rolAuth)}
+function loginDemo(rol){
+  cerrarAuth();
+  S.rol=rol;S.usr=USERS[rol];
+  document.body.classList.remove('modo-nino');
+  iniciarApp();
+}
+function salir(){
+  document.body.classList.remove('modo-nino');
+  scr('s-splash');
+}
+function iniciarApp(){
+  const u=S.usr;
+  // topbar
+  document.getElementById('tb-ava').textContent=u.ava;
+  document.getElementById('tb-name').textContent=u.nom;
+  document.getElementById('tb-badge').textContent=u.badge;
+  // hero
+  document.getElementById('h-greeting').textContent=`¡Hola, ${u.nom.split(' ')[0]}! 👋`;
+  document.getElementById('h-sub').textContent='¿Qué vamos a hacer hoy?';
+  document.getElementById('h-em').textContent=u.em;
+  buildNav();
+  renderStatsHome();
+  renderHomeDynamic();
+  ir('pg-inicio');
+  scr('s-main');
+  toast(`¡Bienvenido/a, ${u.nom.split(' ')[0]}! 🎉`,'ok');
+}
+
+// ══════════════════════════════════
+//  NAV
+// ══════════════════════════════════
+const NAVS = {
+  nino:[
+    {pg:'pg-inicio',ico:'🏠',lbl:'Inicio'},
+    {pg:'pg-areas',ico:'🎯',lbl:'Mis áreas'},
+    {pg:'pg-vision',ico:'🎉',lbl:'Jugar'},
+    {pg:'pg-comunicacion',ico:'💬',lbl:'Tablero'},
+    {pg:'pg-rutinas',ico:'📅',lbl:'Rutinas'},
+    {pg:'pg-emociones',ico:'😊',lbl:'Emociones'},
+    {pg:'pg-logros',ico:'🏆',lbl:'Logros'},
+  ],
+  padre:[
+    {pg:'pg-inicio',ico:'🏠',lbl:'Inicio'},
+    {pg:'pg-mis-ninos',ico:'👦',lbl:'Mis hijos'},
+    {pg:'pg-blog',ico:'📰',lbl:'Blog TEA'},
+    {pg:'pg-chat',ico:'💬',lbl:'Comunidad'},
+    {pg:'pg-material',ico:'📂',lbl:'Material'},
+    {pg:'pg-red',ico:'🌐',lbl:'Red apoyo'},
+  ],
+  terapeuta:[
+    {pg:'pg-inicio',ico:'🏠',lbl:'Inicio'},
+    {pg:'pg-pacientes',ico:'🧑‍⚕️',lbl:'Pacientes'},
+    {pg:'pg-informes',ico:'📋',lbl:'Informes'},
+    {pg:'pg-material',ico:'📂',lbl:'Material'},
+    {pg:'pg-red',ico:'🌐',lbl:'Red apoyo'},
+    {pg:'pg-blog',ico:'📰',lbl:'Blog'},
+  ],
+  docente:[
+    {pg:'pg-inicio',ico:'🏠',lbl:'Inicio'},
+    {pg:'pg-pacientes',ico:'👦',lbl:'Estudiantes'},
+    {pg:'pg-informes',ico:'📋',lbl:'Informes'},
+    {pg:'pg-material',ico:'📂',lbl:'Material'},
+    {pg:'pg-red',ico:'🌐',lbl:'Red apoyo'},
+    {pg:'pg-blog',ico:'📰',lbl:'Blog'},
+  ]
+};
+function buildNav(){
+  const items=NAVS[S.rol]||NAVS.nino;
+  // sidebar
+  const sb=document.getElementById('sidebar');
+  sb.innerHTML=`<div class="s-section">Navegación</div>`+
+    items.map(i=>`<div class="s-item" data-pg="${i.pg}" onclick="ir('${i.pg}')"><span class="si">${i.ico}</span>${i.lbl}</div>`).join('')+
+    `<div class="s-divider"></div><div class="s-item" data-pg="pg-perfil" onclick="ir('pg-perfil')"><span class="si">👤</span>Perfil</div>
+     <div class="s-item" onclick="salir()"><span class="si">🚪</span>Salir</div>`;
+  // bottomnav (primeras 5)
+  const bnav=document.getElementById('bnav');
+  const bn5=items.slice(0,5);
+  bnav.innerHTML=bn5.map(i=>`
+    <div class="bn" data-pg="${i.pg}" onclick="ir('${i.pg}')">
+      <div class="bn-ico">${i.ico}</div>
+      <span class="bn-lbl">${i.lbl}</span>
+    </div>`).join('')+
+    `<div class="bn" data-pg="pg-perfil" onclick="ir('pg-perfil')">
+      <div class="bn-ico">👤</div><span class="bn-lbl">Perfil</span>
+    </div>`;
+}
+
+// ══════════════════════════════════
+//  HOME STATS
+// ══════════════════════════════════
+function renderStatsHome(){
+  const maps={
+    nino:[{ico:'⭐',bg:'var(--sky-lt)',n:'12',l:'Actividades'},{ico:'🏆',bg:'var(--sun-lt)',n:'4',l:'Logros'},{ico:'🔥',bg:'var(--cor-lt)',n:'5',l:'Racha'},{ico:'💎',bg:'var(--vio-lt)',n:'950',l:'Puntos'}],
+    padre:[{ico:'👦',bg:'var(--sky-lt)',n:'1',l:'Hijos'},{ico:'📊',bg:'var(--eme-lt)',n:'72%',l:'Progreso'},{ico:'📰',bg:'var(--sun-lt)',n:'6',l:'Blog'},{ico:'🤝',bg:'var(--vio-lt)',n:'23',l:'Comunidad'}],
+    terapeuta:[{ico:'👦',bg:'var(--sky-lt)',n:'4',l:'Pacientes'},{ico:'📋',bg:'var(--eme-lt)',n:'8',l:'Informes'},{ico:'📂',bg:'var(--sun-lt)',n:'7',l:'Materiales'},{ico:'📈',bg:'var(--vio-lt)',n:'78%',l:'Promedio'}],
+    docente:[{ico:'👦',bg:'var(--sky-lt)',n:'6',l:'Estudiantes'},{ico:'📋',bg:'var(--eme-lt)',n:'5',l:'Informes'},{ico:'📂',bg:'var(--sun-lt)',n:'4',l:'Materiales'},{ico:'🏫',bg:'var(--teal-lt)',n:'2',l:'Aulas'}],
+  };
+  // Para niño los stats van dentro de la carpeta "Mi Rendimiento" — no aquí
+  const el=document.getElementById('stats-home');
+  if(S.rol==='nino'){el.style.display='none';return;}
+  el.style.display='';
+  const stats=maps[S.rol]||maps.padre;
+  el.innerHTML=stats.map(s=>`
+    <div class="card stat-mini">
+      <div class="sm-ico" style="background:${s.bg}">${s.ico}</div>
+      <div class="sm-num">${s.n}</div>
+      <div class="sm-lbl">${s.l}</div>
+    </div>`).join('');
+}
+function renderHomeDynamic(){
+  const c=document.getElementById('home-dynamic');
+  if(S.rol==='nino'){
+    c.innerHTML=`
+      <div class="stitle"><span class="c">🎯</span> Mis áreas <span class="more" onclick="ir('pg-areas')">Ver todas</span></div>
+      <div class="grid3" style="margin-bottom:20px">
+        ${AREAS.slice(0,3).map(a=>`
+          <div class="area-hero" style="background:${a.bg}" onclick="abrirArea('${a.id}')">
+            <div class="area-ico">${a.ico}</div>
+            <div class="area-name">${a.n.split(' ')[0]}</div>
+            <div class="area-prog">
+              <div class="area-prog-bar"><div class="area-prog-fill" style="width:${a.prog.basico}%"></div></div>
+              <div class="area-prog-txt">${a.prog.basico}%</div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="stitle"><span class="c">🎉</span> ¡A Divertirnos! <span class="more" onclick="ir('pg-vision')">Ver más</span></div>
+      <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none">
+        ${VJ_JUEGOS.slice(0,3).map(j=>`
+          <div style="background:${j.bg};border-radius:16px;padding:14px;min-width:120px;max-width:120px;cursor:pointer;flex-shrink:0;text-align:center;transition:all .3s" onclick="abrirActividad(${j.id},'vj')">
+            <div style="font-size:2rem;margin-bottom:7px">${j.e}</div>
+            <div style="font-size:.76rem;font-weight:800;color:${j.c}">${j.n}</div>
+          </div>`).join('')}
+        ${VIDEOS.slice(0,2).map(v=>`
+          <div style="min-width:145px;max-width:145px;flex-shrink:0;background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:var(--sh1);transition:all .3s" onclick="reproducirVideo('${v.yt}','${v.tit.replace(/'/g,"\\'")}','${v.sub.replace(/'/g,"\\'")}')">
+            <div style="position:relative;width:100%;height:80px;background:#000">
+              <img src="https://img.youtube.com/vi/${v.yt}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover" alt="${v.tit}" onerror="this.style.display='none'" loading="lazy">
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:rgba(255,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center">
+                <div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:11px solid #fff;margin-left:3px"></div>
+              </div>
+            </div>
+            <div style="padding:8px"><div style="font-size:.72rem;font-weight:800;line-height:1.3">${v.tit.substring(0,28)}...</div></div>
+          </div>`).join('')}
+      </div>
+      <div class="stitle" style="margin-top:20px"><span class="c">📊</span> Mi Rendimiento <button id="rend-toggle" onclick="toggleRendimiento()" style="margin-left:auto;background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:4px 12px;font-size:.72rem;font-weight:700;cursor:pointer">Ver ▾</button></div>
+      <div id="rend-panel" style="display:none;animation:scrIn .25s ease">
+        <div class="grid4" id="stats-rend"></div>
+      </div>`;
+    // Renderizar stats dentro de la carpeta
+    const statsNino=[{ico:'⭐',bg:'var(--sky-lt)',n:'12',l:'Actividades'},{ico:'🏆',bg:'var(--sun-lt)',n:'4',l:'Logros'},{ico:'🔥',bg:'var(--cor-lt)',n:'5',l:'Racha'},{ico:'💎',bg:'var(--vio-lt)',n:'950',l:'Puntos'}];
+    document.getElementById('stats-rend').innerHTML=statsNino.map(s=>`
+      <div class="card stat-mini">
+        <div class="sm-ico" style="background:${s.bg}">${s.ico}</div>
+        <div class="sm-num">${s.n}</div>
+        <div class="sm-lbl">${s.l}</div>
+      </div>`).join('');
+  } else if(S.rol==='padre'){
+    c.innerHTML=`
+      <div class="stitle"><span class="c">👦</span> Progreso de Carlos <span class="more" onclick="ir('pg-mis-ninos')">Ver detalle</span></div>
+      <div class="nino-card" onclick="verProgresoNino(0)">
+        <div class="nc-ava">🧒</div>
+        <div class="nc-info">
+          <div class="nc-name">Carlos García · 8 años</div>
+          <div class="nc-meta">Nivel 2 TEA · Progreso esta semana</div>
+          <div class="nc-prog">
+            <div style="font-size:.72rem;color:var(--ink3)">Progreso general: 72%</div>
+            <div class="nc-bar"><div class="nc-fill" style="width:72%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stitle" style="margin-top:8px"><span class="c">📰</span> Últimas del blog <span class="more" onclick="ir('pg-blog')">Ver blog</span></div>
+      <div class="grid2">
+        ${BLOG_POSTS.slice(0,2).map(b=>`
+          <div class="blog-card" onclick="abrirBlog(${b.id})">
+            <div class="blog-cover" style="background:${b.bg}">${b.e}</div>
+            <div class="blog-body">
+              <div class="blog-cat" style="background:${b.bg};color:${b.c}">${b.cat}</div>
+              <div class="blog-tit">${b.tit.substring(0,50)}...</div>
+              <div class="blog-meta">📖 ${b.read} · ${b.fecha}</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
+  } else {
+    c.innerHTML=`
+      <div class="stitle"><span class="c">👦</span> Mis ${S.rol==='terapeuta'?'pacientes':'estudiantes'} recientes <span class="more" onclick="ir('pg-pacientes')">Ver todos</span></div>
+      ${PACIENTES_DEMO.slice(0,2).map(p=>`
+        <div class="pac-card">
+          <div class="pac-ava">${p.ava}</div>
+          <div class="pac-info">
+            <div class="pac-name">${p.n}</div>
+            <div class="pac-meta">${p.edad} años · ${p.nivel}</div>
+          </div>
+          <span class="pac-badge" style="background:var(--sky-lt);color:var(--sky)">${p.prog}%</span>
+        </div>`).join('')}
+      <div class="stitle" style="margin-top:16px"><span class="c">📋</span> Informes recientes <span class="more" onclick="ir('pg-informes')">Ver todos</span></div>
+      ${INFORMES_DEMO.slice(0,1).map(i=>`
+        <div class="inf-card">
+          <div class="inf-head">
+            <span class="inf-tipo" style="background:${i.c}22;color:${i.c}">${i.tipo}</span>
+            <span class="inf-fecha">${i.fecha}</span>
+          </div>
+          <div class="inf-tit">${i.tit}</div>
+          <div class="inf-txt">${i.txt}</div>
+          <div class="inf-acts">
+            <button class="btn-pdf" onclick="toast('📄 Descargando PDF...','info')">📄 PDF</button>
+          </div>
+        </div>`).join('')}`;
+  }
+}
+
+// ══════════════════════════════════
+//  ÁREAS DE TRABAJO (NIÑO)
+// ══════════════════════════════════
+function renderAreas(){
+  document.getElementById('areas-grid').innerHTML=AREAS.map(a=>`
+    <div class="area-hero" style="background:${a.bg}" onclick="abrirArea('${a.id}')">
+      <div class="area-ico">${a.ico}</div>
+      <div class="area-name">${a.n}</div>
+      <div class="area-desc">${a.desc}</div>
+      <div class="area-prog">
+        <div class="area-prog-bar"><div class="area-prog-fill" style="width:${a.prog.basico}%"></div></div>
+        <div class="area-prog-txt">${a.prog.basico}%</div>
+      </div>
+    </div>`).join('');
+}
+
+function abrirArea(id){
+  S.areaActual=id;S.nivelActual='basico';
+  const a=AREAS.find(x=>x.id===id);
+  document.getElementById('area-detalle-header').innerHTML=`
+    <div style="background:${a.bg};border-radius:var(--r20);padding:18px;margin-bottom:16px;color:#fff">
+      <div style="font-size:2.5rem;margin-bottom:6px">${a.ico}</div>
+      <div style="font-family:var(--fh);font-size:1.3rem;font-weight:800">${a.n}</div>
+      <div style="font-size:.83rem;opacity:.9;margin-top:3px">${a.desc}</div>
+    </div>`;
+  document.getElementById('nivel-tabs').querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('on',i===0));
+  renderActividadesNivel('basico');
+  ir('pg-area-detalle');
+}
+
+function nivelTab(nivel,el){
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  S.nivelActual=nivel;
+  renderActividadesNivel(nivel);
+}
+
+function toggleRendimiento(){
+  const panel=document.getElementById('rend-panel');
+  const btn=document.getElementById('rend-toggle');
+  const abierto=panel.style.display==='block';
+  panel.style.display=abierto?'none':'block';
+  btn.textContent=abierto?'Ver ▾':'Cerrar ▴';
+}
+
+function renderActividadesNivel(nivel){
+  const acts=(ACTIVIDADES_AREAS[S.areaActual]||{})[nivel]||[];
+  const c=document.getElementById('actividades-nivel');
+  if(!acts.length){
+    c.innerHTML=`<div style="text-align:center;padding:32px;color:var(--ink3)"><div style="font-size:3rem;margin-bottom:10px">🔒</div><div style="font-weight:700">Completa el nivel anterior para desbloquear</div></div>`;
+    return;
+  }
+
+  // Si el área es lectomatem, agrupar por subcarpeta
+  const areaBg=AREAS.find(x=>x.id===S.areaActual)?.bg||'#EBF1FF';
+  if(S.areaActual==='lectomatem'){
+    const subcarpetas={};
+    for(const a of acts){
+      const sub=a.subcarpeta||'General';
+      if(!subcarpetas[sub]) subcarpetas[sub]=[];
+      subcarpetas[sub].push(a);
+    }
+    const iconosSub={Lectura:'📗',Escritura:'✏️',Matemáticas:'🔢'};
+    const colorSub={Lectura:'#EBF1FF',Escritura:'#FFF6E8',Matemáticas:'#E3F9F1'};
+    const colorSub2={Lectura:'#4C7EF3',Escritura:'#FFB347',Matemáticas:'#2ECC8E'};
+    c.innerHTML=Object.entries(subcarpetas).map(([sub,subActs])=>`
+      <div style="margin-bottom:18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:10px 14px;background:${colorSub[sub]||'#f5f5f5'};border-radius:14px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'grid':'none'">
+          <span style="font-size:1.4rem">${iconosSub[sub]||'📂'}</span>
+          <span style="font-family:var(--fh);font-size:1rem;font-weight:800;color:${colorSub2[sub]||'#333'}">${sub}</span>
+          <span style="margin-left:auto;font-size:.78rem;font-weight:700;color:${colorSub2[sub]||'#666'}">${subActs.length} actividad${subActs.length!==1?'es':''} ▾</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+          ${subActs.map(a=>`
+            <div class="act-card" onclick="abrirActividad(${a.id},'area')">
+              <div class="ac-img" style="background:${areaBg}">${a.e}</div>
+              <div class="ac-name">${a.n}</div>
+              <div class="ac-meta">
+                <span class="pill p-sky">⏱ ${a.min}m</span>
+                <span class="pill ${nivel==='basico'?'p-eme':nivel==='intermedio'?'p-sun':'p-cor'}">${nivel==='basico'?'🟢':nivel==='intermedio'?'🟡':'🔴'} ${nivel.charAt(0).toUpperCase()+nivel.slice(1)}</span>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+  } else {
+    c.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+      ${acts.map(a=>`
+        <div class="act-card" onclick="abrirActividad(${a.id},'area')">
+          <div class="ac-img" style="background:${areaBg}">${a.e}</div>
+          <div class="ac-name">${a.n}</div>
+          <div class="ac-meta">
+            <span class="pill p-sky">⏱ ${a.min}m</span>
+            <span class="pill ${nivel==='basico'?'p-eme':nivel==='intermedio'?'p-sun':'p-cor'}">${nivel==='basico'?'🟢':nivel==='intermedio'?'🟡':'🔴'} ${nivel.charAt(0).toUpperCase()+nivel.slice(1)}</span>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }
+}
+
+// ══════════════════════════════════
+//  VISIÓN Y JUEGOS
+// ══════════════════════════════════
+function filtVJ(cat,btn){
+  document.querySelectorAll('#filtros-vj .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');S.vjFiltro=cat;renderVJ(cat);
+}
+function renderVJ(filtro){
+  const lista=filtro==='todos'?VJ_JUEGOS:VJ_JUEGOS.filter(j=>j.cat===filtro);
+  document.getElementById('vj-grid').innerHTML=lista.map(j=>`
+    <div class="vj-card" style="background:${j.bg}" onclick="abrirActividad(${j.id},'vj')">
+      <div style="font-size:3rem">${j.e}</div>
+      <div style="font-family:var(--fh);font-size:1rem;font-weight:800;color:${j.c}">${j.n}</div>
+      <div style="font-size:.75rem;color:var(--ink2);line-height:1.4">${j.d}</div>
+      <div><span class="pill" style="background:rgba(0,0,0,.06);color:${j.c}">⏱ ${j.min}m</span></div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+//  ACTIVIDAD MODAL + JUEGO
+// ══════════════════════════════════
+// ══════════════════════════════════════════════════════
+//  MOTOR DE AUDIO — Sistema TTS para niños no lectores
+//  Funciona con Web Speech API (nativo en todos los
+//  navegadores modernos y muchos dispositivos móviles)
+// ══════════════════════════════════════════════════════
+const AUDIO = {
+  activo: true,         // auto-lectura al entrar a cada pregunta
+  velocidad: 0.82,      // lenta para niños con TEA
+  voz: null,            // voz seleccionada
+  hablando: false,
+  cola: [],             // cola de textos pendientes
+};
+
+// Inicializar voces (asíncrono en algunos navegadores)
+function initVoces(){
+  if(!window.speechSynthesis) return;
+  const cargar = () => {
+    const voces = window.speechSynthesis.getVoices();
+    // Preferir voz española femenina → más clara para niños
+    AUDIO.voz =
+      voces.find(v => v.lang.startsWith('es') && v.name.toLowerCase().includes('female')) ||
+      voces.find(v => v.lang.startsWith('es') && v.localService) ||
+      voces.find(v => v.lang.startsWith('es')) ||
+      voces[0] || null;
+  };
+  cargar();
+  window.speechSynthesis.onvoiceschanged = cargar;
+}
+
+// Función principal de habla
+function decir(texto, opts={}) {
+  if(!window.speechSynthesis || !texto) return;
+  window.speechSynthesis.cancel();
+  AUDIO.hablando = true;
+
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = 'es-ES';
+  u.rate = opts.velocidad || AUDIO.velocidad;
+  u.pitch = opts.pitch || 1.05;  // ligeramente más agudo = más amigable
+  u.volume = 1;
+  if(AUDIO.voz) u.voice = AUDIO.voz;
+
+  // Resaltar el botón mientras habla
+  if(opts.btnId){
+    const btn = document.getElementById(opts.btnId);
+    if(btn){ btn.classList.add('leyendo'); }
+    u.onend = () => { AUDIO.hablando=false; if(btn) btn.classList.remove('leyendo'); if(opts.onEnd) opts.onEnd(); };
+    u.onerror = () => { AUDIO.hablando=false; if(btn) btn.classList.remove('leyendo'); };
+  } else {
+    u.onend  = () => { AUDIO.hablando=false; if(opts.onEnd) opts.onEnd(); };
+    u.onerror= () => { AUDIO.hablando=false; };
+  }
+
+  window.speechSynthesis.speak(u);
+}
+
+// Leer pregunta + opciones en secuencia
+function leerPreguntaCompleta(q, pausaOps=1200){
+  if(!AUDIO.activo || !q) return;
+  window.speechSynthesis.cancel();
+
+  // 1. Leer la pregunta
+  decir(q.p, { btnId:'btn-audio-preg', velocidad: AUDIO.velocidad,
+    onEnd: () => {
+      // 2. Después de la pregunta, leer cada opción con pausa
+      if(!q.os?.length) return;
+      let idx = 0;
+      function leerOp(){
+        if(idx >= q.os.length) return;
+        const op = q.os[idx];
+        // Resaltar la opción visualmente
+        const opEls = document.querySelectorAll('.op');
+        opEls.forEach(e=>e.classList.remove('leyendo-op'));
+        if(opEls[idx]) opEls[idx].classList.add('leyendo-op');
+        // Leer "Opción 1: texto"
+        const texto = `Opción ${idx+1}: ${op.n}`;
+        decir(texto, { velocidad: AUDIO.velocidad * 0.95,
+          onEnd: () => {
+            if(opEls[idx]) opEls[idx].classList.remove('leyendo-op');
+            idx++;
+            setTimeout(leerOp, 400);
+          }
+        });
+      }
+      setTimeout(leerOp, pausaOps);
+    }
+  });
+}
+
+// Leer solo la pregunta (botón manual)
+function leerSoloPregunta(){
+  const q = S.juegoAct?.ops?.[S.juegoStep];
+  if(!q) return;
+  decir(q.p, { btnId:'btn-audio-preg', velocidad: AUDIO.velocidad });
+}
+
+// Toggle auto-audio
+function toggleAutoAudio(){
+  AUDIO.activo = !AUDIO.activo;
+  window.speechSynthesis.cancel();
+  actualizarBotonesAudio();
+  toast(AUDIO.activo ? '🔊 Audio activado' : '🔇 Audio desactivado', AUDIO.activo?'ok':'info');
+  if(AUDIO.activo){
+    const q = S.juegoAct?.ops?.[S.juegoStep];
+    if(q) setTimeout(()=>leerPreguntaCompleta(q), 400);
+  }
+}
+
+function actualizarBotonesAudio(){
+  const btnTop = document.getElementById('btn-audio-top');
+  const ind    = document.getElementById('audio-indicator');
+  if(btnTop){
+    btnTop.textContent = AUDIO.activo ? '🔊' : '🔇';
+    btnTop.style.background = AUDIO.activo ? 'var(--sky-lt)' : 'var(--line)';
+    btnTop.style.color = AUDIO.activo ? 'var(--sky)' : 'var(--ink3)';
+  }
+  if(ind){
+    ind.style.display = 'flex';
+    ind.className = 'auto-audio-indicator' + (AUDIO.activo ? '' : ' off');
+    ind.innerHTML = AUDIO.activo
+      ? `<div class="audio-waves"><span></span><span></span><span></span><span></span><span></span></div> Audio activo`
+      : `🔇 Audio pausado`;
+  }
+}
+
+// Cambiar velocidad de lectura
+function setVelocidad(v){
+  AUDIO.velocidad = v;
+  document.querySelectorAll('.speed-btn').forEach(b=>{
+    b.classList.toggle('on', parseFloat(b.dataset.v)===v);
+  });
+  toast(v<=0.7?'🐢 Muy despacio':v<=0.85?'🚶 Despacio':'🏃 Normal','info');
+}
+
+function abrirActividad(id,tipo){
+  let a=null;
+  if(tipo==='vj') a=VJ_JUEGOS.find(x=>x.id===id);
+  else if(tipo==='area'){
+    const area=ACTIVIDADES_AREAS[S.areaActual]||{};
+    [].concat(...Object.values(area)).forEach(x=>{if(x.id===id)a=x});
+  }
+  if(!a)return;
+  document.getElementById('m-ico').textContent=a.e;
+  document.getElementById('m-ico').style.background=a.bg||'#EBF1FF';
+  document.getElementById('m-tit').textContent=a.n;
+  document.getElementById('m-desc').textContent=a.d||'Actividad de aprendizaje adaptada para TEA';
+  document.getElementById('m-meta').innerHTML=
+    `<span class="pill p-sky">⏱ ${a.min} min</span><span class="pill p-eme">${a.ops?.length||1} preguntas</span>
+     <span class="pill" style="background:#EBF1FF;color:var(--sky)">🔊 Audio disponible</span>`;
+  // Leer título y descripción de la actividad al abrir el modal
+  setTimeout(()=>decir(`${a.n}. ${a.d||''}`, {velocidad:AUDIO.velocidad}), 300);
+  document.getElementById('btn-start').onclick=()=>{cerrarModal('ov-act');iniciarJuego(a)};
+  document.getElementById('ov-act').classList.add('on');
+}
+
+function cerrarModal(id){
+  window.speechSynthesis?.cancel();
+  document.getElementById(id).classList.remove('on');
+}
+
+function iniciarJuego(a){
+  S.juegoAct=a;S.juegoStep=0;S.juegoCorr=0;
+  scr('s-juego');
+  actualizarBotonesAudio();
+  document.getElementById('audio-indicator').style.display='flex';
+  renderPregunta();
+}
+
+function renderPregunta(){
+  const a=S.juegoAct;
+  if(!a.ops||S.juegoStep>=a.ops.length){mostrarResultado();return}
+  const q=a.ops[S.juegoStep];
+  const pct=Math.round(S.juegoStep/a.ops.length*100);
+  document.getElementById('j-fill').style.width=pct+'%';
+  document.getElementById('j-cnt').textContent=`${S.juegoStep+1}/${a.ops.length}`;
+
+  document.getElementById('j-body').innerHTML=`
+    <!-- Control de velocidad de audio -->
+    <div class="audio-speed">
+      <span style="font-size:.75rem;color:var(--ink3);font-weight:700">Velocidad:</span>
+      <button class="speed-btn ${AUDIO.velocidad<=0.65?'on':''}" data-v="0.65" onclick="setVelocidad(0.65)">🐢 Muy lento</button>
+      <button class="speed-btn ${AUDIO.velocidad>0.65&&AUDIO.velocidad<=0.85?'on':''}" data-v="0.82" onclick="setVelocidad(0.82)">🚶 Lento</button>
+      <button class="speed-btn ${AUDIO.velocidad>0.85?'on':''}" data-v="1.0" onclick="setVelocidad(1.0)">🏃 Normal</button>
+    </div>
+
+    <!-- Botón grande de escuchar la pregunta -->
+    <button id="btn-audio-preg" class="btn-audio-preg" onclick="leerSoloPregunta()">
+      <div class="audio-waves"><span></span><span></span><span></span><span></span><span></span></div>
+      🔊 Escuchar la pregunta
+    </button>
+
+    <!-- Texto de la pregunta (referencia visual para quien sí lee) -->
+    <div class="j-preg">${q.p}</div>
+
+    <!-- Opciones de respuesta -->
+    <div class="ops">
+      ${q.os.map((op,i)=>`
+        <div class="op" onclick="responder(${i})">
+          <span class="op-ico">${op.e}</span>
+          <span class="op-txt">${op.n}</span>
+          <button class="btn-audio-op" onclick="event.stopPropagation();decir('Opción ${i+1}: ${op.n.replace(/'/g,"\\'")}',{velocidad:AUDIO.velocidad})"
+            style="margin-top:4px;background:rgba(76,126,243,.1);border-radius:50px;padding:4px 10px;font-size:.68rem;font-weight:700;color:var(--sky);display:flex;align-items:center;gap:4px">
+            🔊 <span>Escuchar</span>
+          </button>
+        </div>`).join('')}
+    </div>`;
+
+  // Auto-leer la pregunta + opciones si el audio está activo
+  if(AUDIO.activo){
+    setTimeout(()=>leerPreguntaCompleta(q), 500);
+  }
+}
+
+function responder(i){
+  const q=S.juegoAct.ops[S.juegoStep];
+  const op=q.os[i];
+  window.speechSynthesis?.cancel();
+  const cards=document.querySelectorAll('.op');
+  cards.forEach(c=>c.style.pointerEvents='none');
+  cards[i].classList.add(op.ok?'ok':'fail');
+  if(!op.ok)cards.forEach((c,ci)=>{if(q.os[ci].ok)c.classList.add('ok')});
+  if(op.ok){
+    S.juegoCorr++;
+    decir('¡Muy bien! ¡Correcto!', {velocidad:1.0, pitch:1.2});
+  } else {
+    // Leer la respuesta correcta
+    const correcta = q.os.find(o=>o.ok);
+    decir(`No es esa. La respuesta correcta es: ${correcta?.n||''}`, {velocidad:AUDIO.velocidad});
+  }
+  setTimeout(()=>{S.juegoStep++;renderPregunta()},1800);
+}
+
+function mostrarResultado(){
+  window.speechSynthesis?.cancel();
+  const t=S.juegoAct.ops?.length||1,c=S.juegoCorr;
+  const pct=Math.round(c/t*100);
+  const em=pct>=80?'🏆':pct>=60?'🌟':'💪';
+  const msg=pct>=80?'¡Increíble! Lo hiciste muy bien':pct>=60?'¡Muy bien! Sigue así':'¡Buen intento! Puedes intentarlo otra vez';
+  const msgCorto=pct>=80?'¡Increíble!':pct>=60?'¡Muy bien!':'¡Sigue intentándolo!';
+  document.getElementById('j-fill').style.width='100%';
+  // Ocultar indicador
+  const ind=document.getElementById('audio-indicator');
+  if(ind) ind.style.display='none';
+
+  document.getElementById('j-body').innerHTML=`
+    <div class="result-scr">
+      <div class="r-ico">${em}</div>
+      <div class="r-tit">${msgCorto}</div>
+      <div class="r-sub">${c} de ${t} correctas · ${pct}%</div>
+      <div class="r-stars">${pct>=80?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐'}</div>
+      <button class="btn-prim" onclick="salirJuego()" style="margin-bottom:12px">🏠 Volver</button>
+      <button class="btn-sec" onclick="repetirActividad()" style="font-size:.88rem">🔄 Intentar de nuevo</button>
+    </div>`;
+
+  // Leer el resultado en voz alta
+  setTimeout(()=>decir(msg+`. Respondiste ${c} de ${t} preguntas correctamente.`, {velocidad:AUDIO.velocidad, pitch:1.1}), 400);
+
+  if(pct===100) toast('🏆 ¡Perfecto! +50 puntos','ok');
+}
+
+function repetirActividad(){
+  S.juegoStep=0;S.juegoCorr=0;
+  const ind=document.getElementById('audio-indicator');
+  if(ind) ind.style.display='flex';
+  actualizarBotonesAudio();
+  renderPregunta();
+}
+
+function salirJuego(){
+  window.speechSynthesis?.cancel();
+  const ind=document.getElementById('audio-indicator');
+  if(ind) ind.style.display='none';
+  scr('s-main');ir('pg-inicio');
+}
+
+// ══════════════════════════════════
+//  RUTINAS
+// ══════════════════════════════════
+function renderRutinas(){
+  document.getElementById('rutinas-lista').innerHTML=S.rutinas.map((r,ri)=>{
+    const comp=r.pasos.filter(p=>p.ok).length,pct=Math.round(comp/r.pasos.length*100);
+    return `<div class="card" style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div style="width:48px;height:48px;border-radius:14px;background:${r.c}22;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${r.e}</div>
+        <div style="flex:1"><div style="font-weight:800">${r.n}</div><div style="font-size:.75rem;color:var(--ink3)">🕐 ${r.h}</div></div>
+        <button onclick="resetRutina(${ri})" style="background:var(--bg);border-radius:var(--r8);padding:4px 10px;font-size:.72rem;font-weight:700;color:var(--ink3)">↺</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <div class="progbar" style="flex:1"><div class="progfill" style="width:${pct}%;background:${r.c}"></div></div>
+        <span style="font-size:.75rem;font-weight:800;color:${r.c}">${comp}/${r.pasos.length}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        ${r.pasos.map((p,pi)=>`
+          <div onclick="togglePaso(${ri},${pi})" style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:var(--r12);background:${p.ok?'var(--eme-lt)':'var(--bg)'};cursor:pointer;transition:.2s">
+            <span style="font-size:1.3rem">${p.ico}</span>
+            <span style="flex:1;font-weight:700;font-size:.87rem">${p.n}</span>
+            <div style="width:26px;height:26px;border-radius:50%;background:${p.ok?'var(--eme)':'transparent'};border:2px solid ${p.ok?'var(--eme)':'var(--line)'};display:flex;align-items:center;justify-content:center;font-size:.78rem;color:#fff">${p.ok?'✓':''}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+function togglePaso(ri,pi){
+  S.rutinas[ri].pasos[pi].ok=!S.rutinas[ri].pasos[pi].ok;
+  renderRutinas();
+  if(S.rutinas[ri].pasos.every(p=>p.ok))toast('🎉 ¡Rutina completada!','ok');
+}
+function resetRutina(ri){S.rutinas[ri].pasos.forEach(p=>p.ok=false);renderRutinas()}
+
+// ══════════════════════════════════
+//  EMOCIONES
+// ══════════════════════════════════
+function renderEmociones(){
+  document.getElementById('emo-grid').innerHTML=EMOCIONES.map(e=>`
+    <div onclick="selEmo(${e.id})" style="border-radius:16px;padding:13px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;background:${e.bg};border:3px solid ${S.emoSel?.id===e.id?e.c:'transparent'};transition:.2s;${S.emoSel?.id===e.id?'transform:scale(1.08)':''}">
+      <span style="font-size:2.1rem">${e.e}</span>
+      <span style="font-size:.67rem;font-weight:800;text-align:center">${e.n}</span>
+    </div>`).join('');
+  renderEmoHistorial();
+}
+function selEmo(id){
+  S.emoSel=EMOCIONES.find(e=>e.id===id);
+  renderEmociones();
+  const iw=document.getElementById('emo-intens');
+  iw.style.display='block';
+  iw.innerHTML=`
+    <div class="card" style="margin-bottom:14px">
+      <div style="font-weight:800;margin-bottom:12px">¿Cuánto sientes esto? 🌡️</div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        ${[1,2,3,4,5].map(n=>`<button onclick="setIntens(${n})" style="width:40px;height:40px;border-radius:50%;background:${S.intensidad>=n?'var(--sky)':'var(--bg)'};color:${S.intensidad>=n?'#fff':'var(--ink3)'};border:2px solid ${S.intensidad>=n?'var(--sky)':'var(--line)'};font-weight:800;font-size:.9rem;cursor:pointer;transition:.2s">${n}</button>`).join('')}
+      </div>
+      <div style="text-align:center;margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <select id="emo-ctx" style="border-radius:50px;padding:8px 14px;border:2px solid var(--line);font-size:.82rem;font-weight:600">
+          <option>🏠 En casa</option><option>🏫 En el colegio</option><option>🏥 En terapia</option><option>🌳 En el parque</option>
+        </select>
+        <button onclick="guardarEmo()" style="background:var(--eme);color:#fff;border-radius:50px;padding:9px 20px;font-weight:800;font-size:.85rem">💾 Guardar</button>
+      </div>
+    </div>`;
+  const ew=document.getElementById('emo-estrategias');
+  ew.style.display='block';
+  ew.innerHTML=`
+    <div class="stitle"><span class="c">💡</span> Estrategias para ${S.emoSel.n.toLowerCase()}</div>
+    ${S.emoSel.est.map(e=>`
+      <div style="background:var(--eme-lt);border-radius:var(--r12);padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px;font-size:.87rem;font-weight:600">
+        <span>💡</span>${e}
+      </div>`).join('')}`;
+  iw.scrollIntoView({behavior:'smooth'});
+}
+function setIntens(n){
+  S.intensidad=n;
+  const iw=document.getElementById('emo-intens');
+  if(iw.style.display!=='none')selEmo(S.emoSel.id);
+}
+function guardarEmo(){
+  if(!S.emoSel)return;
+  const ctx=document.getElementById('emo-ctx')?.value||'🏠 casa';
+  S.histEmo.unshift({emo:S.emoSel,intens:S.intensidad,ctx,f:'Ahora'});
+  toast('💾 Emoción guardada','ok');
+  document.getElementById('emo-intens').style.display='none';
+  document.getElementById('emo-estrategias').style.display='none';
+  S.emoSel=null;renderEmociones();
+}
+function renderEmoHistorial(){
+  document.getElementById('emo-hist').innerHTML=S.histEmo.slice(0,5).map(h=>`
+    <div style="background:var(--card);border-radius:var(--r12);padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:11px;box-shadow:var(--sh1)">
+      <span style="font-size:1.7rem">${h.emo.e}</span>
+      <div style="flex:1">
+        <div style="font-weight:800;font-size:.87rem">${h.emo.n}</div>
+        <div style="font-size:.72rem;color:var(--ink3)">${h.ctx} · ${h.f}</div>
+        <div style="height:4px;background:var(--line);border-radius:50px;margin-top:4px;overflow:hidden">
+          <div style="width:${h.intens*20}%;height:100%;background:${h.emo.c};border-radius:50px"></div>
+        </div>
+      </div>
+      <span style="font-size:.82rem;font-weight:800;color:${h.emo.c}">${h.intens}/5</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+//  COMUNICACIÓN AAC
+// ══════════════════════════════════
+const PICTO_CATS=[
+  {id:'todas',n:'Todos',e:'🗂️',c:'#4C7EF3'},{id:'necesidades',n:'Necesidades',e:'🍽️',c:'#FFB347'},
+  {id:'saludos',n:'Saludos',e:'👋',c:'#2ECC8E'},{id:'emociones',n:'Emociones',e:'😊',c:'#FF6B6B'},
+  {id:'familia',n:'Familia',e:'👨‍👩‍👦',c:'#8B5CF6'},{id:'lugares',n:'Lugares',e:'🏠',c:'#FFB347'},
+  {id:'actividades',n:'Actividades',e:'🎮',c:'#FF7B5A'},{id:'respuestas',n:'Respuestas',e:'✅',c:'#2ECC8E'},
+  {id:'instrucciones',n:'Instrucciones',e:'⏳',c:'#4C7EF3'},{id:'social',n:'Social',e:'👫',c:'#8B5CF6'},
+];
+function renderPictosCats(){
+  document.getElementById('picto-cats').innerHTML=PICTO_CATS.map(c=>`
+    <button class="fbtn ${c.id==='todas'?'on':''}" onclick="filtPictos('${c.id}',this)">${c.e} ${c.n}</button>`).join('');
+}
+function filtPictos(cat,btn){
+  document.querySelectorAll('#picto-cats .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');renderPictos(cat);
+}
+function renderPictos(cat='todas'){
+  const lista=cat==='todas'?PICTOGRAMAS:PICTOGRAMAS.filter(p=>p.cat===cat);
+  document.getElementById('picto-grid').innerHTML=lista.map(p=>`
+    <div onclick="addPicto(${p.id})" style="border-radius:var(--r12);padding:11px 5px;background:${p.c}18;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:.2s" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform=''">
+      <span style="font-size:1.9rem">${p.e}</span>
+      <span style="font-size:.63rem;font-weight:800;color:${p.c};text-align:center">${p.p}</span>
+    </div>`).join('');
+}
+function addPicto(id){
+  const p=PICTOGRAMAS.find(x=>x.id===id);if(!p)return;
+  S.tablero.push(p);renderTablero();
+  if(window.speechSynthesis) decir(p.p, {velocidad: AUDIO.velocidad});
+}
+function renderTablero(){
+  const c=document.getElementById('tablero');
+  if(!S.tablero.length){c.innerHTML='<span style="color:var(--ink3);font-size:.85rem;font-style:italic">Toca un pictograma para empezar</span>';return}
+  c.innerHTML=S.tablero.map((p,i)=>`
+    <div onclick="quitarPicto(${i})" style="background:var(--sky);color:#fff;border-radius:var(--r12);padding:7px 11px;display:flex;align-items:center;gap:5px;font-size:.83rem;font-weight:700;cursor:pointer;transition:.2s;animation:bIn .2s ease">
+      ${p.e} ${p.p}
+    </div>`).join('');
+}
+function quitarPicto(i){S.tablero.splice(i,1);renderTablero()}
+function limpiarTablero(){S.tablero=[];renderTablero()}
+function hablar(){
+  if(!S.tablero.length){toast('Agrega pictogramas primero','warn');return}
+  const txt=S.tablero.map(p=>p.p).join(', ');
+  decir(txt, {velocidad: AUDIO.velocidad});
+  toast('🔊 '+txt,'info');
+}
+
+// ══════════════════════════════════
+//  LOGROS
+// ══════════════════════════════════
+function renderLogros(){
+  document.getElementById('logros-grid').innerHTML=LOGROS.map(l=>`
+    <div class="card ${l.obt?'':''}">
+      <div style="font-size:2.4rem;margin-bottom:7px;${l.obt?'':'filter:grayscale(1);opacity:.5'}">${l.e}</div>
+      <div style="font-size:.82rem;font-weight:800;margin-bottom:3px">${l.n}</div>
+      <div style="font-size:.7rem;color:var(--ink3);margin-bottom:8px">${l.d}</div>
+      ${l.obt
+        ?`<span style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#fff;border-radius:50px;padding:3px 10px;font-size:.65rem;font-weight:800">✓ Obtenido</span>`
+        :`<div><div class="progbar"><div class="progfill" style="width:${l.prog}%;background:linear-gradient(90deg,var(--sky),var(--eme))"></div></div>
+           <div style="font-size:.65rem;color:var(--ink3);margin-top:3px">${l.prog}%</div></div>`}
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+//  PADRES — MIS NIÑOS
+// ══════════════════════════════════
+function renderMisNinos(){
+  document.getElementById('mis-ninos-lista').innerHTML=S.misNinos.map((n,i)=>`
+    <div class="nino-card" onclick="verProgresoNino(${i})">
+      <div class="nc-ava">${n.ava}</div>
+      <div class="nc-info">
+        <div class="nc-name">${n.n} · ${n.edad} años</div>
+        <div class="nc-meta">${n.nivel}</div>
+        <div class="nc-prog">
+          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--ink3);margin-bottom:2px"><span>Progreso general</span><span style="font-weight:800;color:var(--sky)">${n.prog}%</span></div>
+          <div class="nc-bar"><div class="nc-fill" style="width:${n.prog}%"></div></div>
+        </div>
+      </div>
+      <span style="color:var(--line);font-size:1.2rem">›</span>
+    </div>`).join('');
+}
+function abrirFormNino(){document.getElementById('ov-nino').classList.add('on')}
+function guardarNino(){
+  const nom=document.getElementById('n-nombre').value||'Mi hijo/a';
+  const edad=parseInt(document.getElementById('n-edad').value)||7;
+  const nivel=document.getElementById('n-nivel').value;
+  S.misNinos.push({id:Date.now(),n:nom,ava:'🧒',edad,nivel,prog:0,areas:{percepcion:0,cognitiva:0,lenguaje:0,lectomatem:0,social:0,vida:0}});
+  cerrarModal('ov-nino');
+  renderMisNinos();
+  toast(`👦 ${nom} agregado/a con éxito`,'ok');
+}
+
+function verProgresoNino(i){
+  const n=S.misNinos[i]||PACIENTES_DEMO[i]||PACIENTES_DEMO[0];
+  document.getElementById('prog-nino-header').innerHTML=`
+    <div class="card" style="background:linear-gradient(135deg,var(--sky),var(--vio));color:#fff;padding:20px;margin-bottom:16px">
+      <div style="font-size:2.5rem;margin-bottom:8px">${n.ava}</div>
+      <div style="font-family:var(--fh);font-size:1.2rem;font-weight:800">${n.n}</div>
+      <div style="font-size:.85rem;opacity:.9">${n.edad} años · ${n.nivel||n.nivel}</div>
+    </div>`;
+  const areasCols={percepcion:'#4C7EF3',cognitiva:'#8B5CF6',lenguaje:'#2ECC8E',lectomatem:'#FF7B5A',social:'#FFB347',vida:'#14B8A6'};
+  const areasNom={percepcion:'👁️ Percepción',cognitiva:'🧠 Cognitiva',lenguaje:'🗣️ Lenguaje',lectomatem:'📚 Lectoscritura',social:'🤝 Social',vida:'🏠 Vida diaria'};
+  document.getElementById('progreso-areas-lista').innerHTML=Object.entries(n.areas).map(([k,v])=>`
+    <div class="area-prog-card">
+      <div class="apc-head">
+        <div class="apc-ico" style="background:${areasCols[k]}22">${areasNom[k].split(' ')[0]}</div>
+        <div>
+          <div class="apc-name">${areasNom[k]}</div>
+          <div class="apc-sub">Progreso: ${v}%</div>
+        </div>
+        <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;color:${areasCols[k]}">${v}%</div>
+      </div>
+      <div class="apc-bars">
+        ${['Básico','Intermedio','Avanzado'].map((lv,li)=>{const pct=Math.max(0,v-li*25);return`
+          <div class="bl">
+            <span class="bl-lbl">${lv}</span>
+            <div class="bl-bar"><div class="bl-fill" style="width:${Math.min(pct*1.5,100)}%;background:${areasCols[k]}"></div></div>
+            <span class="bl-pct" style="color:${areasCols[k]}">${Math.min(pct*1.5,100).toFixed(0)}%</span>
+          </div>`}).join('')}
+      </div>
+    </div>`).join('');
+  document.getElementById('actividad-reciente-nino').innerHTML=`
+    ${[{t:'Completó: ¿Cómo me siento hoy?',ico:'😊',f:'Hace 2 horas',pct:85},{t:'Completó: Números del 1 al 10',ico:'🔢',f:'Ayer',pct:100},{t:'Completó: Aprendo a saludar',ico:'👋',f:'Hace 3 días',pct:70}].map(a=>`
+      <div style="background:var(--card);border-radius:var(--r12);padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh1)">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--sky-lt);display:flex;align-items:center;justify-content:center;font-size:1.2rem">${a.ico}</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:.85rem">${a.t}</div>
+          <div style="font-size:.72rem;color:var(--ink3)">${a.f}</div>
+        </div>
+        <span style="font-size:.82rem;font-weight:800;color:var(--eme)">${a.pct}%</span>
+      </div>`).join('')}`;
+  ir('pg-progreso-nino');
+}
+
+// ══════════════════════════════════
+//  BLOG
+// ══════════════════════════════════
+function filtBlog(cat,btn){
+  document.querySelectorAll('#blog-filtros .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');S.blogFiltro=cat;renderBlog(cat);
+}
+function renderBlog(filtro){
+  const lista=filtro==='todos'?BLOG_POSTS:BLOG_POSTS.filter(b=>b.cat===filtro);
+  document.getElementById('blog-grid').innerHTML=lista.map(b=>`
+    <div class="blog-card" onclick="abrirBlog(${b.id})">
+      <div class="blog-cover" style="background:${b.bg}">${b.e}</div>
+      <div class="blog-body">
+        <div class="blog-cat" style="background:${b.bg};color:${b.c}">${b.cat}</div>
+        <div class="blog-tit">${b.tit}</div>
+        <div class="blog-meta">✍️ ${b.autor} · 📖 ${b.read} · ${b.fecha}</div>
+      </div>
+    </div>`).join('');
+}
+function abrirBlog(id){
+  const b=BLOG_POSTS.find(x=>x.id===id);if(!b)return;
+  document.getElementById('blog-detalle-content').innerHTML=`
+    <div style="background:${b.bg};border-radius:var(--r20);padding:24px;text-align:center;margin-bottom:20px">
+      <div style="font-size:4rem;margin-bottom:10px">${b.e}</div>
+      <div class="blog-cat" style="background:rgba(0,0,0,.06);color:${b.c};margin-bottom:8px">${b.cat}</div>
+      <div style="font-family:var(--fh);font-size:1.3rem;font-weight:800;line-height:1.4">${b.tit}</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <span class="pill p-sky">✍️ ${b.autor}</span>
+      <span class="pill p-eme">📖 ${b.read}</span>
+      <span class="pill" style="background:var(--bg);color:var(--ink3)">📅 ${b.fecha}</span>
+    </div>
+    <div style="font-size:.95rem;line-height:1.8;color:var(--ink2);font-weight:500">${b.desc}</div>
+    <hr style="border:none;border-top:1px solid var(--line);margin:16px 0">
+    <div style="font-size:.92rem;line-height:1.8;color:var(--ink2)">${b.contenido}</div>
+    <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="toast('🔗 Enlace copiado','ok')" class="btn-sec">🔗 Compartir</button>
+      <button onclick="toast('🔖 Guardado en favoritos','ok')" class="btn-sec">🔖 Guardar</button>
+      <button onclick="ir('pg-chat')" class="btn-sec">💬 Comentar en comunidad</button>
+    </div>`;
+  ir('pg-blog-detalle');
+}
+
+// ══════════════════════════════════
+//  CHAT PADRES
+// ══════════════════════════════════
+function chatTab(tab,el){
+  document.querySelectorAll('#pg-chat .ntab').forEach(t=>{t.classList.remove('on');t.style.color='var(--ink3)'});
+  el.classList.add('on');el.style.color='var(--sky)';
+  S.chatTab=tab;renderChat(tab);
+}
+function renderChat(tab){
+  const msgs=[...CHAT_MSGS.filter(m=>m.tipo===tab||m.tipo==='todos'),...S.chatLocal.filter(m=>m.tipo===tab)].filter(m=>m.texto);
+  document.getElementById('chat-mensajes').innerHTML=msgs.map(m=>`
+    <div class="chat-msg ${m.mine?'mine':''}">
+      <div class="chat-ava">${m.ava}</div>
+      <div class="chat-bubble">
+        ${!m.mine?`<div class="chat-name">${m.de}${m.exp?`<span class="chat-exp-badge">Exp. compartida</span>`:''}</div>`:''}
+        <div class="chat-text">${m.texto}</div>
+        ${m.tiempo?`<div class="chat-time">${m.tiempo}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function enviarChat(){
+  const inp=document.getElementById('chat-input');
+  const txt=inp.value.trim();if(!txt)return;
+  S.chatLocal.push({de:'Tú',ava:S.usr?.ava||'😊',texto:txt,tiempo:new Date().toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'}),tipo:S.chatTab,mine:true});
+  inp.value='';renderChat(S.chatTab);
+  toast('✉️ Mensaje enviado','ok');
+}
+
+// ══════════════════════════════════
+//  MATERIAL EDUCATIVO
+// ══════════════════════════════════
+function filtMat(cat,btn){
+  document.querySelectorAll('#mat-filtros .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');S.matFiltro=cat;renderMaterial(cat);
+}
+function renderMaterial(filtro){
+  const lista=filtro==='todos'?MATERIAL_EDU:MATERIAL_EDU.filter(m=>m.tipo===filtro);
+  document.getElementById('material-lista').innerHTML=lista.map(m=>`
+    <div class="mat-card">
+      <div class="mat-ico" style="background:${m.icoC}">${m.ico}</div>
+      <div class="mat-info">
+        <div class="mat-name">${m.n}</div>
+        <div class="mat-meta">📁 ${m.area} · 👤 ${m.autor} · 📅 ${m.fecha} · ⬇️ ${m.dl} descargas · ${m.formato}</div>
+      </div>
+      <div class="mat-acts">
+        <button class="btn-dl" onclick="descargarMat('${m.n}')">⬇️ Descargar</button>
+        ${['terapeuta','docente'].includes(S.rol)?`<button class="btn-share" onclick="toast('🔗 Enlace compartido','ok')">🔗 Compartir</button>`:''}
+      </div>
+    </div>`).join('');
+}
+function descargarMat(n){toast(`⬇️ Descargando: ${n}...`,'info')}
+function abrirSubirMaterial(){document.getElementById('ov-material').classList.add('on')}
+function subirMaterial(){
+  const tit=document.getElementById('mat-titulo').value||'Material sin título';
+  cerrarModal('ov-material');
+  MATERIAL_EDU.unshift({id:Date.now(),n:tit,tipo:'fichas',area:'General',ico:'📄',icoC:'#EBF1FF',autor:S.usr?.nom||'Profesional',fecha:'Hoy',dl:0,formato:'PDF'});
+  renderMaterial(S.matFiltro);
+  toast(`📤 "${tit}" publicado con éxito`,'ok');
+}
+
+// ══════════════════════════════════
+//  PACIENTES / ESTUDIANTES
+// ══════════════════════════════════
+function renderPacientes(){
+  document.getElementById('pacientes-lista').innerHTML=PACIENTES_DEMO.map(p=>`
+    <div class="pac-card" onclick="toast('📊 Abriendo perfil de ${p.n}','info')">
+      <div class="pac-ava">${p.ava}</div>
+      <div class="pac-info">
+        <div class="pac-name">${p.n}</div>
+        <div class="pac-meta">${p.edad} años · ${p.nivel} · Progreso: ${p.prog}%</div>
+        <div style="height:4px;background:var(--line);border-radius:50px;margin-top:5px;overflow:hidden">
+          <div style="width:${p.prog}%;height:100%;background:linear-gradient(90deg,var(--sky),var(--eme));border-radius:50px"></div>
+        </div>
+      </div>
+      <span style="color:var(--line)">›</span>
+    </div>`).join('');
+}
+function abrirFormPaciente(){
+  toast('📝 Formulario de registro de paciente — próximamente con formulario completo','info');
+}
+
+// ══════════════════════════════════
+//  INFORMES
+// ══════════════════════════════════
+function renderInformes(){
+  const colMap={progreso:'#4C7EF3',seguimiento:'#2ECC8E',observacion:'#FFB347',incidente:'#FF6B6B','plan de trabajo':'#8B5CF6'};
+  document.getElementById('informes-lista').innerHTML=INFORMES_DEMO.map(inf=>`
+    <div class="inf-card">
+      <div class="inf-head">
+        <span class="inf-tipo" style="background:${(colMap[inf.tipo]||'#4C7EF3')}22;color:${colMap[inf.tipo]||'#4C7EF3'}">${inf.tipo}</span>
+        <span style="font-size:.78rem;font-weight:700;color:var(--ink3)">${inf.pac}</span>
+        <span class="inf-fecha">${inf.fecha}</span>
+      </div>
+      <div class="inf-tit">${inf.tit}</div>
+      <div class="inf-txt">${inf.txt}</div>
+      <div class="inf-acts">
+        <button class="btn-edit" onclick="ir('pg-nuevo-informe')">✏️ Editar</button>
+        <button class="btn-pdf" onclick="descargarInformePDF('${inf.tit}')">📄 PDF</button>
+        <button onclick="toast('📧 Informe enviado a la familia','ok')" style="background:var(--sky-lt);color:var(--sky);border-radius:50px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer">📧 Enviar a familia</button>
+      </div>
+    </div>`).join('');
+}
+function guardarInforme(){
+  const pac=document.getElementById('inf-paciente').value;
+  const tipo=document.getElementById('inf-tipo').value;
+  INFORMES_DEMO.unshift({id:Date.now(),pac,tipo:tipo.toLowerCase(),c:'#4C7EF3',tit:`Informe — ${pac} (${new Date().toLocaleDateString('es')})`,txt:'Informe guardado correctamente.',fecha:new Date().toLocaleDateString('es',{day:'numeric',month:'short',year:'numeric'})});
+  toast('💾 Informe guardado','ok');
+  ir('pg-informes');
+}
+function descargarInforme(){toast('📄 Generando PDF del informe...','info')}
+function descargarInformePDF(t){toast(`📄 Descargando: ${t}...`,'info')}
+
+// ══════════════════════════════════
+//  RED DE APOYO
+// ══════════════════════════════════
+function filtRed(cat,btn){
+  document.querySelectorAll('#red-filtros .fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');S.redFiltro=cat;renderRed(cat);
+}
+function renderRed(filtro){
+  const lista=filtro==='todos'?RED_APOYO:RED_APOYO.filter(r=>r.tipo===filtro);
+  document.getElementById('red-lista').innerHTML=lista.map(r=>`
+    <div class="red-card">
+      <div class="red-ico">${r.e}</div>
+      <div class="red-info">
+        <div class="red-name">${r.n}</div>
+        <span class="red-tipo" style="background:${r.tipBg};color:${r.tipC}">${r.tipo}</span>
+        <div class="red-desc">${r.desc}</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:4px">📍 ${r.loc} ${r.tel?'· 📞 '+r.tel:''}</div>
+        <div class="red-acts">
+          <button class="btn-con" onclick="toast('📞 Contactando con ${r.n}...','info')">📞 Contactar</button>
+          ${r.web?`<button class="btn-web" onclick="toast('🌐 Abriendo sitio web...','info')">🌐 Web</button>`:''}
+          <button onclick="toast('🔖 Guardado en favoritos','ok')" style="background:var(--bg);border-radius:50px;padding:5px 12px;font-size:.73rem;font-weight:700;color:var(--ink3);cursor:pointer">🔖 Guardar</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+//  NOTIF
+// ══════════════════════════════════
+function renderNotif(){
+  document.getElementById('notif-dot').style.display='none';
+  const notifs=[
+    {ico:'⭐',bg:'#FFF6E8',msg:'¡Carlos completó el área de Percepción Básica!',t:'Hace 10 min'},
+    {ico:'💬',bg:'#EBF1FF',msg:'Ana Rodríguez te envió un nuevo informe',t:'Hace 2h'},
+    {ico:'📅',bg:'#E3F9F1',msg:'Recordatorio: Rutina de la noche en 30 minutos',t:'Hace 3h'},
+    {ico:'🏆',bg:'#FFF6E8',msg:'¡5 días seguidos de práctica!',t:'Ayer'},
+    {ico:'📂',bg:'#E3F9F1',msg:'Nuevo material educativo publicado: Fichas de emociones',t:'Ayer'},
+    {ico:'🌐',bg:'#EBF1FF',msg:'Nuevo artículo en el blog: Estrategias visuales',t:'Hace 2 días'},
+  ];
+  document.getElementById('notif-lista').innerHTML=notifs.map(n=>`
+    <div onclick="toast('✓ Notificación leída','ok')" style="background:var(--card);border-radius:var(--r12);padding:13px;margin-bottom:7px;display:flex;gap:11px;cursor:pointer;box-shadow:var(--sh1);transition:var(--fast)" onmouseover="this.style.background='var(--sky-lt)'" onmouseout="this.style.background='var(--card)'">
+      <div style="width:38px;height:38px;border-radius:50%;background:${n.bg};display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">${n.ico}</div>
+      <div>
+        <div style="font-size:.84rem;font-weight:600">${n.msg}</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">${n.t}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+//  PERFIL
+// ══════════════════════════════════
+function renderPerfil(){
+  const u=S.usr;if(!u)return;
+  document.getElementById('perf-ava').textContent=u.ava;
+  document.getElementById('perf-name').textContent=u.nom;
+  document.getElementById('perf-badge').textContent=u.badge;
+  const opcComunes=[
+    {ico:'⚙️',bg:'var(--sky-lt)',t:'Configuración TEA',s:'Accesibilidad y preferencias',fn:"toast('⚙️ Configuración próximamente','info')"},
+    {ico:'📂',bg:'var(--eme-lt)',t:'Material educativo',s:'Recursos compartidos',fn:"ir('pg-material')"},
+    {ico:'🌐',bg:'var(--teal-lt)',t:'Red de apoyo',s:'Profesionales e instituciones',fn:"ir('pg-red')"},
+    {ico:'📰',bg:'var(--sun-lt)',t:'Blog TEA',s:'Información y recursos',fn:"ir('pg-blog')"},
+  ];
+  const opcRol={
+    nino:[{ico:'🏆',bg:'var(--sun-lt)',t:'Mis logros',s:'Medallas y puntos',fn:"ir('pg-logros')"},{ico:'📅',bg:'var(--teal-lt)',t:'Mis rutinas',s:'Rutinas del día',fn:"ir('pg-rutinas')"}],
+    padre:[{ico:'👦',bg:'var(--sky-lt)',t:'Mis hijos/as',s:'Gestionar perfiles',fn:"ir('pg-mis-ninos')"},{ico:'💬',bg:'var(--vio-lt)',t:'Comunidad de padres',s:'Chat y experiencias',fn:"ir('pg-chat')"}],
+    terapeuta:[{ico:'🧑‍⚕️',bg:'var(--sky-lt)',t:'Mis pacientes',s:'Gestionar pacientes',fn:"ir('pg-pacientes')"},{ico:'📋',bg:'var(--vio-lt)',t:'Informes',s:'Redactar y descargar',fn:"ir('pg-informes')"}],
+    docente:[{ico:'👦',bg:'var(--sky-lt)',t:'Mis estudiantes',s:'Gestionar estudiantes',fn:"ir('pg-pacientes')"},{ico:'📋',bg:'var(--vio-lt)',t:'Informes',s:'Redactar y descargar',fn:"ir('pg-informes')"}],
+  };
+  const lista=[...(opcRol[u.rol]||[]),...opcComunes];
+  document.getElementById('perfil-opciones').innerHTML=`
+    <div class="card" style="padding:8px">
+      ${lista.map(o=>`
+        <div onclick="${o.fn}" style="display:flex;align-items:center;gap:11px;padding:13px 11px;border-radius:var(--r12);cursor:pointer;transition:var(--fast)" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+          <div style="width:38px;height:38px;border-radius:12px;background:${o.bg};display:flex;align-items:center;justify-content:center;font-size:1rem">${o.ico}</div>
+          <div style="flex:1"><div style="font-weight:700;font-size:.88rem">${o.t}</div><div style="font-size:.73rem;color:var(--ink3)">${o.s}</div></div>
+          <span style="color:var(--line)">›</span>
+        </div>`).join('')}
+      <div onclick="salir()" style="display:flex;align-items:center;gap:11px;padding:13px 11px;border-radius:var(--r12);cursor:pointer;transition:var(--fast)" onmouseover="this.style.background='var(--cor-lt)'" onmouseout="this.style.background=''">
+        <div style="width:38px;height:38px;border-radius:12px;background:var(--cor-lt);display:flex;align-items:center;justify-content:center;font-size:1rem">🚪</div>
+        <div style="flex:1"><div style="font-weight:700;font-size:.88rem;color:var(--cor)">Cerrar sesión</div></div>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════
+//  TOAST
+// ══════════════════════════════════
+function toast(msg,tipo='info'){
+  const w=document.getElementById('tw');
+  const t=document.createElement('div');
+  t.className='toast '+tipo;t.textContent=msg;
+  w.appendChild(t);setTimeout(()=>t.remove(),3200);
+}
+
+// ══════════════════════════════════
+//  ACCESIBILIDAD
+// ══════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){['ov-act','ov-nino','ov-material'].forEach(id=>{document.getElementById(id).classList.remove('on')});salirJuego()}
+});
+window.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('notif-dot').style.display='block';
+  // Inicializar motor de voz TTS
+  initVoces();
+  // Pre-cargar voces al primer toque del usuario (requerido por Safari/iOS)
+  document.body.addEventListener('touchstart', ()=>{
+    if(!AUDIO.voz) initVoces();
+  }, {once:true});
+});
+</script>
+</body>
+</html>
